@@ -2,4 +2,4 @@
 
 ## Conding rules
 
-[Lien utile nommage ,...](https://basarat.gitbook.io/typescript/styleguide)
+> Go to wiki project for more details
