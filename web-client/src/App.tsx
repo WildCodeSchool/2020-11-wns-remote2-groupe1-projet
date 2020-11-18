@@ -3,15 +3,14 @@ import { Button } from '@material-ui/core';
 
 import Header from './components/layout/header';
 import Footer from './components/layout/footer';
-import { ArticleList } from './components/articles/article-list';
+import ArticleList from './components/articles/ArticleList';
 
 const App = (): JSX.Element => {
   return (
     <div>
       <Header />
-      <h1>Hello, this is APP speaking</h1>
       <Button variant="contained" color="primary">
-        Hello world
+        Test Button
       </Button>
       <ArticleList />
       <Footer />
