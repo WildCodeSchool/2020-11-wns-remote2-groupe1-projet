@@ -5,10 +5,11 @@ import {
   Column,
   Index,
   CreateDateColumn,
-  ManyToMany,
+  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import Article from './Article';
+import { Article } from './Article';
+import { Comment } from './Comment';
 
 export enum UserRole {
   GHOST = 'ghost',
@@ -20,7 +21,6 @@ export enum UserRole {
 @ObjectType()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
-  @Column()
   @Field(() => ID)
   id!: string;
 
@@ -80,6 +80,9 @@ export class User extends BaseEntity {
   @Field(() => Boolean)
   isActive!: boolean;
 
-  @ManyToMany(() => Article, (article) => article.author)
+  @ManyToOne(() => Article, (article) => article.author)
   articles?: Article[];
+
+  @ManyToOne(() => Comment, (comment) => comment.author)
+  comments?: Comment[];
 }

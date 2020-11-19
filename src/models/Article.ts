@@ -5,15 +5,16 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
+import { Comment } from './Comment';
 
 @Entity()
 @ObjectType()
-export default class Article extends BaseEntity {
+export class Article extends BaseEntity {
   @PrimaryGeneratedColumn()
-  @Column()
   @Field(() => ID)
   id!: string;
 
@@ -34,10 +35,6 @@ export default class Article extends BaseEntity {
   isVisible!: boolean;
 
   @Column()
-  @OneToMany(() => User, (author) => author.articles)
-  author!: User; // Gona be replace by User Object OneToMany
-
-  @Column()
   @Field(() => Date)
   @CreateDateColumn()
   createAt!: Date;
@@ -46,4 +43,10 @@ export default class Article extends BaseEntity {
   @Field(() => Date)
   @CreateDateColumn()
   updateAt!: Date;
+
+  @OneToMany(() => User, (author) => author.articles)
+  author!: User;
+
+  @ManyToOne(() => Comment, (comment) => comment.article)
+  comments?: Comment;
 }
