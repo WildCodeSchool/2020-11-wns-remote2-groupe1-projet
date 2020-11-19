@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ArticleProps } from '../../types';
 
 type ArticleProps = {
   id: number;
