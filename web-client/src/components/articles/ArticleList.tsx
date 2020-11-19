@@ -2,10 +2,11 @@ import React from 'react';
 import Article from './Article';
 import { articles } from '../../data';
 import { ArticleProps } from '../../types';
+import './articles.css';
 
 const ArticleList = (): JSX.Element => {
   return (
-    <div>
+    <>
       <h1>Article List</h1>
       {articles.map((article: ArticleProps) => (
         <Article
@@ -16,7 +17,7 @@ const ArticleList = (): JSX.Element => {
           contents={article.contents}
         />
       ))}
-    </div>
+    </>
   );
 };
 
