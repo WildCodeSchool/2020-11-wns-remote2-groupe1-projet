@@ -2,3 +2,21 @@ a {
   color: #fff;
   text-decoration: none;
 }
+
+.articleList-title {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+.article-list {
+  margin: auto;
+  width: 50%;
+  padding: 2rem;
+}
+
+.article-card {
+  margin: 2rem;
+}

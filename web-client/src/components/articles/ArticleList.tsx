@@ -1,15 +1,16 @@
 import React from 'react';
-import Article from './Article';
-import { articles } from '../../data';
+import ArticleCard from './ArticleCard';
+import { articles } from '../../assets/data';
 import { ArticleProps } from '../../types';
+
 import './articles.css';
 
 const ArticleList = (): JSX.Element => {
   return (
-    <>
-      <h1>Article List</h1>
+    <div className="article-list">
+      <h1 className="articleList-title">News Feed</h1>
       {articles.map((article: ArticleProps) => (
-        <Article
+        <ArticleCard
           key={article.id}
           id={article.id}
           title={article.title}
@@ -17,7 +18,7 @@ const ArticleList = (): JSX.Element => {
           contents={article.contents}
         />
       ))}
-    </>
+    </div>
   );
 };
 
