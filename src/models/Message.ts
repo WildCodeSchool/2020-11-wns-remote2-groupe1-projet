@@ -5,34 +5,21 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
-  ManyToOne,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
-import { Comment } from './Comment';
+import { Conversation } from './Conversation';
 
 @Entity()
 @ObjectType()
-export class Article extends BaseEntity {
+export class Message extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;
 
   @Column()
   @Field(() => String)
-  title!: string;
-
-  @Column()
-  @Field(() => String)
-  banner!: string;
-
-  @Column()
-  @Field(() => String)
   content!: string;
-
-  @Column({ default: false })
-  @Field(() => Boolean)
-  isVisible!: boolean;
 
   @Field(() => Date)
   @CreateDateColumn()
@@ -42,9 +29,9 @@ export class Article extends BaseEntity {
   @CreateDateColumn()
   updateAt!: Date;
 
-  @OneToMany(() => User, (author) => author.articles)
-  author!: User;
+  @OneToMany(() => Conversation, (conversation) => conversation.messages)
+  conversation?: Conversation;
 
-  @ManyToOne(() => Comment, (comment) => comment.article)
-  comments?: Comment;
+  @OneToMany(() => User, (user) => user.messages)
+  author?: User;
 }

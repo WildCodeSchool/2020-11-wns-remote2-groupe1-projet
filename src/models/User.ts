@@ -6,10 +6,15 @@ import {
   Index,
   CreateDateColumn,
   ManyToOne,
+  ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
 import { Comment } from './Comment';
+import { Conversation } from './Conversation';
+import { Message } from './Message';
+import { Classroom } from './Classroom';
 
 export enum UserRole {
   GHOST = 'ghost',
@@ -85,4 +90,16 @@ export class User extends BaseEntity {
 
   @ManyToOne(() => Comment, (comment) => comment.author)
   comments?: Comment[];
+
+  @ManyToMany(() => Conversation, (conversation) => conversation.users)
+  conversations?: Conversation[];
+
+  @ManyToOne(() => Message, (message) => message.author)
+  messages?: Message[];
+
+  @ManyToMany(() => Classroom, (classroom) => classroom.teachers)
+  classrooms?: Classroom[];
+
+  @OneToMany(() => Classroom, (classroom) => classroom.students)
+  classroom?: Classroom;
 }
