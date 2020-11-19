@@ -4,8 +4,10 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
+import { User } from './User';
 
 @Entity()
 @ObjectType()
@@ -32,8 +34,8 @@ export default class Article extends BaseEntity {
   isVisible!: boolean;
 
   @Column()
-  @Field(() => String)
-  author!: string; // Gona be replace by User Object OneToMany
+  @OneToMany(() => User, (author) => author.articles)
+  author!: User; // Gona be replace by User Object OneToMany
 
   @Column()
   @Field(() => Date)

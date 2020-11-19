@@ -5,8 +5,10 @@ import {
   Column,
   Index,
   CreateDateColumn,
+  ManyToMany,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
+import Article from './Article';
 
 export enum UserRole {
   GHOST = 'ghost',
@@ -77,4 +79,7 @@ export class User extends BaseEntity {
   @Column({ default: false })
   @Field(() => Boolean)
   isActive!: boolean;
+
+  @ManyToMany(() => Article, (article) => article.author)
+  articles?: Article[];
 }
