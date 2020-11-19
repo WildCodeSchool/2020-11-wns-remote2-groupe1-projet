@@ -1,0 +1,51 @@
+#  Get All Article and there content
+query {
+  articles {
+    id
+    title
+    banner
+    content
+    isVisible
+    createAt
+    updateAt
+    # Need to find a way to display author, ... we will see in few days
+  }
+}
+
+# Create An article
+mutation {
+  createArticle(
+    data: {
+      title: "My new title"
+      banner: "img.png"
+      content: "this is my super duper Article full of shit"
+      isVisible: true
+      createAt: "2020-11-19T16:02:27.021Z"
+    }
+  ) {
+    title
+    createAt
+  }
+}
+
+# Modify an Article
+mutation {
+  updateArticle(
+    id: "1"
+    data: {
+      title: "Not My Old Title Anymore title"
+      banner: "img.png"
+      content: "this is my super duper Article full of shit"
+      isVisible: true
+      updateAt: "2021-11-19T16:02:27.021Z"
+    }
+  ) {
+    title
+    createAt
+  }
+}
+
+# Delete an Article
+mutation {
+  deleteArticle(id: "13")
+}

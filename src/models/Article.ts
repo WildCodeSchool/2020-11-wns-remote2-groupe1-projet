@@ -36,14 +36,14 @@ export class Article extends BaseEntity {
 
   @Field(() => Date)
   @CreateDateColumn()
-  createAt!: Date;
+  createAt?: Date;
 
   @Field(() => Date)
   @CreateDateColumn()
-  updateAt!: Date;
+  updateAt?: Date;
 
   @OneToMany(() => User, (author) => author.articles)
-  author!: User;
+  author?: User;
 
   @ManyToOne(() => Comment, (comment) => comment.article)
   comments?: Comment;
