@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from 'type-graphql';
-import CreateArticleInput from '../inputs/CreateArticleInput';
-import UpdateArticleInput from '../inputs/UpdateArticleInput';
+import CreateArticleInput from '../inputs/articles/CreateArticleInput';
+import UpdateArticleInput from '../inputs/articles/UpdateArticleInput';
 import { Article } from '../models/Article';
 
 @Resolver()
