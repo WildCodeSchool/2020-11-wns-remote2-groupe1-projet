@@ -28,9 +28,17 @@ export default class CommmentResolver {
     @Arg('data') data: UpdateCommentInput
   ): Promise<Comment> {
     const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error('Book not found!');
+    if (!comment) throw new Error('Comment not found!');
     Object.assign(comment, data);
     await comment.save();
     return comment;
+  }
+
+  @Mutation(() => Boolean)
+  async deleteComment(@Arg('id') id: string): Promise<boolean> {
+    const comment = await Comment.findOne({ where: { id } });
+    if (!comment) throw new Error('Comment not found!');
+    await comment.remove();
+    return true;
   }
 }
