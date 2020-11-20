@@ -15,9 +15,6 @@ export default class UpdateArticleInput {
   @Field({ nullable: true })
   isVisible?: boolean;
 
-  @Field({ nullable: true })
-  createAt?: Date;
-
   @Field()
   updateAt!: Date;
 
