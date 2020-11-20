@@ -5,6 +5,7 @@ import {
   Column,
   OneToMany,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -26,7 +27,7 @@ export class Comment extends BaseEntity {
   createAt?: Date;
 
   @Field(() => Date)
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updateAt?: Date;
 
   @OneToMany(() => User, (author) => author.comments)

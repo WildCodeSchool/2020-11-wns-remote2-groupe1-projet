@@ -8,6 +8,7 @@ import {
   ManyToOne,
   ManyToMany,
   OneToMany,
+  UpdateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
@@ -78,7 +79,7 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => Date)
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updateAt!: Date;
 
   @Column({ default: false })

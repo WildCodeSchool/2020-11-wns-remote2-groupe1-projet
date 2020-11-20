@@ -6,6 +6,7 @@ export default class UpdateCommentInput {
   @Field({ nullable: true })
   content?: string;
 
+  @Field({ nullable: true })
   updateAt?: Date;
 
   author?: User;
