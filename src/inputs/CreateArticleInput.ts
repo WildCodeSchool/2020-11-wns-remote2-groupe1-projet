@@ -15,8 +15,5 @@ export default class CreateArticleInput {
   @Field()
   isVisible!: boolean;
 
-  @Field()
-  createAt!: Date;
-
   author?: User;
 }
