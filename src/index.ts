@@ -10,6 +10,7 @@ import CommmentResolver from './resolvers/CommentResolver';
 const main = async () => {
   await createConnection();
   const schema = await buildSchema({
+    // Don't forget to add your new Resolvers here
     resolvers: [ArticleResolver, CommmentResolver],
   });
   const server = new ApolloServer({ schema });
