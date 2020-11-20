@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from 'type-graphql';
-import CreateCommentInput from '../inputs/CreateCommentInput';
-import UpdateCommentInput from '../inputs/UpdateCommentInput';
+import CreateCommentInput from '../inputs/comments/CreateCommentInput';
+import UpdateCommentInput from '../inputs/comments/UpdateCommentInput';
 import { Comment } from '../models/Comment';
 
 @Resolver()
@@ -11,8 +11,10 @@ export default class CommmentResolver {
   }
 
   @Query(() => Comment)
-  comment(@Arg('id') id: string): Promise<Comment | undefined> {
-    return Comment.findOne({ where: { id } });
+  async comment(@Arg('id') id: string): Promise<Comment | undefined> {
+    const comment = await Comment.findOne({ where: { id } });
+    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+    return comment;
   }
 
   @Mutation(() => Comment)
@@ -28,7 +30,7 @@ export default class CommmentResolver {
     @Arg('data') data: UpdateCommentInput
   ): Promise<Comment> {
     const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error('Comment not found!');
+    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
     Object.assign(comment, data);
     await comment.save();
     return comment;
@@ -37,7 +39,7 @@ export default class CommmentResolver {
   @Mutation(() => Boolean)
   async deleteComment(@Arg('id') id: string): Promise<boolean> {
     const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error('Comment not found!');
+    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
     await comment.remove();
     return true;
   }
