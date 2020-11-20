@@ -9,6 +9,11 @@ export default class CommmentResolver {
     return Comment.find();
   }
 
+  @Query(() => Comment)
+  comment(@Arg('id') id: string) {
+    return Comment.findOne({ where: { id } });
+  }
+
   @Mutation(() => Comment)
   async createComment(@Arg('data') data: CreateCommentInput): Promise<Comment> {
     const commment = Comment.create(data);
