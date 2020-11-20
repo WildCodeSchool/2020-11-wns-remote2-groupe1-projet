@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
+  CreateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -19,6 +20,14 @@ export class Comment extends BaseEntity {
   @Column()
   @Field(() => String)
   content!: string;
+
+  @Field(() => Date)
+  @CreateDateColumn()
+  createAt?: Date;
+
+  @Field(() => Date)
+  @CreateDateColumn()
+  updateAt?: Date;
 
   @OneToMany(() => User, (author) => author.comments)
   author!: User;
