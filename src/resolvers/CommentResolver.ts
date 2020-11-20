@@ -1,5 +1,6 @@
 import { Resolver, Query, Mutation, Arg } from 'type-graphql';
 import CreateCommentInput from '../inputs/CreateCommentInput';
+import UpdateCommentInput from '../inputs/UpdateCommentInput';
 import { Comment } from '../models/Comment';
 
 @Resolver()
@@ -10,7 +11,7 @@ export default class CommmentResolver {
   }
 
   @Query(() => Comment)
-  comment(@Arg('id') id: string) {
+  comment(@Arg('id') id: string): Promise<Comment | undefined> {
     return Comment.findOne({ where: { id } });
   }
 
@@ -19,5 +20,17 @@ export default class CommmentResolver {
     const commment = Comment.create(data);
     await commment.save();
     return commment;
+  }
+
+  @Mutation(() => Comment)
+  async updateComment(
+    @Arg('id') id: string,
+    @Arg('data') data: UpdateCommentInput
+  ): Promise<Comment> {
+    const comment = await Comment.findOne({ where: { id } });
+    if (!comment) throw new Error('Book not found!');
+    Object.assign(comment, data);
+    await comment.save();
+    return comment;
   }
 }
