@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArticleProps } from '../../types';
+import { ArticleType } from '../../types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const ArticleCard = ({ title, image, contents }: ArticleProps): JSX.Element => {
+const ArticleCard = ({ title, image, contents }: ArticleType): JSX.Element => {
   const classes = useStyles();
   return (
     <div>
