@@ -22,7 +22,6 @@ const Header = () => {
           </IconButton>
           <Button variant="contained" color="primary">
             <Link to="/class">Ma classe</Link>
-            <Typography color="secondary">Bonjour</Typography>
           </Button>
           <Button variant="contained" color="primary">
             <Link to="/articles">Articles</Link>
