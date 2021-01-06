@@ -1,14 +1,11 @@
 import React from 'react';
-import ArticleList from '../articles/ArticleList';
-import Home from '../Home';
-import {
-  Button,
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import SignModal from './SignModal';
 
 const Header = () => {
   return (
@@ -26,6 +23,7 @@ const Header = () => {
           <Button variant="contained" color="primary">
             <Link to="/articles">Articles</Link>
           </Button>
+          <SignModal />
         </Toolbar>
       </AppBar>
     </header>
