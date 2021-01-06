@@ -23,5 +23,4 @@ const main = async () => {
   );
   console.log('Server has started!');
 };
-
 main();
