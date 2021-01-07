@@ -51,17 +51,17 @@ export class User extends BaseEntity {
   @Column()
   @CreateDateColumn()
   @Field(() => Date)
-  birth_date!: Date;
+  birthDate?: Date;
 
   @Column()
   @Field(() => String)
-  home!: string;
+  school!: string;
 
   @Column()
-  //@Field(() => String)
+  @Field(() => String)
   password!: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => String)
   tel?: string;
 
@@ -73,12 +73,12 @@ export class User extends BaseEntity {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.GHOST,
+    default: UserRole.STUDENT,
   })
   @Field(() => UserRole)
   role!: UserRole;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => String)
   avatar?: string;
 

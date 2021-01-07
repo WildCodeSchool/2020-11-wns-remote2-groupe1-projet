@@ -16,6 +16,8 @@ export default class CreateUserInput {
   password!: string;
 
   @Field()
-  @MinLength(25)
-  birth_date!: Date;
+  email!: string;
+
+  @Field()
+  school!: string;
 }
