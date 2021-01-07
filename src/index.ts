@@ -6,12 +6,13 @@ import { createConnection } from 'typeorm';
 
 import ArticleResolver from './resolvers/ArticleResolver';
 import CommmentResolver from './resolvers/CommentResolver';
+import userResolver from './resolvers/UserResolver';
 
 const main = async () => {
   await createConnection();
   const schema = await buildSchema({
     // Don't forget to add your new Resolvers here
-    resolvers: [ArticleResolver, CommmentResolver],
+    resolvers: [ArticleResolver, CommmentResolver, userResolver],
   });
   const server = new ApolloServer({ schema });
 

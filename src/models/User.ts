@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt';
 import {
   Entity,
   BaseEntity,
@@ -9,6 +10,7 @@ import {
   ManyToMany,
   OneToMany,
   UpdateDateColumn,
+  BeforeInsert,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
@@ -16,6 +18,8 @@ import { Comment } from './Comment';
 import { Conversation } from './Conversation';
 import { Message } from './Message';
 import { Classroom } from './Classroom';
+import { UserSession } from './UserSession';
+import { registerEnumType } from 'type-graphql';
 
 export enum UserRole {
   GHOST = 'ghost',
@@ -23,6 +27,12 @@ export enum UserRole {
   TEACHER = 'teacher',
   ADMIN = 'admin',
 }
+
+registerEnumType(UserRole, {
+  name: 'UserRole', // this one is mandatory
+  description: 'User role in app', // this one is optional
+});
+
 @Entity()
 @ObjectType()
 export class User extends BaseEntity {
@@ -48,7 +58,7 @@ export class User extends BaseEntity {
   home!: string;
 
   @Column()
-  @Field(() => String)
+  //@Field(() => String)
   password!: string;
 
   @Column()
@@ -103,4 +113,19 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Classroom, (classroom) => classroom.students)
   classroom?: Classroom;
+
+  @BeforeInsert()
+  async hashPassword(): Promise<void> {
+    this.password = await hash(this.password, 10);
+  }
+}
+export async function getUserFromSessionId(
+  sessionId: string
+): Promise<User | null> {
+  const userSession = await UserSession.findOne(
+    { uuid: sessionId },
+    { relations: ['user'] }
+  );
+  const user = userSession ? userSession.user : null;
+  return user;
 }
