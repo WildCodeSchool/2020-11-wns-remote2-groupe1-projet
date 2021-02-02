@@ -49,3 +49,34 @@ mutation {
 mutation {
   deleteArticle(id: "13")
 }
+
+# Get all Users
+query {
+  users {
+    id
+    firstName
+    lastName
+    birthDate
+    email
+    school
+    role
+  }
+}
+
+# Create User
+mutation {
+  createUser(
+    input: {
+      firstName: "Jean"
+      lastName: "La Salle"
+      password: "MasterKickfrom Terroir"
+      email: "viveLePathéLaChasseetla@gmail.com"
+      school: "Bordeaux"
+      birthDate: "10-10-1984"
+      tel: "0600000000"
+      avatar: "image.png"
+    }
+  ) {
+    firstName
+  }
+}
