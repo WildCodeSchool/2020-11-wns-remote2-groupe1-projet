@@ -69,14 +69,25 @@ mutation {
     input: {
       firstName: "Jean"
       lastName: "La Salle"
-      password: "MasterKickfrom Terroir"
+      password: "MasterKickfromTerroir"
       email: "viveLePathéLaChasseetla@gmail.com"
       school: "Bordeaux"
       birthDate: "10-10-1984"
-      tel: "0600000000"
-      avatar: "image.png"
     }
   ) {
     firstName
+  }
+}
+
+# Connexion User
+mutation {
+  createSession(
+    input: {
+      email: "viveLePathéLaChasseetla@gmail.com"
+      password: "MasterKickfrom Terroir"
+    }
+  ) {
+    id
+    email
   }
 }

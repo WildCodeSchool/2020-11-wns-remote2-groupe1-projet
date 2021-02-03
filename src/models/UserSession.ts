@@ -18,7 +18,7 @@ export enum UserRole {
 }
 @Entity()
 @ObjectType()
-export class UserSession extends BaseEntity {
+export default class UserSession extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
   id!: string;

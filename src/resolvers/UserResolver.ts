@@ -4,7 +4,7 @@ import CreateUserInput from '../inputs/user/CreateUserInput';
 import CreateSessionInput from '../inputs/session/CreateSessionInput';
 
 import { User } from '../models/User';
-import { UserSession } from '../models/UserSession';
+import UserSession from '../models/UserSession';
 
 @Resolver()
 export default class UserResolver {

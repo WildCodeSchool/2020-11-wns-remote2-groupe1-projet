@@ -8,7 +8,7 @@ import UpdateCommentInput from '../inputs/comments/UpdateCommentInput';
 import { Comment } from '../models/Comment';
 
 @Resolver()
-export default class CommmentResolver {
+export default class CommentResolver {
   // query that returns all our books
   @Query(() => [Comment])
   comments(): Promise<Comment[]> {

@@ -18,7 +18,7 @@ import { Comment } from './Comment';
 import { Conversation } from './Conversation';
 import { Message } from './Message';
 import { Classroom } from './Classroom';
-import { UserSession } from './UserSession';
+import UserSession from './UserSession';
 import { registerEnumType } from 'type-graphql';
 
 export enum UserRole {
