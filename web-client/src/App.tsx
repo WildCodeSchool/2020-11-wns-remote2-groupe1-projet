@@ -4,7 +4,7 @@ import Footer from './components/layout/Footer';
 import { Switch, Route } from 'react-router-dom';
 import ArticleList from './components/articles/ArticleList';
 import Home from './components/Home';
-// import 'fontsource-roboto';
+import Login from './components/login';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -22,6 +22,9 @@ const App = (): JSX.Element => {
         </Route>
         <Route path="/">
           <Home />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
       <Footer />

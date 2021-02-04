@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import SignModal from './SignModal';
 
 const Header = () => {
   return (
@@ -23,7 +22,9 @@ const Header = () => {
           <Button variant="contained" color="primary">
             <Link to="/articles">Articles</Link>
           </Button>
-          <SignModal />
+          <Button aria-label="menu" color="inherit">
+            <Link to="/login">Connexion</Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </header>
