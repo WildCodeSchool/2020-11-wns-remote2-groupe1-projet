@@ -5,10 +5,16 @@ import { Switch, Route } from 'react-router-dom';
 import ArticleList from './components/articles/ArticleList';
 import Home from './components/Home';
 // import 'fontsource-roboto';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache(),
+});
 
 const App = (): JSX.Element => {
   return (
-    <>
+    <ApolloProvider client={client}>
       <Header />
       <Switch>
         <Route path="/articles">
@@ -19,7 +25,7 @@ const App = (): JSX.Element => {
         </Route>
       </Switch>
       <Footer />
-    </>
+    </ApolloProvider>
   );
 };
 
