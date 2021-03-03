@@ -42,13 +42,13 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => String)
-  firstName!: string;
+  firstname!: string;
 
   @Column()
   @Field(() => String)
-  lastName!: string;
+  lastname!: string;
 
-  @Column()
+  @Column({ nullable: true })
   @CreateDateColumn()
   @Field(() => Date)
   birthDate?: Date;
