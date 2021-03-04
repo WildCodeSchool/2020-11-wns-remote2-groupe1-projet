@@ -7,6 +7,7 @@ import {
   CardMedia,
   CardContent,
   Avatar,
+  Typography,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
@@ -70,7 +71,9 @@ const ArticleCard = ({
           }
         />
         <CardMedia className={classes.media} image={image} />
-        <CardContent>{contents}</CardContent>
+        <CardContent>
+          <Typography noWrap>{contents}</Typography>
+        </CardContent>
       </Card>
     </div>
   );
