@@ -8,13 +8,14 @@ import {
   CardContent,
   Avatar,
   Typography,
+  Grid,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      maxWidth: 800,
+      maxWidth: 450,
     },
     media: {
       height: 140,
@@ -54,27 +55,31 @@ const ArticleCard = ({
   const classes = useStyles();
   return (
     <div>
-      <Card
-        onClick={() => {
-          window.location.assign(`/article/${id}`);
-        }}
-        className={`${classes.root} ${classes.center}`}
-      >
-        {' '}
-        <CardHeader
-          id="card-title"
-          title={title}
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-        />
-        <CardMedia className={classes.media} image={image} />
-        <CardContent>
-          <Typography noWrap>{contents}</Typography>
-        </CardContent>
-      </Card>
+      <Grid container>
+        <Card
+          onClick={() => {
+            window.location.assign(`/article/${id}`);
+          }}
+          className={`${classes.root} ${classes.center}`}
+        >
+          {' '}
+          <CardHeader
+            id="card-title"
+            title={title}
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+          />
+          <CardMedia className={classes.media} image={image} />
+          <Grid item zeroMinWidth>
+            <CardContent>
+              <Typography noWrap>{contents}</Typography>
+            </CardContent>
+          </Grid>
+        </Card>
+      </Grid>
     </div>
   );
 };
