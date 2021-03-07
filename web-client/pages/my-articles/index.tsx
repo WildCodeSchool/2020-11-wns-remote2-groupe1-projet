@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleCard from '../../Components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
