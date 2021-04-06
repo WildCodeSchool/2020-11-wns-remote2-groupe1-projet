@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   OneToMany,
   ManyToOne,
+  UpdateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -39,7 +40,7 @@ export class Article extends BaseEntity {
   createAt?: Date;
 
   @Field(() => Date)
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updateAt?: Date;
 
   @OneToMany(() => User, (author) => author.articles)
