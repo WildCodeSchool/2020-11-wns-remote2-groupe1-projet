@@ -1,21 +1,26 @@
 import 'reflect-metadata';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 
+import BookResolver from './resolvers/BookResolver'; // add this
 import ArticleResolver from './resolvers/ArticleResolver';
-import CommentResolver from './resolvers/CommentResolver';
-import userResolver from './resolvers/UserResolver';
-import { getExpressServer } from './express-servers';
 
 const main = async () => {
   await createConnection();
-  const { expressServer, apolloServer } = await getExpressServer();
+  const schema = await buildSchema({
+    resolvers: [BookResolver, ArticleResolver],
+  });
+  const server = new ApolloServer({ schema });
 
-  expressServer.listen({ port: 4000 }, () =>
-    console.log(
-      `🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`
-    )
+  const app = express();
+  server.applyMiddleware({ app });
+
+  app.listen({ port: 4000 }, () =>
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
   );
   console.log('Server has started!');
 };
+
 main();
