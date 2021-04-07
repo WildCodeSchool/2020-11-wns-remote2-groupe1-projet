@@ -1,5 +1,5 @@
 # Wild Chat Mock Project
 
-## Coding rules
+## Conding rules
 
 > Go to wiki project for more details
