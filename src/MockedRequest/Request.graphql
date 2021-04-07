@@ -84,7 +84,7 @@ mutation {
   createSession(
     input: {
       email: "viveLePathéLaChasseetla@gmail.com"
-      password: "MasterKickfrom Terroir"
+      password: "MasterKickfromTerroir"
     }
   ) {
     id

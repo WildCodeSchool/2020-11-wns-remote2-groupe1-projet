@@ -2,15 +2,15 @@
 version: '3'
 services:
   database:
-    image: "postgres" # use latest official postgres version
+    image: 'postgres' # use latest official postgres version
     hostname: postgres
     container_name: db_chat_app_container
-    environment: 
+    environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=denver
       - POSTGRES_DB=postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
 volumes:
