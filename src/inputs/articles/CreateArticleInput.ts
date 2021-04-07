@@ -1,5 +1,5 @@
 import { InputType, Field } from 'type-graphql';
-import { User } from '../models/User';
+import { User } from '../../models/User';
 
 @InputType()
 export default class CreateArticleInput {
@@ -14,9 +14,6 @@ export default class CreateArticleInput {
 
   @Field()
   isVisible!: boolean;
-
-  @Field()
-  createAt!: Date;
 
   author?: User;
 }

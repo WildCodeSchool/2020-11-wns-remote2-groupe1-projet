@@ -1,10 +1,10 @@
 import { InputType, Field } from 'type-graphql';
 
 @InputType()
-export default class CreateBookInput {
+export default class CreateSessionInput {
   @Field()
-  title!: string;
+  email!: string;
 
   @Field()
-  author!: string;
+  password!: string;
 }
