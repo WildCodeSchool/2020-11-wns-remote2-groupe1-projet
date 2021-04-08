@@ -2,7 +2,7 @@ module.exports = {
     async rewrites() {
       return [
         {
-          source: '/:path*',
+          source: '/:path',
           destination: 'http://localhost:4000/graphql' // Proxy to Backend
         }
       ]
