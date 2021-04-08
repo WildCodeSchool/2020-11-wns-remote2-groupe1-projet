@@ -5,7 +5,6 @@ import {
   Column,
   CreateDateColumn,
   OneToMany,
-  UpdateDateColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -27,7 +26,7 @@ export class Message extends BaseEntity {
   createAt!: Date;
 
   @Field(() => Date)
-  @UpdateDateColumn()
+  @CreateDateColumn()
   updateAt!: Date;
 
   @OneToMany(() => Conversation, (conversation) => conversation.messages)
