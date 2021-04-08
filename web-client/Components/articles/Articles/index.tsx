@@ -43,7 +43,6 @@ const Articles = ({}) => {
   });
 
   const articles = data?.articles;
-  console.log(articles);
 
   const fetchMoreArticles = () => {
     fetchMore({
