@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt';
 import {
   Entity,
   BaseEntity,
@@ -8,6 +9,8 @@ import {
   ManyToOne,
   ManyToMany,
   OneToMany,
+  UpdateDateColumn,
+  BeforeInsert,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
@@ -15,6 +18,8 @@ import { Comment } from './Comment';
 import { Conversation } from './Conversation';
 import { Message } from './Message';
 import { Classroom } from './Classroom';
+import UserSession from './UserSession';
+import { registerEnumType } from 'type-graphql';
 
 export enum UserRole {
   GHOST = 'ghost',
@@ -22,6 +27,12 @@ export enum UserRole {
   TEACHER = 'teacher',
   ADMIN = 'admin',
 }
+
+registerEnumType(UserRole, {
+  name: 'UserRole', // this one is mandatory
+  description: 'User role in app', // this one is optional
+});
+
 @Entity()
 @ObjectType()
 export class User extends BaseEntity {
@@ -31,26 +42,26 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => String)
-  firstName!: string;
+  firstname!: string;
 
   @Column()
   @Field(() => String)
-  lastName!: string;
+  lastname!: string;
 
-  @Column()
+  @Column({ nullable: true })
   @CreateDateColumn()
   @Field(() => Date)
-  birth_date!: Date;
+  birthDate?: Date;
 
   @Column()
   @Field(() => String)
-  home!: string;
+  school!: string;
 
   @Column()
   @Field(() => String)
   password!: string;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => String)
   tel?: string;
 
@@ -62,12 +73,12 @@ export class User extends BaseEntity {
   @Column({
     type: 'enum',
     enum: UserRole,
-    default: UserRole.GHOST,
+    default: UserRole.STUDENT,
   })
   @Field(() => UserRole)
   role!: UserRole;
 
-  @Column()
+  @Column({ nullable: true })
   @Field(() => String)
   avatar?: string;
 
@@ -78,7 +89,7 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => Date)
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updateAt!: Date;
 
   @Column({ default: false })
@@ -102,4 +113,19 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Classroom, (classroom) => classroom.students)
   classroom?: Classroom;
+
+  @BeforeInsert()
+  async hashPassword(): Promise<void> {
+    this.password = await hash(this.password, 10);
+  }
+}
+export async function getUserFromSessionId(
+  sessionId: string
+): Promise<User | null> {
+  const userSession = await UserSession.findOne(
+    { uuid: sessionId },
+    { relations: ['user'] }
+  );
+  const user = userSession ? userSession.user : null;
+  return user;
 }
