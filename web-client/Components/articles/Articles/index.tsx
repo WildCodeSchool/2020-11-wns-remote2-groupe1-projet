@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   },
-  pagination: {
-    width: 'fit-content',
-    margin: '2rem auto 2rem auto',
-  },
   feedTitle: {
     textAlign: 'center',
     fontSize: '2rem',
     fontWeight: 'bold',
     color: '#1b84c1',
+  },
+  feedButton: {
+    display: 'block',
+    margin: '2rem auto 2rem auto',
   },
 }));
 
@@ -76,7 +76,17 @@ const Articles = ({}) => {
           contents={article.content}
         />
       ))}
-      <Button onClick={fetchMoreArticles}>More</Button>
+      <div>
+        <Button
+          className={classes.feedButton}
+          color="primary"
+          variant="contained"
+          size="large"
+          onClick={fetchMoreArticles}
+        >
+          More
+        </Button>
+      </div>
     </div>
   );
 };
