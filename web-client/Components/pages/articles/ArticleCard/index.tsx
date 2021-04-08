@@ -1,5 +1,5 @@
-import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import {
   Card,
@@ -7,11 +7,11 @@ import {
   CardMedia,
   CardContent,
   Avatar,
-} from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
+} from '@material-ui/core';
+import { red } from '@material-ui/core/colors';
 
 const webImage =
-  "https://st.depositphotos.com/1005682/2476/i/600/depositphotos_24762569-stock-photo-fast-food-hamburger-hot-dog.jpg";
+  'https://st.depositphotos.com/1005682/2476/i/600/depositphotos_24762569-stock-photo-fast-food-hamburger-hot-dog.jpg';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,23 +20,23 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       height: 0,
-      width: "100%",
-      paddingTop: "56.25%", // 16:9
+      width: '100%',
+      paddingTop: '56.25%', // 16:9
     },
     expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
       }),
     },
     expandOpen: {
-      transform: "rotate(180deg)",
+      transform: 'rotate(180deg)',
     },
     avatar: {
       backgroundColor: red[500],
     },
-  }),
+  })
 );
 
 const ArticleCard = ({ id, title, image, contents }): JSX.Element => {
