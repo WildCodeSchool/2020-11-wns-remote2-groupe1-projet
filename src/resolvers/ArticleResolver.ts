@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg, Field, Int } from 'type-graphql';
 import CreateArticleInput from '../inputs/articles/CreateArticleInput';
 import UpdateArticleInput from '../inputs/articles/UpdateArticleInput';
 import { Article } from '../models/Article';
@@ -6,8 +6,11 @@ import { Article } from '../models/Article';
 @Resolver()
 export default class ArticleResolver {
   @Query(() => [Article])
-  articles(): Promise<Article[]> {
-    return Article.find();
+  articles(
+    @Arg('offset') offset: number,
+    @Arg('limit') limit: number
+  ): Promise<Article[]> {
+    return Article.find({ take: limit, skip: offset });
   }
 
   @Query(() => Article)

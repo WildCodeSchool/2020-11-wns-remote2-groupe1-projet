@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleCard from '../ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GET_ARTICLES = gql`
-  query getArticles {
-    articles {
+  query getArticles($offset: Float!, $limit: Float!) {
+    articles(limit: $limit, offset: $offset) {
       id
       title
       banner
@@ -33,11 +33,31 @@ const GET_ARTICLES = gql`
   }
 `;
 
-const Articles = () => {
-  const { data } = useQuery(GET_ARTICLES);
+const Articles = ({}) => {
+  const { data, fetchMore } = useQuery(GET_ARTICLES, {
+    variables: {
+      offset: 0,
+      limit: 3,
+    },
+    fetchPolicy: 'cache-and-network',
+  });
 
   const articles = data?.articles;
   console.log(articles);
+
+  const fetchMoreArticles = () => {
+    fetchMore({
+      variables: {
+        offset: articles.length,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prev;
+        return Object.assign({}, prev, {
+          articles: [...prev.articles, ...fetchMoreResult.articles],
+        });
+      },
+    });
+  };
 
   const classes = useStyles();
 
@@ -56,6 +76,7 @@ const Articles = () => {
           contents={article.content}
         />
       ))}
+      <Button onClick={fetchMoreArticles}>More</Button>
     </div>
   );
 };
