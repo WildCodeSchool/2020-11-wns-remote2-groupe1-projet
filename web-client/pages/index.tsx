@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
-import { Typography } from '@material-ui/core';
 import { NextPage } from 'next/types';
+import Articles from '../Components/pages/articles/Articles';
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>Welcome to Hell ! </title>
       </Head>
       <main>
-        <Typography variant="h4">Main Page</Typography>
+        <Articles />
       </main>
     </div>
   );
