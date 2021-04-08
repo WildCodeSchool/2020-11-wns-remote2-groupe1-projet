@@ -1,16 +1,11 @@
-import React from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  gql,
-  ApolloProvider,
-} from "@apollo/client";
-import NavBar from "./NavBar";
-import classes from "./style.module.scss";
+import React from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import NavBar from './NavBar';
+import classes from './style.module.scss';
 
 const AppProviders = ({ children, pageProps }) => {
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: '/graphql',
     cache: new InMemoryCache(),
   });
 
