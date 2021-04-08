@@ -4,7 +4,6 @@ import { NextPage } from 'next';
 
 const Account: NextPage = () => {
   const router = useRouter();
-  console.log(router);
   return <p>Hello</p>;
 };
 
