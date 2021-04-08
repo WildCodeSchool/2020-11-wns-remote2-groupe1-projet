@@ -12,6 +12,20 @@ query {
   }
 }
 
+# get one article
+query {
+  article(id: "1") {
+    id
+    title
+    banner
+    content
+    isVisible
+    createAt
+    updateAt
+    # Need to find a way to display author, ... we will see in few days
+  }
+}
+
 # Create An article
 mutation {
   createArticle(
@@ -82,7 +96,7 @@ mutation {
 mutation {
   createSession(
     input: {
-      email: "viveLePathéLaChasseetla@gmail.com"
+      email: "viveLePatheLaChasseetla@gmail.com"
       password: "MasterKickfrom Terroir"
     }
   ) {
