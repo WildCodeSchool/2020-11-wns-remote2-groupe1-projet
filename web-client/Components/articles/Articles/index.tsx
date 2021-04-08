@@ -42,7 +42,7 @@ const Articles = ({}) => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const articles = data?.articles;
+  const articles = data?.articles || [];
 
   const fetchMoreArticles = () => {
     fetchMore({
