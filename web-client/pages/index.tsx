@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import { NextPage } from 'next/types';
-import Articles from '../Components/pages/articles/Articles';
+import Articles from '../Components/articles/Articles';
 
 const Home: NextPage = () => {
   return (

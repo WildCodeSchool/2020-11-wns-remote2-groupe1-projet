@@ -1,8 +1,7 @@
 import React from 'react';
-import ArticleCard from '../ArticleCard';
+import ArticleCard from '../../Components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
-import Pagination from '@material-ui/lab/Pagination';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,8 +14,11 @@ const useStyles = makeStyles((theme) => ({
     width: 'fit-content',
     margin: '2rem auto 2rem auto',
   },
-  textCenter: {
+  feedTitle: {
     textAlign: 'center',
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    color: '#1b84c1',
   },
 }));
 
@@ -31,10 +33,9 @@ const GET_ARTICLES = gql`
   }
 `;
 
-const Articles = () => {
+const ArticleManagement = (): JSX.Element => {
   const { data } = useQuery(GET_ARTICLES);
 
-  console.log(data);
   const articles = data?.articles;
   console.log(articles);
 
@@ -42,8 +43,8 @@ const Articles = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2" className={classes.textCenter}>
-        News Feed
+      <Typography variant="h1" className={classes.feedTitle}>
+        My Posts
       </Typography>
 
       {articles?.map((article) => (
@@ -55,14 +56,8 @@ const Articles = () => {
           contents={article.content}
         />
       ))}
-      <Pagination
-        className={classes.pagination}
-        count={5}
-        variant="outlined"
-        color="primary"
-      />
     </div>
   );
 };
 
-export default Articles;
+export default ArticleManagement;
