@@ -1,6 +1,6 @@
 import React from 'react';
-import Article from '../../Components/pages/article/article';
-import Comment from '../../Components/pages/article/comment';
+import Article from '../../Components/article/article';
+import Comment from '../../Components/article/comment';
 import { Container, Box } from '@material-ui/core';
 
 const ArticleView = (): JSX.Element => {
