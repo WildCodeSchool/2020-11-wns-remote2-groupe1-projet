@@ -25,7 +25,7 @@ const Article = (): JSX.Element => {
   return (
     <Box m={2}>
       <div>
-        <img src={article?.banner}></img>
+        <img src={article?.banner} width="450px" height="250px"></img>
         <h1>{article?.title}</h1>
         <p>{article?.content}</p>
         <p>
