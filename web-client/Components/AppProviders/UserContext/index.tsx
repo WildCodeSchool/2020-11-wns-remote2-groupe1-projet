@@ -7,11 +7,17 @@ const GET_ME = gql`
       id
       firstname
       lastname
-      birthDate
       school
     }
   }
 `;
+
+export type me = {
+  id: string;
+  firstname: string;
+  lastname: string;
+  school: string;
+};
 
 const Context = createContext({ me: null });
 

@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import { NextPage } from 'next';
-import { NextRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
+import { useInAppUserProvider } from '../Components/AppProviders/UserContext';
 
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
@@ -31,8 +32,15 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
 });
-const Login: NextPage<{ router: NextRouter }> = ({ router }) => {
+const Login: NextPage = () => {
+  const me = useInAppUserProvider();
+  const router = useRouter();
   const classes = useStyles();
+
+  if (me) {
+    router.push('/account');
+  }
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [login, { error, loading }] = useMutation(LOGIN_MUTATION, {
@@ -57,6 +65,7 @@ const Login: NextPage<{ router: NextRouter }> = ({ router }) => {
               label="Adresse email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              error={!!error}
               fullWidth
               type="email"
             />
@@ -66,6 +75,7 @@ const Login: NextPage<{ router: NextRouter }> = ({ router }) => {
               label="Mot de passe"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              error={!!error}
               fullWidth
               type="password"
             />

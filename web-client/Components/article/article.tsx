@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 
 export const GET_ARTICLE = gql`
   query getArticleById($id: String!) {
@@ -16,8 +16,7 @@ export const GET_ARTICLE = gql`
   }
 `;
 
-const Article = (): JSX.Element => {
-  const router = useRouter();
+const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
   const article = data?.article;
