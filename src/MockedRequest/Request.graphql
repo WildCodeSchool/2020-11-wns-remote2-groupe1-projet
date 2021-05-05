@@ -12,6 +12,20 @@ query {
   }
 }
 
+# get one article
+query {
+  article(id: "1") {
+    id
+    title
+    banner
+    content
+    isVisible
+    createAt
+    updateAt
+    # Need to find a way to display author, ... we will see in few days
+  }
+}
+
 # Create An article
 mutation {
   createArticle(
@@ -20,7 +34,6 @@ mutation {
       banner: "img.png"
       content: "this is my super duper Article full of shit"
       isVisible: true
-      createAt: "2020-11-19T16:02:27.021Z"
     }
   ) {
     title
@@ -48,4 +61,46 @@ mutation {
 # Delete an Article
 mutation {
   deleteArticle(id: "13")
+}
+
+# Get all Users
+query {
+  users {
+    id
+    firstname
+    lastname
+    birthDate
+    email
+    school
+    role
+  }
+}
+
+# Create User
+mutation {
+  createUser(
+    input: {
+      firstname: "Jean"
+      lastname: "La Salle"
+      password: "MasterKickfromTerroir"
+      email: "viveLePathéLaChasseetla@gmail.com"
+      school: "Bordeaux"
+      birthDate: "10-10-1984"
+    }
+  ) {
+    firstname
+  }
+}
+
+# Connexion User
+mutation {
+  createSession(
+    input: {
+      email: "viveLePatheLaChasseetla@gmail.com"
+      password: "MasterKickfrom Terroir"
+    }
+  ) {
+    id
+    email
+  }
 }
