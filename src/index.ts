@@ -1,14 +1,14 @@
 import 'reflect-metadata';
-import { buildSchema } from 'type-graphql';
-import { createConnection } from 'typeorm';
-
-import ArticleResolver from './resolvers/ArticleResolver';
-import CommentResolver from './resolvers/CommentResolver';
-import userResolver from './resolvers/UserResolver';
+import { createConnection, getConnectionOptions } from 'typeorm';
 import { getExpressServer } from './express-servers';
 
 const main = async () => {
-  await createConnection();
+  const connectionOptions = await getConnectionOptions();
+  await createConnection({
+    ...connectionOptions,
+    synchronize: true,
+    entities: ['dist/models/*.js'],
+  });
   const { expressServer, apolloServer } = await getExpressServer();
 
   expressServer.listen({ port: 4000 }, () =>

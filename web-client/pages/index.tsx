@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Welcome to Hell ! </title>
+        <title>Chatter App </title>
       </Head>
       <main>
         <Articles />
