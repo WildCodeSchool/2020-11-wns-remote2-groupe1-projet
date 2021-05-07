@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 
-const ArticleUpdate = ({ id }: { id: string }): JSX.Element => {
+const ArticleUpdate = (): JSX.Element => {
   return (
     <>
       <div className="article">

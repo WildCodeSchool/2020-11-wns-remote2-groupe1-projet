@@ -1,11 +1,18 @@
 import React from 'react';
-import Article from '../../Components/article/article';
-import Comment from '../../Components/article/comment';
+import PropTypes from 'prop-types';
+import Article from '../../../Components/article/article';
+import Comment from '../../../Components/article/comment';
 import { Container, Box, Link, Button } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
 
-const ArticleView: NextPage<{ router: NextRouter }> = ({ router }) => {
+interface WithRouterProps {
+  router: NextRouter;
+}
+
+const ArticleView: NextPage<WithRouterProps> = ({
+  router,
+}: WithRouterProps) => {
   return (
     <>
       <Link href="/">
@@ -20,4 +27,5 @@ const ArticleView: NextPage<{ router: NextRouter }> = ({ router }) => {
     </>
   );
 };
+
 export default ArticleView;

@@ -6,8 +6,8 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 // Utils
-import theme from '../src/theme';
-import AppProviders from '../Components/AppProviders';
+import theme from '../theme';
+import AppProviders from '../../Components/AppProviders';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {

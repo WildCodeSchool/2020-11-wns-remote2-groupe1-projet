@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Register = () => {
+const Register = (): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
   const [firstname, setFirstname] = useState<string>('');
@@ -76,7 +76,7 @@ const Register = () => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          const { data } = await register({
+          await register({
             variables: {
               firstname,
               lastname,
