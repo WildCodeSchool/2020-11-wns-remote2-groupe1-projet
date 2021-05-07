@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import { useInAppUserProvider } from '../../Components/AppProviders/UserContext';
+import { useInAppUserProvider } from '../Components/AppProviders/UserContext';
 
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
