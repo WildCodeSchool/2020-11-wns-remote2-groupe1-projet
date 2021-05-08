@@ -5,18 +5,16 @@ services:
       - 5432:5432
     environment:
       - NODE_ENV=development
-      - BASE_URL=db
   api:
     command: npm run dev
     stdin_open: true
     volumes:
       - ./src:/app/src
     ports:
-      - ${API_PORT}:4000
+      - 4000:4000
     environment:
       - NODE_ENV=development
       - TYPEORM_LOGGING=true
-      - BASE_URL=api
   web-client:
     command: npm run dev
     stdin_open: true
@@ -24,8 +22,7 @@ services:
       - ./web-client:/app
       - /app/node_modules/
     ports:
-      - ${WEB_CLIENT_PORT}:3000
+      - 3000:3000
     environment:
       - NODE_ENV=development
-      - BASE_URL=web
-      - REACT_APP_API_BASE_URL=http://{BASE_URL}:${API_PORT}
+      - REACT_APP_API_BASE_URL=http://[::1]:${API_PORT}

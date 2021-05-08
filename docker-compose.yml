@@ -1,14 +1,18 @@
 version: '3'
 services:
   db:
-    image: postgres:13.2
+    image: postgres
+    hostname: db
+    container_name: db_container
     environment:
-      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=denver
-      - POSTGRES_DB=postgres
   api:
     build: .
+    hostname: api
+    container_name: api_container
     depends_on:
+      - db
+    links:
       - db
     environment:
       - TYPEORM_CONNECTION=postgres
@@ -19,3 +23,7 @@ services:
       - TYPEORM_PASSWORD=denver
   web-client:
     build: ./web-client
+    hostname: web
+    container_name: web_container
+    links:
+      - api

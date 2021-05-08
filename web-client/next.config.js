@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/:path',
-        destination: 'http://localhost:4000/graphql', // Proxy to Backend
+        destination: 'http://[::1]:4000/graphql', // Proxy to Backend
       },
     ];
   },
