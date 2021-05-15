@@ -13,7 +13,7 @@ export default class UpdateArticleInput {
   content?: string;
 
   @Field({ nullable: true })
-  isVisible?: boolean;
+  isVisible!: boolean;
 
   @Field()
   updatedAt?: Date;
