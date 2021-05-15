@@ -10,8 +10,8 @@ export const GET_ARTICLE = gql`
       title
       banner
       content
-      createAt
-      updateAt
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -28,7 +28,7 @@ const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
         <h1>{article?.title}</h1>
         <p>{article?.content}</p>
         <p>
-          <small>{article?.createAt}</small>
+          <small>{article?.createdAt}</small>
         </p>
       </div>
     </Box>

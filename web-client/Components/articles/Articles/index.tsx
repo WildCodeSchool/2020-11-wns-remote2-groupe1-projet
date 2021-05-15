@@ -64,7 +64,7 @@ const Articles = (): JSX.Element => {
   };
 
   const classes = useStyles();
-
+  console.log(articles);
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.feedTitle}>

@@ -16,7 +16,7 @@ export default class UpdateArticleInput {
   isVisible?: boolean;
 
   @Field()
-  updateAt?: Date;
+  updatedAt?: Date;
 
   author?: User;
 }

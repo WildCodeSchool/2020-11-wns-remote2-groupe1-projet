@@ -13,22 +13,22 @@ import { useState } from 'react';
 const REGISTER = gql`
   # Create User
   mutation CreateUser(
-    $firstname: String!
-    $lastname: String!
+    $firstName: String!
+    $lastName: String!
     $password: String!
     $school: String!
     $email: String!
   ) {
     createUser(
       input: {
-        firstname: $firstname
-        lastname: $lastname
+        firstName: $firstName
+        lastName: $lastName
         password: $password
         email: $email
         school: $school
       }
     ) {
-      firstname
+      firstName
     }
   }
 `;
@@ -49,8 +49,8 @@ const useStyles = makeStyles({
 const Register = (): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
-  const [firstname, setFirstname] = useState<string>('');
-  const [lastname, setLastname] = useState<string>('');
+  const [firstName, setfirstName] = useState<string>('');
+  const [lastName, setlastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -78,8 +78,8 @@ const Register = (): JSX.Element => {
           e.preventDefault();
           await register({
             variables: {
-              firstname,
-              lastname,
+              firstName,
+              lastName,
               email,
               password,
               school,
@@ -92,8 +92,8 @@ const Register = (): JSX.Element => {
           <Grid item xs={12} md={6}>
             <TextField
               label="Prénom"
-              value={firstname}
-              onChange={(e) => setFirstname(e.target.value)}
+              value={firstName}
+              onChange={(e) => setfirstName(e.target.value)}
               fullWidth
               type="text"
             />
@@ -101,8 +101,8 @@ const Register = (): JSX.Element => {
           <Grid item xs={12} md={6}>
             <TextField
               label="Nom"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
+              value={lastName}
+              onChange={(e) => setlastName(e.target.value)}
               fullWidth
               type="text"
             />
