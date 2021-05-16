@@ -16,19 +16,13 @@ export const GET_ARTICLE = gql`
   }
 `;
 
-const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
+const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({
+  router,
+}) => {
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
+  const article = data?.article;
 
-  const article: {
-    id: string;
-    title: string;
-    banner: string;
-    content: string;
-    createdAt: string;
-  } = data?.article || [];
-
-  console.log(' article:', article);
   return (
     <Box m={2}>
       <div>
@@ -43,4 +37,4 @@ const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
   );
 };
 
-export default Article;
+export default UpdateArticleComponent;

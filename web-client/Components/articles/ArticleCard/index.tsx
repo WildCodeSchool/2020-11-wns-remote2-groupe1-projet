@@ -53,13 +53,27 @@ const ArticleCard = ({
   contents: string;
 }): JSX.Element => {
   const classes = useStyles();
+
+  const clickHandler = () => {
+    return (event: React.MouseEvent) => {
+      const path = window.location.pathname;
+
+      switch (path) {
+        case '/edit-articles':
+          window.location.assign(`/edit-articles/${id}`);
+          break;
+        case '/':
+          window.location.assign(`/article/${id}`);
+      }
+
+      event.preventDefault();
+    };
+  };
   return (
     <div>
       <Grid container>
         <Card
-          onClick={() => {
-            window.location.assign(`/article/${id}`);
-          }}
+          onClick={clickHandler()}
           className={`${classes.root} ${classes.center}`}
         >
           {' '}

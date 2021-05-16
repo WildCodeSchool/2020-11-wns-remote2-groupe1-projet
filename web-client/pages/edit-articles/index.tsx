@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleCard from '../ArticleCard';
+import ArticleCard from '../../Components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
@@ -33,7 +33,7 @@ const GET_ARTICLES = gql`
   }
 `;
 
-const Articles = (): JSX.Element => {
+const EditArticles = (): JSX.Element => {
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {
       offset: 0,
@@ -64,10 +64,11 @@ const Articles = (): JSX.Element => {
   };
 
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.feedTitle}>
-        Posts
+        Article Management
       </Typography>
 
       {articles?.map((article) => (
@@ -94,4 +95,4 @@ const Articles = (): JSX.Element => {
   );
 };
 
-export default Articles;
+export default EditArticles;

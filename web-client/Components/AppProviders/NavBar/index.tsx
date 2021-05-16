@@ -51,6 +51,9 @@ const NavBar = () => {
             <Link href="/create-article">
               <Button className={classes.link}>New Article</Button>
             </Link>
+            <Link href="/edit-articles">
+              <Button className={classes.link}>Edit Article</Button>
+            </Link>
           </div>
           <div className={classes.navBarRight}>
             <Link href="/login">
