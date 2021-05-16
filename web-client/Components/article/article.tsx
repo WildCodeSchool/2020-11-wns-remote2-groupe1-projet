@@ -16,10 +16,11 @@ export const GET_ARTICLE = gql`
   }
 `;
 
-const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
+const Article: React.FC<{ router: NextRouter }> = ({}) => {
+  const router = useRouter();
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
-
+  console.log('id: ', id);
   const article: {
     id: string;
     title: string;

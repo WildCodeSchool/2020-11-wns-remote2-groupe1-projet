@@ -22,7 +22,6 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
   const article = data?.article;
-
   return (
     <Box m={2}>
       <div>
