@@ -20,7 +20,6 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
   const router = useRouter();
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
-  console.log('id: ', id);
   const article: {
     id: string;
     title: string;
@@ -29,7 +28,6 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
     createdAt: string;
   } = data?.article || [];
 
-  console.log(' article:', article);
   return (
     <Box m={2}>
       <div>

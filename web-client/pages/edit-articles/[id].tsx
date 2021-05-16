@@ -1,5 +1,5 @@
 import React from 'react';
-import UpdateArticleComponent from '../../Components/Article/article';
+import UpdateArticleComponent from '../../Components/updateArticle/UpdateArticle';
 import { Container, Box, Link, Button } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
