@@ -49,8 +49,8 @@ const useStyles = makeStyles({
 const Register = (): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
-  const [firstName, setfirstName] = useState<string>('');
-  const [lastName, setlastName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -93,7 +93,7 @@ const Register = (): JSX.Element => {
             <TextField
               label="Prénom"
               value={firstName}
-              onChange={(e) => setfirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
               fullWidth
               type="text"
             />
@@ -102,7 +102,7 @@ const Register = (): JSX.Element => {
             <TextField
               label="Nom"
               value={lastName}
-              onChange={(e) => setlastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
               fullWidth
               type="text"
             />
