@@ -22,24 +22,10 @@ const GET_ARTICLE = gql`
 `;
 const UPDATE_ARTICLE = gql`
   # Update Article
-  mutation UpdateArticle(
-    $title: String!
-    $banner: String!
-    $content: String!
-    $isVisible: Boolean!
-    $updatedAt: Date!
-    $createdAt: Date!
-  ) {
+  mutation UpdateArticle($title: String!, $banner: String!, $content: String!) {
     updateArticle(
       id: $id
-      data: {
-        title: $title
-        banner: $banner
-        content: $content
-        isVisible: $isVisible
-        updatedAt: $updatedAt
-        createdAt: $createdAt
-      }
+      data: { title: $title, banner: $banner, content: $content }
     )
   }
 `;
@@ -73,51 +59,56 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     updatedAt: Date;
   } = data?.article || [];
 
-  const [title, setTitle] = useState<string>('');
-  const [banner, setBanner] = useState<string>('');
-  const [content, setContent] = useState<string>('');
-  const [isVisible, setIsVisible] = useState<boolean>();
-  const [updatedAt, setUpdatedAt] = useState<Date>();
-  const [createdAt, setCreatedAt] = useState<Date>();
-  const [updateArticle] = useMutation(UPDATE_ARTICLE);
+  const [values, setValues] = useState({
+    title: '',
+    banner: '',
+    content: '',
+  });
 
   useEffect(() => {
     if (article) {
-      setTitle(article.title);
-      setBanner(article.banner);
-      setContent(article.content);
-      setIsVisible(article.isVisible);
-      setUpdatedAt(article.updatedAt);
-      setCreatedAt(article.createdAt);
+      setValues({
+        title: article.title,
+        banner: article.banner,
+        content: article.content,
+      });
     }
   }, [article]);
 
-  console.log('article: ', article.title);
+  const changeHandler = (e) => {
+    setValues((prevValues) => {
+      return { ...prevValues, [e.target.name]: e.target.value };
+    });
+  };
+
+  const [updateArticle, { error }] = useMutation(UPDATE_ARTICLE, {
+    onCompleted: () => {
+      router.push('/edit-articles');
+    },
+  });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await updateArticle({
+      variables: {
+        ...values,
+      },
+    });
+  }
+
+  console.log('article: ', values);
 
   return (
     <Paper>
       <Typography variant="h2">Article Edit</Typography>
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
-          await updateArticle({
-            variables: {
-              title,
-              banner,
-              content,
-              isVisible,
-              updatedAt,
-              createdAt,
-            },
-          });
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
               label="Title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              value={values.title}
+              onChange={changeHandler}
               fullWidth
               type="text"
             />
@@ -125,8 +116,9 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
           <Grid item xs={12} md={6}>
             <TextField
               label="Banner"
-              value={banner}
-              onChange={(e) => setBanner(e.target.value)}
+              name="banner"
+              value={values.banner}
+              onChange={changeHandler}
               fullWidth
               type="text"
             />
@@ -134,40 +126,12 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
           <Grid item xs={12} md={6}>
             <TextField
               label="Content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              name="content"
+              value={values.content}
+              onChange={changeHandler}
               fullWidth
               type="text"
             />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="UpdatedAt"
-              value={updatedAt}
-              onChange={(e) => setUpdatedAt(updatedAt)}
-              fullWidth
-              type="text"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="CreatedAt"
-              value={createdAt}
-              onChange={(e) => setUpdatedAt(createdAt)}
-              fullWidth
-              type="text"
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Button
-              variant="outlined"
-              type="button"
-              onClick={(e) => {
-                isVisible ? setIsVisible(false) : setIsVisible(true);
-              }}
-            >
-              {isVisible ? 'Visible' : 'Invisible'}
-            </Button>
           </Grid>
           <Grid item xs={12} md={12} className={classes.buttons}>
             <Button variant="contained" color="primary" type="submit">
