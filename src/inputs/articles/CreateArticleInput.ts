@@ -13,7 +13,7 @@ export default class CreateArticleInput {
   content!: string;
 
   @Field()
-  isVisible!: boolean;
+  isVisible?: boolean;
 
   author?: User;
 }

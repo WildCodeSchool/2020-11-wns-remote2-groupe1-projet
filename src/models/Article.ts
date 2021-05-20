@@ -33,7 +33,7 @@ export class Article extends BaseEntity {
 
   @Column({ default: false })
   @Field(() => Boolean)
-  isVisible!: boolean;
+  isVisible?: boolean;
 
   @Field(() => Date)
   @CreateDateColumn()

@@ -4,6 +4,9 @@ import { User } from '../../models/User';
 @InputType()
 export default class UpdateArticleInput {
   @Field({ nullable: true })
+  id?: string;
+
+  @Field({ nullable: true })
   title?: string;
 
   @Field({ nullable: true })
@@ -13,9 +16,9 @@ export default class UpdateArticleInput {
   content?: string;
 
   @Field({ nullable: true })
-  isVisible!: boolean;
+  isVisible?: boolean;
 
-  @Field()
+  @Field({ nullable: true })
   updatedAt?: Date;
 
   author?: User;

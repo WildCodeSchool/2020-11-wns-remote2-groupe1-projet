@@ -22,11 +22,21 @@ const GET_ARTICLE = gql`
 `;
 const UPDATE_ARTICLE = gql`
   # Update Article
-  mutation UpdateArticle($title: String!, $banner: String!, $content: String!) {
+  mutation UpdateArticle(
+    $id: String!
+    $title: String!
+    $banner: String!
+    $content: String!
+  ) {
     updateArticle(
       id: $id
       data: { title: $title, banner: $banner, content: $content }
-    )
+    ) {
+      id
+      title
+      banner
+      content
+    }
   }
 `;
 
@@ -48,7 +58,8 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
 
   const router = useRouter();
   const id = router?.query?.id;
-  const { data } = useQuery(GET_ARTICLE, { variables: { id } });
+  const { data: queryData } = useQuery(GET_ARTICLE, { variables: { id } });
+
   const article: {
     id: string;
     title: string;
@@ -57,9 +68,10 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     isVisible: boolean;
     createdAt: Date;
     updatedAt: Date;
-  } = data?.article || [];
+  } = queryData?.article || [];
 
   const [values, setValues] = useState({
+    id: '',
     title: '',
     banner: '',
     content: '',
@@ -68,6 +80,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   useEffect(() => {
     if (article) {
       setValues({
+        id: article.id,
         title: article.title,
         banner: article.banner,
         content: article.content,
@@ -81,22 +94,20 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     });
   };
 
-  const [updateArticle, { error }] = useMutation(UPDATE_ARTICLE, {
+  const [updateArticle] = useMutation(UPDATE_ARTICLE, {
     onCompleted: () => {
       router.push('/edit-articles');
     },
   });
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    await updateArticle({
+    updateArticle({
       variables: {
         ...values,
       },
     });
   }
-
-  console.log('article: ', values);
 
   return (
     <Paper>
