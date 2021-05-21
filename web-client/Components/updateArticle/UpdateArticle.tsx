@@ -40,6 +40,12 @@ const UPDATE_ARTICLE = gql`
   }
 `;
 
+const DELETE_ARTICLE = gql`
+  mutation DeleteArticle($id: String!) {
+    deleteArticle(id: $id)
+  }
+`;
+
 const useStyles = makeStyles({
   root: {
     padding: 32,
@@ -100,6 +106,12 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     },
   });
 
+  const [deleteArticle] = useMutation(DELETE_ARTICLE, {
+    onCompleted: () => {
+      router.push('/edit-articles');
+    },
+  });
+
   function handleSubmit(e) {
     e.preventDefault();
     updateArticle({
@@ -107,6 +119,11 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
         ...values,
       },
     });
+  }
+
+  function handleDelete(e) {
+    e.preventDefault();
+    deleteArticle({ variables: { id } });
   }
 
   return (
@@ -147,6 +164,14 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
           <Grid item xs={12} md={12} className={classes.buttons}>
             <Button variant="contained" color="primary" type="submit">
               Save Edits
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              type="button"
+              onClick={handleDelete}
+            >
+              Delete
             </Button>
           </Grid>
         </Grid>
