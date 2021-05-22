@@ -12,7 +12,7 @@ const AppProviders = ({ children, pageProps }) => {
 
   return (
     <ApolloProvider client={client}>
-      <NavBar />
+      <NavBar children={children} />
       <UserProvider>
         <main className={classes.container}>{children}</main>
       </UserProvider>
