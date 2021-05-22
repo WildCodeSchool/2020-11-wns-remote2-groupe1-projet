@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
   feedTitle: {
     textAlign: 'center',
-    fontSize: '2rem',
     fontWeight: 'bold',
     color: '#1b84c1',
   },

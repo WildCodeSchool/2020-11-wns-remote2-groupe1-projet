@@ -2,6 +2,7 @@
 import Head from 'next/head';
 import { NextPage } from 'next/types';
 import Articles from '../Components/Articles';
+import Paper from '@material-ui/core/Paper';
 
 const Home: NextPage = () => {
   return (
@@ -9,9 +10,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Chatter App </title>
       </Head>
-      <main>
-        <Articles />
-      </main>
+      <Articles />
     </div>
   );
 };

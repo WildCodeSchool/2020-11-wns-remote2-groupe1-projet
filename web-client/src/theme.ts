@@ -3,19 +3,31 @@ import variables from "./theme.module.scss";
 
 export const DEFAULT_COLOR = variables.DEFAULT_COLOR;
 export const SPACER_L = variables.SPACER_L;
+export const DEFAULT_BACKGROUND_COLOR = variables.DEFAULT_BACKGROUND_COLOR;
 
 const Theme = createMuiTheme({
   palette: {
     primary: {
       main: DEFAULT_COLOR,
     },
+
+  },
+  typography:{
+    
+    h1:{
+      fontSize: '2rem',
+    },
+    h2:{
+      fontSize: '1.5rem'
+    }
   },
   overrides: {
     MuiCssBaseline: {
       '@global':{
         main:{
-          paddingTop: '2rem'
-        }
+          paddingTop: '4rem',
+          backgroundColor: DEFAULT_BACKGROUND_COLOR
+        },
       }
     },
     MuiButton: {
