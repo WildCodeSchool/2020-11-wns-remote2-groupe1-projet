@@ -45,21 +45,36 @@ const ArticleCard = ({
   id,
   title,
   image,
-  contents,
+  content,
 }: {
   id: string;
   title: string;
   image: string;
-  contents: string;
+  content: string;
 }): JSX.Element => {
   const classes = useStyles();
+
+  const clickHandler = () => {
+    return (event: React.MouseEvent) => {
+      const path = window.location.pathname;
+
+      switch (path) {
+        case '/edit-articles':
+          window.location.assign(`/edit-articles/${id}`);
+          break;
+        case '/':
+          window.location.assign(`/article/${id}`);
+      }
+
+      event.preventDefault();
+    };
+  };
+
   return (
     <div>
       <Grid container>
         <Card
-          onClick={() => {
-            window.location.assign(`/article/${id}`);
-          }}
+          onClick={clickHandler()}
           className={`${classes.root} ${classes.center}`}
         >
           {' '}
@@ -75,7 +90,7 @@ const ArticleCard = ({
           <CardMedia className={classes.media} image={image} />
           <Grid item zeroMinWidth>
             <CardContent>
-              <Typography noWrap>{contents}</Typography>
+              <Typography noWrap>{content}</Typography>
             </CardContent>
           </Grid>
         </Card>

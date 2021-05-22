@@ -5,7 +5,7 @@ import { useInAppUserProvider } from '../../Components/AppProviders/UserContext'
 // const Account: NextPage = () => {
 //   const { me } = useInAppUserProvider();
 
-//   return <p>{`Hello ${!me ? 'World' : me?.firstname}`}</p>;
+//   return <p>{`Hello ${!me ? 'World' : me?.firstName}`}</p>;
 // };
 
 // export default Account;

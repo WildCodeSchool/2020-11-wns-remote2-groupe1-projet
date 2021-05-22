@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleCard from '../ArticleCard';
+import ArticleCard from './ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
@@ -64,7 +64,6 @@ const Articles = (): JSX.Element => {
   };
 
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.feedTitle}>
@@ -77,7 +76,7 @@ const Articles = (): JSX.Element => {
           id={article.id}
           title={article.title}
           image={article.banner}
-          contents={article.content}
+          content={article.content}
         />
       ))}
       <div>

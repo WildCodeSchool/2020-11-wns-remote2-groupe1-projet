@@ -7,7 +7,7 @@ export default class UpdateCommentInput {
   content?: string;
 
   @Field({ nullable: true })
-  updateAt?: Date;
+  updatedAt?: Date;
 
   author?: User;
 }
