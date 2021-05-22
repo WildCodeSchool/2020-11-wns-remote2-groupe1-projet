@@ -11,6 +11,13 @@ const Theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiCssBaseline: {
+      '@global':{
+        main:{
+          paddingTop: '2rem'
+        }
+      }
+    },
     MuiButton: {
       containedPrimary: {
         fontSize: 12,
