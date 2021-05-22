@@ -1,5 +1,5 @@
 import { Container, Box, Link, Button } from '@material-ui/core';
-import CreateArticleComponent from '../../Components/createArticle/createArticle';
+import CreateArticleComponent from '../../Components/create-article/createArticle';
 
 export default function CreateArticle() {
   return (
