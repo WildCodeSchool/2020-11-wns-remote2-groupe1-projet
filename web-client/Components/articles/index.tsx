@@ -1,7 +1,7 @@
 import React from 'react';
-import ArticleCard from '../ArticleCard';
+import ArticleCard from './article-card';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
   feedTitle: {
     textAlign: 'center',
-    fontSize: '2rem',
     fontWeight: 'bold',
     color: '#1b84c1',
   },
@@ -33,7 +32,7 @@ const GET_ARTICLES = gql`
   }
 `;
 
-const Articles = ({}) => {
+const Articles = (): JSX.Element => {
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {
       offset: 0,
@@ -42,7 +41,12 @@ const Articles = ({}) => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const articles = data?.articles || [];
+  const articles: Array<{
+    id: string;
+    title: string;
+    banner: string;
+    content: string;
+  }> = data?.articles || [];
 
   const fetchMoreArticles = () => {
     fetchMore({
@@ -59,7 +63,6 @@ const Articles = ({}) => {
   };
 
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.feedTitle}>
@@ -72,7 +75,7 @@ const Articles = ({}) => {
           id={article.id}
           title={article.title}
           image={article.banner}
-          contents={article.content}
+          content={article.content}
         />
       ))}
       <div>

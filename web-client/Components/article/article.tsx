@@ -10,16 +10,23 @@ export const GET_ARTICLE = gql`
       title
       banner
       content
-      createAt
-      updateAt
+      createdAt
+      updatedAt
     }
   }
 `;
 
-const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
+const Article: React.FC<{ router: NextRouter }> = ({}) => {
+  const router = useRouter();
   const id = router?.query?.idArticle;
   const { data } = useQuery(GET_ARTICLE, { variables: { id } });
-  const article = data?.article;
+  const article: {
+    id: string;
+    title: string;
+    banner: string;
+    content: string;
+    createdAt: string;
+  } = data?.article || [];
 
   return (
     <Box m={2}>
@@ -28,7 +35,7 @@ const Article: React.FC<{ router: NextRouter }> = ({ router }) => {
         <h1>{article?.title}</h1>
         <p>{article?.content}</p>
         <p>
-          <small>{article?.createAt}</small>
+          <small>{article?.createdAt}</small>
         </p>
       </div>
     </Box>

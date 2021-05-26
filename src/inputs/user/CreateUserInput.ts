@@ -6,11 +6,11 @@ import { UserRole } from '../../models/User';
 export default class CreateUserInput {
   @Field()
   @MaxLength(25)
-  firstname!: string;
+  firstName!: string;
 
   @Field()
   @MaxLength(25)
-  lastname!: string;
+  lastName!: string;
 
   @Field()
   @MinLength(8)

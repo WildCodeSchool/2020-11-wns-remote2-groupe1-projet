@@ -1,13 +1,13 @@
 #  Get All Article and there content
 query {
-  articles {
+  articles(limit: 10, offset: 0) {
     id
     title
     banner
     content
     isVisible
-    createAt
-    updateAt
+    createdAt
+    updatedAt
     # Need to find a way to display author, ... we will see in few days
   }
 }
@@ -20,8 +20,8 @@ query {
     banner
     content
     isVisible
-    createAt
-    updateAt
+    createdAt
+    updatedAt
     # Need to find a way to display author, ... we will see in few days
   }
 }
@@ -30,14 +30,14 @@ query {
 mutation {
   createArticle(
     data: {
-      title: "My new title"
+      title: "My new article"
       banner: "img.png"
-      content: "this is my super duper Article full of shit"
+      content: "this is my new article"
       isVisible: true
     }
   ) {
     title
-    createAt
+    createdAt
   }
 }
 
@@ -46,15 +46,15 @@ mutation {
   updateArticle(
     id: "1"
     data: {
-      title: "Not My Old Title Anymore title"
+      title: "My updated title"
       banner: "img.png"
-      content: "this is my super duper Article full of shit"
+      content: "this is my updated article"
       isVisible: true
-      updateAt: "2021-11-19T16:02:27.021Z"
+      updatedAt: "2021-11-19T16:02:27.021Z"
     }
   ) {
     title
-    createAt
+    createdAt
   }
 }
 
@@ -67,8 +67,8 @@ mutation {
 query {
   users {
     id
-    firstname
-    lastname
+    firstName
+    lastName
     birthDate
     email
     school
@@ -80,19 +80,19 @@ query {
 mutation {
   createUser(
     input: {
-      firstname: "Jean"
-      lastname: "La Salle"
+      firstName: "Jean"
+      lastName: "La Salle"
       password: "MasterKickfromTerroir"
       email: "viveLePathéLaChasseetla@gmail.com"
       school: "Bordeaux"
       birthDate: "10-10-1984"
     }
   ) {
-    firstname
+    firstName
   }
 }
 
-# Connexion User
+# User Connection
 mutation {
   createSession(
     input: {

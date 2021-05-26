@@ -33,15 +33,15 @@ export class Article extends BaseEntity {
 
   @Column({ default: false })
   @Field(() => Boolean)
-  isVisible!: boolean;
+  isVisible?: boolean;
 
   @Field(() => Date)
   @CreateDateColumn()
-  createAt?: Date;
+  createdAt?: Date;
 
   @Field(() => Date)
   @UpdateDateColumn()
-  updateAt?: Date;
+  updatedAt?: Date;
 
   @OneToMany(() => User, (author) => author.articles)
   author?: User;

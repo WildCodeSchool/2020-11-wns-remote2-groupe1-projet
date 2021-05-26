@@ -31,8 +31,8 @@ describe('User resolvers', () => {
       const user1 = User.create({
         email: 'laurepincon@gmail.com',
         password: 'laurepassword',
-        firstname: 'Laure',
-        lastname: 'Pinçon',
+        firstName: 'Laure',
+        lastName: 'Pinçon',
         birthDate: '10/10/1980',
         school: 'Ecole de Reims',
         role: UserRole.STUDENT,
@@ -42,8 +42,8 @@ describe('User resolvers', () => {
       const user2 = User.create({
         email: 'pierreroulle@gmail.com',
         password: 'pierrepassword',
-        firstname: 'Pierre',
-        lastname: 'Roulle',
+        firstName: 'Pierre',
+        lastName: 'Roulle',
         birthDate: '10/10/1984',
         school: 'Ecole de Lille',
         role: UserRole.STUDENT,
@@ -53,8 +53,8 @@ describe('User resolvers', () => {
       const response = await testClient.post('/graphql').send({
         query: `{
         users {
-          firstname
-          lastname
+          firstName
+          lastName
         }
       }
       `,
@@ -63,12 +63,12 @@ describe('User resolvers', () => {
       expect(JSON.parse(response.text).data).toEqual({
         users: [
           {
-            firstname: 'Laure',
-            lastname: 'Pinçon',
+            firstName: 'Laure',
+            lastName: 'Pinçon',
           },
           {
-            firstname: 'Pierre',
-            lastname: 'Roulle',
+            firstName: 'Pierre',
+            lastName: 'Roulle',
           },
         ],
       });
@@ -82,8 +82,8 @@ describe('User resolvers', () => {
   //     user = User.create({
   //       email: 'laurepincon@gmail.com',
   //       password: 'laurepassword',
-  //       firstname: 'Laure',
-  //       lastname: 'Pinçon',
+  //       firstName: 'Laure',
+  //       lastName: 'Pinçon',
   //       birthDate: '10/10/1980',
   //       school: 'Ecole de Reims',
   //       role: UserRole.STUDENT,
@@ -140,15 +140,15 @@ describe('User resolvers', () => {
   //           input: {
   //             email: "lucrenaud@gmail.com"
   //             password: "bateaubateau"
-  //             firstname: "Arman"
-  //             lastname: "Durand"
+  //             firstName: "Arman"
+  //             lastName: "Durand"
   //             birthDate: '10/10/1980',
   //             school: 'Ecole de Rennes',
   //             role: UserRole.STUDENT,
   //           }
   //         ) {
-  //           firstname
-  //           lastname
+  //           firstName
+  //           lastName
   //         }
   //       }
   //       `,
@@ -157,8 +157,8 @@ describe('User resolvers', () => {
   //     expect(await User.count({})).toEqual(1);
   //     expect(JSON.parse(response.text).data).toEqual({
   //       createUser: {
-  //         firstname: 'Arman',
-  //         lastname: 'Durand',
+  //         firstName: 'Arman',
+  //         lastName: 'Durand',
   //       },
   //     });
   //   });
@@ -188,8 +188,8 @@ describe('User resolvers', () => {
   //       user = User.create({
   //         email: 'laurepincon@gmail.com',
   //         password: 'laurepassword',
-  //         firstname: 'Laure',
-  //         lastname: 'Pinçon',
+  //         firstName: 'Laure',
+  //         lastName: 'Pinçon',
   //         birthDate: '10/10/1980',
   //         school: 'Ecole de Reims',
   //         role: UserRole.STUDENT,
