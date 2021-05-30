@@ -73,6 +73,9 @@ const NavBar = (props: Props) => {
               <Link href="/edit-articles">
                 <Button className={classes.link}>Edit Article</Button>
               </Link>
+              <Link href="/image-gallery">
+                <Button className={classes.link}>Image Gallery</Button>
+              </Link>
             </div>
             <div className={classes.navBarRight}>
               <Link href="/login">
