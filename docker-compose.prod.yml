@@ -25,6 +25,8 @@ services:
   nginx:
     image: nginx:1.19.10
     restart: always
+    stdin_open: true
+
     depends_on:
       - webclient
     ports:

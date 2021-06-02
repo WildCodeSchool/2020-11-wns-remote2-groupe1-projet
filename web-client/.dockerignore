@@ -2,7 +2,7 @@
 node_modules
 npm-debug.log
 dist
-web-client
+build
 .dockerignore
 **/.git
 **/.DS_Store
