@@ -1,5 +1,5 @@
 
-FROM node:lts-alpine
+FROM node:14.17-alpine
 
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /usr/src/app/backend
