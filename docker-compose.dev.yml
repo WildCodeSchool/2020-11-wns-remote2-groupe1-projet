@@ -6,6 +6,8 @@ services:
     environment:
       - NODE_ENV=development
   api:
+    depends_on:
+      - db
     command: npm run dev
     stdin_open: true
     volumes:
@@ -15,7 +17,7 @@ services:
     environment:
       - NODE_ENV=development
       - TYPEORM_LOGGING=true
-  web-client:
+  webclient:
     command: npm run dev
     stdin_open: true
     volumes:

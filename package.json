@@ -11,7 +11,7 @@
     "start": "node dist/index.js",
     "dev": "tsc -w & nodemon dist/index.js",
     "docker-dev": "WEB_CLIENT_PORT=3000 API_PORT=4000 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build",
-    "docker-prod": "GATEWAY_PORT=8000 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d"
+    "docker-prod": "GATEWAY_PORT=8000 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build"
   },
   "husky": {
     "hooks": {
