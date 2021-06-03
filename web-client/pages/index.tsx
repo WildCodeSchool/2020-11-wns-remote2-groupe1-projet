@@ -1,17 +1,16 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Head from 'next/head';
 import { NextPage } from 'next/types';
-import Articles from '../Components/articles/Articles';
+import Articles from '../Components/articles';
+import Paper from '@material-ui/core/Paper';
 
 const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Welcome to Hell ! </title>
+        <title>Chatter App </title>
       </Head>
-      <main>
-        <Articles />
-      </main>
+      <Articles />
     </div>
   );
 };

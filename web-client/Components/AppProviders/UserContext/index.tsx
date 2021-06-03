@@ -5,8 +5,8 @@ const GET_ME = gql`
   query GetMe {
     me {
       id
-      firstname
-      lastname
+      firstName
+      lastName
       school
     }
   }
@@ -14,8 +14,8 @@ const GET_ME = gql`
 
 export type me = {
   id: string;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   school: string;
 };
 

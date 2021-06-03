@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    ports:
+      - 5432:5432
+    environment:
+      - NODE_ENV=development
+  api:
+    depends_on:
+      - db
+    command: sh -c "npm install -g nodemon && (npm run dev & nodemon -w package-lock.json --exec 'npm install')"
+    stdin_open: true
+    volumes:
+      - ./src:/app/src
+    ports:
+      - 4000:4000
+    environment:
+      - NODE_ENV=development
+      - TYPEORM_LOGGING=true
+  webclient:
+    command: sh -c "npm install -g nodemon && (npm run dev & nodemon -w package-lock.json --exec 'npm install')"
+    stdin_open: true
+    volumes:
+      - ./web-client:/app
+      - /app/node_modules/
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_BASE_URL=:${API_PORT}

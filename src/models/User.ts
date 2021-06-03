@@ -42,11 +42,11 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => String)
-  firstname!: string;
+  firstName!: string;
 
   @Column()
   @Field(() => String)
-  lastname!: string;
+  lastName!: string;
 
   @Column({ nullable: true })
   @CreateDateColumn()
@@ -90,7 +90,7 @@ export class User extends BaseEntity {
   @Column()
   @Field(() => Date)
   @UpdateDateColumn()
-  updateAt!: Date;
+  updatedAt!: Date;
 
   @Column({ default: false })
   @Field(() => Boolean)

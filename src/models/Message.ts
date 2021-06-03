@@ -24,11 +24,11 @@ export class Message extends BaseEntity {
 
   @Field(() => Date)
   @CreateDateColumn()
-  createAt!: Date;
+  createdAt!: Date;
 
   @Field(() => Date)
   @UpdateDateColumn()
-  updateAt!: Date;
+  updatedAt!: Date;
 
   @OneToMany(() => Conversation, (conversation) => conversation.messages)
   conversation?: Conversation;

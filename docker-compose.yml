@@ -1,17 +1,25 @@
-# docker-compose.yml
 version: '3'
 services:
-  database:
-    image: "postgres" # use latest official postgres version
-    hostname: postgres
-    container_name: db_chat_app_container
-    environment: 
-      - POSTGRES_USER=postgres
+  db:
+    image: postgres
+    environment:
       - POSTGRES_PASSWORD=denver
-      - POSTGRES_DB=postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
-volumes:
-  database-data: # named volumes can be managed easier using docker-compose
+  api:
+    build: .
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=db
+      - TYPEORM_PORT=5432
+      - TYPEORM_DATABASE=postgres
+      - TYPEORM_USERNAME=postgres
+      - TYPEORM_PASSWORD=denver
+  webclient:
+    build: ./web-client
+    depends_on:
+      - api
+    links:
+      - api

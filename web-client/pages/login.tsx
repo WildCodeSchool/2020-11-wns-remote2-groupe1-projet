@@ -43,7 +43,7 @@ const Login: NextPage = () => {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [login, { error, loading }] = useMutation(LOGIN_MUTATION, {
+  const [login, { error }] = useMutation(LOGIN_MUTATION, {
     onCompleted() {
       router.push('/account');
     },
@@ -54,7 +54,7 @@ const Login: NextPage = () => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          const { data } = await login({
+          const {} = await login({
             variables: { email, password },
           });
         }}
