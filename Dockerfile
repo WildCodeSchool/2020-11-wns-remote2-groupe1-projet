@@ -1,21 +1,12 @@
-
 FROM node:14.17-alpine
-
-RUN mkdir -p /usr/src/app
-RUN mkdir -p /usr/src/app/backend
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json /app/
 
-RUN apk --no-cache add --virtual native-deps \
-    g++ gcc libgcc libstdc++ linux-headers make python && \
-    npm install --quiet node-gyp -g &&\
-    npm install --quiet && \
-    apk del native-deps
+RUN apk add --update python make g++\
+    && rm -rf /var/cache/apk/*
 
-COPY . ./
+RUN npm install
 
-EXPOSE 4000
-
-CMD npm run dev
+COPY . /app/
