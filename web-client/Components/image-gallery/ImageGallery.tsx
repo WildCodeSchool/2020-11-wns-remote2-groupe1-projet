@@ -38,6 +38,7 @@ function ImageGalleryComponent() {
           const existingData: GetImages | null = cache.readQuery({
             query: GET_IMAGES,
           });
+
           if (existingData && data) {
             cache.writeQuery({
               query: GET_IMAGES,
@@ -73,7 +74,7 @@ function ImageGalleryComponent() {
           {data?.images.map(({ id, extension }) => (
             <div key={id}>
               <img
-                src={`${API_BASE_URL}/public/media/pictures/${id}${extension}`}
+                src={`${API_BASE_URL}/public/media/images/${id}${extension}`}
               />
             </div>
           ))}
