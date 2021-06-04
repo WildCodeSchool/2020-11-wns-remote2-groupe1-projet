@@ -26,7 +26,7 @@ export default class ArticleResolver {
 
   @Mutation(() => Article)
   async createArticle(@Arg('data') data: CreateArticleInput): Promise<Article> {
-    const article = Article.create(data);
+    const article = Article.create({...data});
     await article.save();
     return article;
   }

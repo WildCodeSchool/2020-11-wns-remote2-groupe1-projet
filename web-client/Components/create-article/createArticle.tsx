@@ -7,7 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../AppProviders/UserContext';
 
 const CREATE_ARTICLE = gql`
   # Create Article
@@ -16,6 +17,7 @@ const CREATE_ARTICLE = gql`
     $banner: String!
     $content: String!
     $isVisible: Boolean!
+    $author: User!
   ) {
     createArticle(
       data: {
@@ -23,12 +25,14 @@ const CREATE_ARTICLE = gql`
         banner: $banner
         content: $content
         isVisible: $isVisible
+        author: $author
       }
     ) {
       title
       banner
       content
       isVisible
+      author
     }
   }
 `;
@@ -48,6 +52,7 @@ const useStyles = makeStyles({
 
 function CreateArticleComponent(): JSX.Element {
   const router = useRouter();
+  const { me } = useContext(UserContext);
   const classes = useStyles();
   const [title, setTitle] = useState<string>('');
   const [banner, setBanner] = useState<string>('');
@@ -61,6 +66,7 @@ function CreateArticleComponent(): JSX.Element {
   return (
     <Paper>
       <Typography variant="h2">Article Creation</Typography>
+      <p>{me?.firstName}</p>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
@@ -70,6 +76,7 @@ function CreateArticleComponent(): JSX.Element {
               banner,
               content,
               isVisible,
+              author: me?.id,
             },
           });
         }}
