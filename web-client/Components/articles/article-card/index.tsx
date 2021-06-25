@@ -15,7 +15,7 @@ import { grey } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      maxWidth: 450,
+      width: 450,
     },
     media: {
       height: 140,
