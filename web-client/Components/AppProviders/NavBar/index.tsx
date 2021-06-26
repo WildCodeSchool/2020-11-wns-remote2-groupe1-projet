@@ -20,6 +20,7 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { DEFAULT_UI_COLOR } from '../../../src/theme';
 
 const drawerWidth = 240;
 
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: DEFAULT_UI_COLOR,
     },
     navBarContent: {
       display: 'flex',
@@ -57,6 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
     respNavBarContent: {
       display: 'none',
       justifyContent: 'space-between',
+      paddingRight: '2rem',
       [theme.breakpoints.up('md')]: {
         display: 'flex',
       },
@@ -140,15 +143,16 @@ const NavBar = (props: Props) => {
                 <Button className={classes.logo}>Chatter App</Button>
               </Link>
             </div>
-            <div className={classes.respNavBarContent}>
-              <Link href="/create-article">
-                <Button className={classes.link}>New Article</Button>
-              </Link>
-              <Link href="/edit-articles">
-                <Button className={classes.link}>Edit Article</Button>
-              </Link>
-            </div>
+
             <div className={classes.navBarContent}>
+              <div className={classes.respNavBarContent}>
+                <Link href="/create-article">
+                  <Button className={classes.link}>New Article</Button>
+                </Link>
+                <Link href="/edit-articles">
+                  <Button className={classes.link}>Edit Article</Button>
+                </Link>
+              </div>
               <Link href="/login">
                 <Button color="inherit">Login</Button>
               </Link>
