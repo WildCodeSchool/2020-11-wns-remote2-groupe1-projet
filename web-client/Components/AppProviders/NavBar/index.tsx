@@ -104,7 +104,7 @@ const NavBar = (props: Props) => {
   const drawer = (
     <div className={classes.toolbar}>
       <Link href="/">
-        <Button className={classes.logo}>Chatter App</Button>
+        <Button className={classes.logo}>Test App</Button>
       </Link>
       <Divider />
       <List>
