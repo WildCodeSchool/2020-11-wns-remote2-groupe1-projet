@@ -140,7 +140,7 @@ const NavBar = (props: Props) => {
                 <MenuIcon />
               </IconButton>
               <Link href="/">
-                <Button className={classes.logo}>Chatter App</Button>
+                <Button className={classes.logo}>testing App</Button>
               </Link>
             </div>
 
