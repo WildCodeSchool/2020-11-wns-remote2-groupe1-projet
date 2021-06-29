@@ -35,7 +35,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
         <h1>{article?.title}</h1>
         <p>{article?.content}</p>
         <p>
-          <small>{article?.createdAt}</small>
+          <small>{Date.parse(article?.createdAt)}</small>
         </p>
       </div>
     </Box>

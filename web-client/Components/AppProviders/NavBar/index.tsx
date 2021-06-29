@@ -104,7 +104,7 @@ const NavBar = (props: Props) => {
   const drawer = (
     <div className={classes.toolbar}>
       <Link href="/">
-        <Button className={classes.logo}>Testing App</Button>
+        <Button className={classes.logo}>Chatter App</Button>
       </Link>
       <Divider />
       <List>
@@ -140,7 +140,7 @@ const NavBar = (props: Props) => {
                 <MenuIcon />
               </IconButton>
               <Link href="/">
-                <Button className={classes.logo}>Chatter App</Button>
+                <Button className={classes.logo}>Testing App</Button>
               </Link>
             </div>
 
