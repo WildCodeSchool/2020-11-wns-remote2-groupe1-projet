@@ -46,6 +46,7 @@ const Articles = (): JSX.Element => {
     title: string;
     banner: string;
     content: string;
+    isPublished: boolean;
   }> = data?.articles || [];
 
   const fetchMoreArticles = () => {

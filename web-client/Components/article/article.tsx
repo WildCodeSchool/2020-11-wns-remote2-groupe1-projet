@@ -58,7 +58,6 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
           height="250px"
         ></img>
         <h1>{article?.title}</h1>
-        <p>{article?.content}</p>
         <p className={classes.dateBlock}>
           <span className={classes.dateUnit}>
             Created at :
@@ -85,6 +84,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
             </span>
           </span>
         </p>
+        <p>{article?.content}</p>
       </div>
     </Box>
   );

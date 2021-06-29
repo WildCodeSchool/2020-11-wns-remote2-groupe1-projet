@@ -46,11 +46,13 @@ const ArticleCard = ({
   title,
   image,
   content,
+  isPublished,
 }: {
   id: string;
   title: string;
   image: string;
   content: string;
+  isPublished: boolean;
 }): JSX.Element => {
   const classes = useStyles();
 
@@ -65,7 +67,6 @@ const ArticleCard = ({
         case '/':
           window.location.assign(`/article/${id}`);
       }
-
       event.preventDefault();
     };
   };
@@ -87,7 +88,7 @@ const ArticleCard = ({
               </Avatar>
             }
           />
-          <CardMedia className={classes.media} image={image} />
+          {image && <CardMedia className={classes.media} image={image} />}
           <Grid item zeroMinWidth>
             <CardContent>
               <Typography noWrap>{content}</Typography>

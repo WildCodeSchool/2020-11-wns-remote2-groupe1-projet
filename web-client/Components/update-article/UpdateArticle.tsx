@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 const GET_ARTICLE = gql`
   query getArticleById($id: String!) {
@@ -17,6 +19,7 @@ const GET_ARTICLE = gql`
       content
       createdAt
       updatedAt
+      isPublished
     }
   }
 `;
@@ -27,15 +30,22 @@ const UPDATE_ARTICLE = gql`
     $title: String!
     $banner: String!
     $content: String!
+    $isPublished: Boolean!
   ) {
     updateArticle(
       id: $id
-      data: { title: $title, banner: $banner, content: $content }
+      data: {
+        title: $title
+        banner: $banner
+        content: $content
+        isPublished: $isPublished
+      }
     ) {
       id
       title
       banner
       content
+      isPublished
     }
   }
 `;
@@ -81,6 +91,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     title: '',
     banner: '',
     content: '',
+    isPublished: null,
   });
 
   useEffect(() => {
@@ -90,13 +101,18 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
         title: article.title,
         banner: article.banner,
         content: article.content,
+        isPublished: article.isPublished,
       });
     }
   }, [article]);
 
   const changeHandler = (e) => {
     setValues((prevValues) => {
-      return { ...prevValues, [e.target.name]: e.target.value };
+      return {
+        ...prevValues,
+        [e.target.name]: e.target.value,
+        isPublished: !values.isPublished,
+      };
     });
   };
 
@@ -115,9 +131,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   function handleSubmit(e) {
     e.preventDefault();
     updateArticle({
-      variables: {
-        ...values,
-      },
+      variables: values,
     });
   }
 
@@ -159,6 +173,19 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
               onChange={changeHandler}
               fullWidth
               type="text"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <FormControlLabel
+              control={
+                <Switch
+                  name="isPublished"
+                  checked={values.isPublished}
+                  value={values.isPublished}
+                  onChange={changeHandler}
+                />
+              }
+              label={values.isPublished ? 'Published' : 'Draft'}
             />
           </Grid>
           <Grid item xs={12} md={12} className={classes.buttons}>

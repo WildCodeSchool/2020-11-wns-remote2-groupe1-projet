@@ -16,7 +16,7 @@ export default class UpdateArticleInput {
   content?: string;
 
   @Field({ nullable: true })
-  isVisible?: boolean;
+  isPublished?: boolean;
 
   @Field({ nullable: true })
   updatedAt?: Date;
