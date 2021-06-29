@@ -35,7 +35,13 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
         <h1>{article?.title}</h1>
         <p>{article?.content}</p>
         <p>
-          <small>{Date.parse(article?.createdAt)}</small>
+          <small>
+            {new Date(article?.createdAt).toLocaleString('fr', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </small>
         </p>
       </div>
     </Box>
