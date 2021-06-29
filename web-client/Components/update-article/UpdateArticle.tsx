@@ -71,7 +71,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     title: string;
     banner: string;
     content: string;
-    isVisible: boolean;
+    isPublished: boolean;
     createdAt: Date;
     updatedAt: Date;
   } = queryData?.article || [];

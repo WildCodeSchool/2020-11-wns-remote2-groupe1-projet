@@ -5,7 +5,9 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Link from 'next/link';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -15,20 +17,20 @@ const CREATE_ARTICLE = gql`
     $title: String!
     $banner: String!
     $content: String!
-    $isVisible: Boolean!
+    $isPublished: Boolean!
   ) {
     createArticle(
       data: {
         title: $title
         banner: $banner
         content: $content
-        isVisible: $isVisible
+        isPublished: $isPublished
       }
     ) {
       title
       banner
       content
-      isVisible
+      isPublished
     }
   }
 `;
@@ -52,7 +54,7 @@ function CreateArticleComponent(): JSX.Element {
   const [title, setTitle] = useState<string>('');
   const [banner, setBanner] = useState<string>('');
   const [content, setContent] = useState<string>('');
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isPublished, setIsPublished] = useState<boolean>(false);
   const [createArticle, { error }] = useMutation(CREATE_ARTICLE, {
     onCompleted: () => {
       router.push('/');
@@ -69,7 +71,7 @@ function CreateArticleComponent(): JSX.Element {
               title,
               banner,
               content,
-              isVisible,
+              isPublished,
             },
           });
         }}
@@ -103,16 +105,16 @@ function CreateArticleComponent(): JSX.Element {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Button
-              variant="outlined"
-              type="button"
-              onClick={(e) => {
-                isVisible ? setIsVisible(false) : setIsVisible(true);
-              }}
-            >
-              {' '}
-              {isVisible ? 'Visible' : 'Invisible'}
-            </Button>
+            <FormControlLabel
+              control={
+                <Switch
+                  onChange={(e) => {
+                    isPublished ? setIsPublished(false) : setIsPublished(true);
+                  }}
+                />
+              }
+              label={isPublished ? 'Published' : 'Draft'}
+            />
           </Grid>
           <Grid item xs={12} md={12} className={classes.buttons}>
             <Button variant="contained" color="primary" type="submit">
