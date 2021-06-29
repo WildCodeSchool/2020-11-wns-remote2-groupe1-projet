@@ -28,6 +28,7 @@ const GET_ARTICLES = gql`
       title
       banner
       content
+      isPublished
     }
   }
 `;
@@ -77,6 +78,7 @@ const Articles = (): JSX.Element => {
           title={article.title}
           image={article.banner}
           content={article.content}
+          isPublished={article.isPublished}
         />
       ))}
       <div>

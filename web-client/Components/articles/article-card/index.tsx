@@ -9,6 +9,7 @@ import {
   Avatar,
   Typography,
   Grid,
+  Button,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 
@@ -22,9 +23,22 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       paddingTop: '56.25%', // 16:9
     },
+    publishButton: {
+      display: 'inline-block',
+    },
+    title: {
+      marginTop: 'auto',
+      marginBottom: 'auto',
+    },
     center: {
       margin: 'auto',
     },
+    headerBlock: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
@@ -81,7 +95,14 @@ const ArticleCard = ({
           {' '}
           <CardHeader
             id="card-title"
-            title={title}
+            title={
+              <span className={classes.headerBlock}>
+                <span className={classes.title}>{title}</span>
+                <Button className={classes.publishButton}>
+                  {isPublished ? 'published' : 'draft'}
+                </Button>
+              </span>
+            }
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
                 R

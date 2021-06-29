@@ -29,6 +29,7 @@ const GET_ARTICLES = gql`
       title
       banner
       content
+      isPublished
     }
   }
 `;
@@ -47,6 +48,7 @@ const EditArticles = (): JSX.Element => {
     title: string;
     banner: string;
     content: string;
+    isPublished: boolean;
   }> = data?.articles || [];
 
   const fetchMoreArticles = () => {
@@ -78,6 +80,7 @@ const EditArticles = (): JSX.Element => {
           title={article.title}
           image={article.banner}
           content={article.content}
+          isPublished={article.isPublished}
         />
       ))}
       <div>
