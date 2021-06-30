@@ -7,10 +7,13 @@ import { Article } from '../models/Article';
 export default class ArticleResolver {
   @Query(() => [Article])
   articles(
-    @Arg('offset') offset: number,
-    @Arg('limit') limit: number
+    @Arg('offset', { nullable: true }) offset: number,
+    @Arg('limit', { nullable: true }) limit: number,
+    @Arg('isPublished', { nullable: true}) isPublished: boolean
   ): Promise<Article[]> {
-    return Article.find({ take: limit, skip: offset });
+    if(isPublished !== null) {
+      return Article.find({ take: limit, skip: offset, where :{isPublished} });
+    } else { return Article.find({ take: limit, skip: offset });}
   }
 
   @Query(() => Article)

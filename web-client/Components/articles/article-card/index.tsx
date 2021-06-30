@@ -98,7 +98,7 @@ const ArticleCard = ({
             title={
               <span className={classes.headerBlock}>
                 <span className={classes.title}>{title}</span>
-                <Button className={classes.publishButton}>
+                <Button disabled className={classes.publishButton}>
                   {isPublished ? 'published' : 'draft'}
                 </Button>
               </span>

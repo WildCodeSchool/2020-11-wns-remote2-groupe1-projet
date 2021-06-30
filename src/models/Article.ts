@@ -31,7 +31,7 @@ export class Article extends BaseEntity {
   @Field(() => String)
   content!: string;
 
-  @Column({ default: false })
+  @Column()
   @Field(() => Boolean)
   isPublished?: boolean;
 
@@ -44,7 +44,8 @@ export class Article extends BaseEntity {
   updatedAt?: Date;
 
   @OneToMany(() => User, (author) => author.articles)
-  author?: User;
+  @Field(() => User)
+  author? : User;
 
   @ManyToOne(() => Comment, (comment) => comment.article)
   comments?: Comment;

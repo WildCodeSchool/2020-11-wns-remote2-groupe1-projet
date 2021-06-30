@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GET_ARTICLES = gql`
-  query getArticles($offset: Float!, $limit: Float!) {
-    articles(limit: $limit, offset: $offset) {
+  query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
+    articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
       id
       title
       banner
@@ -38,6 +38,7 @@ const Articles = (): JSX.Element => {
     variables: {
       offset: 0,
       limit: 3,
+      isPublished: true,
     },
     fetchPolicy: 'cache-and-network',
   });
@@ -63,6 +64,8 @@ const Articles = (): JSX.Element => {
       },
     });
   };
+
+  console.log(articles);
 
   const classes = useStyles();
   return (
