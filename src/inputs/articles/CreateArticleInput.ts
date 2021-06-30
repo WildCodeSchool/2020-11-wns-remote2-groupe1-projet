@@ -15,5 +15,5 @@ export default class CreateArticleInput {
   @Field()
   isPublished?: boolean;
 
-  author?: User;
+  user?: User;
 }

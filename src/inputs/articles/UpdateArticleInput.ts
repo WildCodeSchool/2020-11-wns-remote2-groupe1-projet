@@ -21,5 +21,5 @@ export default class UpdateArticleInput {
   @Field({ nullable: true })
   updatedAt?: Date;
 
-  author?: User;
+  user?: User;
 }

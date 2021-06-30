@@ -48,7 +48,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
   } = data?.article || [];
 
   const classes = useStyles();
-
+  console.log(article);
   return (
     <Box m={2}>
       <div>
@@ -58,6 +58,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
           height="250px"
         ></img>
         <h1>{article?.title}</h1>
+        {article.user ? <p>{article?.user}</p> : <p>no user</p>}
         <p className={classes.dateBlock}>
           <span className={classes.dateUnit}>
             Created at :

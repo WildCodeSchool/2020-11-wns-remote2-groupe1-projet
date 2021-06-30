@@ -34,5 +34,5 @@ export class Message extends BaseEntity {
   conversation?: Conversation;
 
   @OneToMany(() => User, (user) => user.messages)
-  author?: User;
+  user?: User;
 }

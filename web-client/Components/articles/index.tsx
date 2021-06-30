@@ -65,7 +65,7 @@ const Articles = (): JSX.Element => {
     });
   };
 
-  console.log(articles);
+  console.log(data);
 
   const classes = useStyles();
   return (
