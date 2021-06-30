@@ -10,7 +10,7 @@ import Switch from '@material-ui/core/Switch';
 
 import { useRouter } from 'next/router';
 import { useState, useContext } from 'react';
-import { UserContext } from '../AppProviders/UserContext';
+import { UserContext } from '../contexts/contexts';
 
 const CREATE_ARTICLE = gql`
   # Create Article
