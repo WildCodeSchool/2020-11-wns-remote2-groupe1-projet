@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import NavBar from './NavBar';
+import NavBar from '../layout/navbar';
 import classes from './style.module.scss';
 import { UserProvider } from './UserContext';
 

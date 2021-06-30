@@ -17,10 +17,12 @@ export default class ArticleResolver {
       throw Error('You are not authenticated.');
     }
     if(isPublished !== null) {
-      return Article.find({ take: limit, skip: offset,  });
+      return Article.find({ relations: [
+        'user'
+      ],take: limit, skip: offset, where: {isPublished}  });
     } else { return Article.find({ relations: [
       'user'
-    ],take: limit, skip: offset });}
+    ],take: limit, skip: offset});}
   }
 
   @Query(() => Article)

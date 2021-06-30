@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 450,
+      cursor: 'pointer',
     },
     media: {
       height: 140,
