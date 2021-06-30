@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const GET_ME = gql`
   query GetMe {
@@ -19,15 +19,14 @@ export type me = {
   school: string;
 };
 
-const Context = createContext({ me: null });
+export const UserContext = createContext<any>({});
 
-export const UserProvider = ({ children }) => {
-  const { data } = useQuery(GET_ME);
-  const me = data?.me;
-  return <Context.Provider value={me} children={children} />;
-};
+export const UserContextProvider = (props) => {
+  const { data, loading } = useQuery(GET_ME);
 
-export const useInAppUserProvider = () => {
-  const state = useContext(Context);
-  return state;
+  const me: me | null = data?.me;
+
+  return (
+    <UserContext.Provider value={{ me }}>{props.children}</UserContext.Provider>
+  );
 };

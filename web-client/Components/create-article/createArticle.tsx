@@ -9,7 +9,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '../AppProviders/UserContext';
 
 const CREATE_ARTICLE = gql`
   # Create Article
@@ -50,6 +51,7 @@ const useStyles = makeStyles({
 
 function CreateArticleComponent(): JSX.Element {
   const router = useRouter();
+  const { me } = useContext(UserContext);
   const classes = useStyles();
   const [title, setTitle] = useState<string>('');
   const [banner, setBanner] = useState<string>('');
@@ -63,6 +65,7 @@ function CreateArticleComponent(): JSX.Element {
   return (
     <Paper>
       <Typography variant="h2">Article Creation</Typography>
+      <p>{me?.firstName}</p>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
