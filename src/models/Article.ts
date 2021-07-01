@@ -33,17 +33,17 @@ export class Article extends BaseEntity {
 
   @Column()
   @Field(() => Boolean)
-  isPublished?: boolean;
+  isPublished!: boolean;
 
   @Field(() => Date)
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt!: Date;
 
   @Field(() => Date)
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @ManyToOne(() => User, (user) => user.articles)
+  @ManyToOne(() => User)
   @Field(() => User)
   user!: User;
 

@@ -50,8 +50,9 @@ const useStyles = makeStyles({
 });
 
 function CreateArticleComponent(): JSX.Element {
-  const router = useRouter();
   const { me } = useContext(UserContext);
+
+  const router = useRouter();
   const classes = useStyles();
   const [title, setTitle] = useState<string>('');
   const [banner, setBanner] = useState<string>('');

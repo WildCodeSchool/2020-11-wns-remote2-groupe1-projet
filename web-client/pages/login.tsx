@@ -48,7 +48,7 @@ const Login: NextPage = () => {
       router.push('/account');
     },
   });
-  console.log(me);
+
   return (
     <Paper className={classes.root}>
       <Typography variant="h2">Login Page</Typography>

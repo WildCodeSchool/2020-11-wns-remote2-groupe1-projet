@@ -4,7 +4,6 @@ import { UserContext } from '../../Components/contexts/contexts';
 
 const Account: NextPage = () => {
   const { me } = useContext(UserContext);
-  console.log(me);
 
   return <p>{`Hello ${!me ? 'World' : me?.firstName}`}</p>;
 };

@@ -26,9 +26,13 @@ export default class ArticleResolver {
   }
 
   @Query(() => Article)
-  async article(@Arg('id') id: string): Promise<Article> {
-    const article = await Article.findOne({ where: { id } });
-
+  async article(    
+    @Ctx() { user }: { user: User | null },
+    @Arg('id') id: string): Promise<Article> {
+    const article = await Article.findOne({ where: { id }, relations: ['user',] });
+    if (!user) {
+      throw Error('You are not authenticated.');
+    }
     if (!article) {
       throw new Error(`The article with id: ${id} does not exist!`);
     }

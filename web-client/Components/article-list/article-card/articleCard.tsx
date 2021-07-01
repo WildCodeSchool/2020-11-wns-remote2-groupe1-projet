@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
 import {
   Card,
   CardHeader,
@@ -12,6 +11,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
+import { User } from '../../../../src/models/User';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,12 +62,14 @@ const ArticleCard = ({
   image,
   content,
   isPublished,
+  user,
 }: {
   id: string;
   title: string;
   image: string;
   content: string;
   isPublished: boolean;
+  user: User;
 }): JSX.Element => {
   const classes = useStyles();
 
@@ -85,7 +87,6 @@ const ArticleCard = ({
       event.preventDefault();
     };
   };
-
   return (
     <div>
       <Grid container>
@@ -113,6 +114,8 @@ const ArticleCard = ({
           {image && <CardMedia className={classes.media} image={image} />}
           <Grid item zeroMinWidth>
             <CardContent>
+              <p>by {user?.firstName}</p>
+
               <Typography noWrap>{content}</Typography>
             </CardContent>
           </Grid>

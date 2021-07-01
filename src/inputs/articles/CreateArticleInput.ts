@@ -13,7 +13,5 @@ export default class CreateArticleInput {
   content!: string;
 
   @Field()
-  isPublished?: boolean;
-
-  user?: User;
+  isPublished!: boolean;
 }
