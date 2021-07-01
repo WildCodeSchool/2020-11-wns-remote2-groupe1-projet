@@ -3,6 +3,7 @@ import ArticleCard from '../../Components/article-list/article-card/articleCard'
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
+import { User } from '../../../src/models/User';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,10 @@ const GET_ARTICLES = gql`
       banner
       content
       isPublished
+      user {
+        id
+        firstName
+      }
     }
   }
 `;
@@ -50,6 +55,7 @@ const EditArticles = (): JSX.Element => {
     banner: string;
     content: string;
     isPublished: boolean;
+    user: User;
   }> = data?.articles || [];
 
   const fetchMoreArticles = () => {
@@ -82,6 +88,7 @@ const EditArticles = (): JSX.Element => {
           image={article.banner}
           content={article.content}
           isPublished={article.isPublished}
+          user={article.user}
         />
       ))}
       <div>

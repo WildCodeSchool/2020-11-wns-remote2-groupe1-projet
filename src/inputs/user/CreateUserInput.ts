@@ -19,8 +19,8 @@ export default class CreateUserInput {
   @Field()
   email!: string;
 
-  @Field()
-  school!: string;
+  @Field({ nullable: true })
+  school?: string;
 
   @Field({ nullable: true })
   birthDate?: Date;
