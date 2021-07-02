@@ -36,6 +36,7 @@ export default class UserResolver {
     const { email, password } = input;
     const user = await User.findOne({ email });
     const authenticationError = new Error('Incorrect email and/or password.');
+    
     if (!user) {
       throw authenticationError;
     }

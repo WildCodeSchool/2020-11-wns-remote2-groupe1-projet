@@ -96,16 +96,16 @@ export class User extends BaseEntity {
   @Field(() => Boolean)
   isActive!: boolean;
 
-  @ManyToOne(() => Article, (article) => article.author)
+  @OneToMany(() => Article, (article) => article.user)
   articles?: Article[];
 
-  @ManyToOne(() => Comment, (comment) => comment.author)
+  @ManyToOne(() => Comment, (comment) => comment.user)
   comments?: Comment[];
 
   @ManyToMany(() => Conversation, (conversation) => conversation.users)
   conversations?: Conversation[];
 
-  @ManyToOne(() => Message, (message) => message.author)
+  @ManyToOne(() => Message, (message) => message.user)
   messages?: Message[];
 
   @ManyToMany(() => Classroom, (classroom) => classroom.teachers)

@@ -36,8 +36,8 @@ export class Comment extends BaseEntity {
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @OneToMany(() => User, (author) => author.comments)
-  author!: User;
+  @OneToMany(() => User, (user) => user.comments)
+  user!: User;
 
   @OneToMany(() => Article, (article) => article.comments)
   article!: Article;

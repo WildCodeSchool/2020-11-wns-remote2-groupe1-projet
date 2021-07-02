@@ -1,8 +1,9 @@
 import React from 'react';
-import ArticleCard from './article-card';
+import ArticleCard from './article-card/articleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
+import { User } from '../../../src/models/User';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +23,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GET_ARTICLES = gql`
-  query getArticles($offset: Float!, $limit: Float!) {
-    articles(limit: $limit, offset: $offset) {
+  query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
+    articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
       id
       title
       banner
       content
+      isPublished
+      user {
+        id
+        firstName
+      }
     }
   }
 `;
@@ -37,6 +43,7 @@ const Articles = (): JSX.Element => {
     variables: {
       offset: 0,
       limit: 3,
+      isPublished: true,
     },
     fetchPolicy: 'cache-and-network',
   });
@@ -46,6 +53,8 @@ const Articles = (): JSX.Element => {
     title: string;
     banner: string;
     content: string;
+    isPublished: boolean;
+    user: User;
   }> = data?.articles || [];
 
   const fetchMoreArticles = () => {
@@ -61,7 +70,6 @@ const Articles = (): JSX.Element => {
       },
     });
   };
-
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -76,6 +84,8 @@ const Articles = (): JSX.Element => {
           title={article.title}
           image={article.banner}
           content={article.content}
+          isPublished={article.isPublished}
+          user={article.user}
         />
       ))}
       <div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
 import {
   Card,
   CardHeader,
@@ -9,22 +8,38 @@ import {
   Avatar,
   Typography,
   Grid,
+  Button,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
+import { User } from '../../../../src/models/User';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 450,
+      cursor: 'pointer',
     },
     media: {
       height: 140,
       width: '100%',
       paddingTop: '56.25%', // 16:9
     },
+    publishButton: {
+      display: 'inline-block',
+    },
+    title: {
+      marginTop: 'auto',
+      marginBottom: 'auto',
+    },
     center: {
       margin: 'auto',
     },
+    headerBlock: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
@@ -46,11 +61,15 @@ const ArticleCard = ({
   title,
   image,
   content,
+  isPublished,
+  user,
 }: {
   id: string;
   title: string;
   image: string;
   content: string;
+  isPublished: boolean;
+  user: User;
 }): JSX.Element => {
   const classes = useStyles();
 
@@ -65,11 +84,9 @@ const ArticleCard = ({
         case '/':
           window.location.assign(`/article/${id}`);
       }
-
       event.preventDefault();
     };
   };
-
   return (
     <div>
       <Grid container>
@@ -80,16 +97,25 @@ const ArticleCard = ({
           {' '}
           <CardHeader
             id="card-title"
-            title={title}
+            title={
+              <span className={classes.headerBlock}>
+                <span className={classes.title}>{title}</span>
+                <Button disabled className={classes.publishButton}>
+                  {isPublished ? 'published' : 'draft'}
+                </Button>
+              </span>
+            }
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
                 R
               </Avatar>
             }
           />
-          <CardMedia className={classes.media} image={image} />
+          {image && <CardMedia className={classes.media} image={image} />}
           <Grid item zeroMinWidth>
             <CardContent>
+              <p>by {user?.firstName}</p>
+
               <Typography noWrap>{content}</Typography>
             </CardContent>
           </Grid>

@@ -31,21 +31,22 @@ export class Article extends BaseEntity {
   @Field(() => String)
   content!: string;
 
-  @Column({ default: false })
+  @Column()
   @Field(() => Boolean)
-  isVisible?: boolean;
+  isPublished!: boolean;
 
   @Field(() => Date)
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt!: Date;
 
   @Field(() => Date)
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @OneToMany(() => User, (author) => author.articles)
-  author?: User;
+  @ManyToOne(() => User)
+  @Field(() => User)
+  user!: User;
 
-  @ManyToOne(() => Comment, (comment) => comment.article)
+  @OneToMany(() => Comment, (comment) => comment.article)
   comments?: Comment;
 }

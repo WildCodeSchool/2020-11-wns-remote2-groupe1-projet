@@ -1,8 +1,9 @@
 import React from 'react';
-import ArticleCard from '../../Components/articles/article-card';
+import ArticleCard from '../../Components/article-list/article-card/articleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { gql, useQuery } from '@apollo/client';
+import { User } from '../../../src/models/User';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,12 +24,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GET_ARTICLES = gql`
-  query getArticles($offset: Float!, $limit: Float!) {
-    articles(limit: $limit, offset: $offset) {
+  query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
+    articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
       id
       title
       banner
       content
+      isPublished
+      user {
+        id
+        firstName
+      }
     }
   }
 `;
@@ -38,6 +44,7 @@ const EditArticles = (): JSX.Element => {
     variables: {
       offset: 0,
       limit: 3,
+      isPublished: null,
     },
     fetchPolicy: 'cache-and-network',
   });
@@ -47,6 +54,8 @@ const EditArticles = (): JSX.Element => {
     title: string;
     banner: string;
     content: string;
+    isPublished: boolean;
+    user: User;
   }> = data?.articles || [];
 
   const fetchMoreArticles = () => {
@@ -78,6 +87,8 @@ const EditArticles = (): JSX.Element => {
           title={article.title}
           image={article.banner}
           content={article.content}
+          isPublished={article.isPublished}
+          user={article.user}
         />
       ))}
       <div>

@@ -7,7 +7,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 // Utils
 import theme from '../src/theme';
-import AppProviders from '../Components/AppProviders';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { MultiContextProvider } from '../Components/contexts/contexts';
+import classes from './style.module.scss';
+import { createUploadLink } from 'apollo-upload-client';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
@@ -18,21 +21,32 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     }
   }, []);
 
+  const client = new ApolloClient({
+    link: createUploadLink({
+      uri: '/graphql',
+    }),
+    cache: new InMemoryCache(),
+  });
+
   return (
     <>
-      <Head>
-        <title>My App</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppProviders pageProps={pageProps}>
-          <Component {...pageProps} />
-        </AppProviders>
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <Head>
+          <title>My App</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <MultiContextProvider>
+            <main className={classes.container}>
+              <Component {...pageProps} />
+            </main>
+          </MultiContextProvider>
+        </ThemeProvider>
+      </ApolloProvider>
     </>
   );
 };

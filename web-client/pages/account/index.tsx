@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NextPage } from 'next';
-import { useInAppUserProvider } from '../../Components/AppProviders/UserContext';
+import { UserContext } from '../../Components/contexts/contexts';
 
-// const Account: NextPage = () => {
-//   const { me } = useInAppUserProvider();
+const Account: NextPage = () => {
+  const { me } = useContext(UserContext);
 
-//   return <p>{`Hello ${!me ? 'World' : me?.firstName}`}</p>;
-// };
+  return <p>{`Hello ${!me ? 'World' : me?.firstName}`}</p>;
+};
 
-// export default Account;
+export default Account;
 
-export default function index() {
-  return <div></div>;
-}
+// export default function index() {
+//   return <div></div>;
+// }

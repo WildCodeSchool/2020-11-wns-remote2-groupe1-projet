@@ -9,5 +9,5 @@ export default class UpdateCommentInput {
   @Field({ nullable: true })
   updatedAt?: Date;
 
-  author?: User;
+  user?: User;
 }

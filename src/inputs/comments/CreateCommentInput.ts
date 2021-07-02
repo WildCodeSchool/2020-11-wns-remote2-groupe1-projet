@@ -10,7 +10,7 @@ export default class CreateCommentInput {
   @Field()
   content!: string;
 
-  author?: User;
+  user?: User;
 
   article?: Article;
 }
