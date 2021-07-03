@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PictureGallery = (): JSX.Element => {
+const PictureGalleryComponent = (): JSX.Element => {
   const data = {
     pictures: [],
   };
@@ -13,7 +13,7 @@ const PictureGallery = (): JSX.Element => {
       <div>
         {data?.pictures.map(({ id }) => (
           <div key={id}>
-            <img src={`/media/pictures/${id}`} />
+            <img src={`/media/pictures/${id}.jpg`} />
           </div>
         ))}
       </div>
@@ -21,4 +21,4 @@ const PictureGallery = (): JSX.Element => {
   );
 };
 
-export default PictureGallery;
+export default PictureGalleryComponent;

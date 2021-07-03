@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { createConnection, getConnectionOptions } from 'typeorm';
-import { getExpressServer } from './express-servers';
+import { getExpressServer } from './express-server';
 
 const main = async () => {
   const connectionOptions = await getConnectionOptions();

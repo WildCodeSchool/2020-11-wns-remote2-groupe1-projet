@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { Request, Response } from 'express';
 import { buildSchema } from 'type-graphql';
 
-import { setSessionIdCookie } from './express-servers';
+import { setSessionIdCookie } from './express-server';
 import { getUserFromSessionId } from './models/User';
 import ArticleResolver from './resolvers/ArticleResolver';
 import CommentResolver from './resolvers/CommentResolver';

@@ -13,6 +13,7 @@ export const getExpressServer = async (): Promise<{
   const expressServer = express()
     .use(cookieParser())
     .use('/public', express.static(path.join(__dirname, '..', 'public')));
+    
   apolloServer.applyMiddleware({ app: expressServer });
   return { expressServer, apolloServer };
 };

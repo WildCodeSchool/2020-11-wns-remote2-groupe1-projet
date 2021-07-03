@@ -118,6 +118,11 @@ const NavBar = (props: Props) => {
             <Button className={classes.link}>Edit Article</Button>
           </Link>
         </ListItem>
+        <ListItem>
+          <Link href="/picture-gallery">
+            <Button className={classes.link}>Picture Gallery</Button>
+          </Link>
+        </ListItem>
       </List>
     </div>
   );
@@ -151,6 +156,9 @@ const NavBar = (props: Props) => {
                 </Link>
                 <Link href="/edit-articles">
                   <Button className={classes.link}>Edit Article</Button>
+                </Link>
+                <Link href="/picture-gallery">
+                  <Button className={classes.link}>Picture Gallery</Button>
                 </Link>
               </div>
               <Link href="/login">
