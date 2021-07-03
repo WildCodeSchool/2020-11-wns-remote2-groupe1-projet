@@ -62,11 +62,28 @@ const PictureGalleryComponent = (): JSX.Element => {
   }: any) => {
     console.log({ file, validity });
 
-    validity.valid && mutate({ variables: { file } });
+    validity.valid &&
+      mutate({
+        variables: { file },
+        update: (cache, { data }) => {
+          const existingData: GetPictures = cache.readQuery({
+            query: GET_PICTURES,
+          });
+          if (existingData && data) {
+            cache.writeQuery({
+              query: GET_PICTURES,
+              data: {
+                ...existingData,
+                pictures: [...existingData.pictures, data.uploadPicture],
+              },
+            });
+          }
+        },
+      });
   };
   return (
     <>
-      <h1>Galerie</h1>
+      <h1>Picture Gallery</h1>
       <input
         type="file"
         id="file"
@@ -74,7 +91,7 @@ const PictureGalleryComponent = (): JSX.Element => {
         accept="image/*"
         onChange={uploadPicture}
       />
-      <label htmlFor="file">Ajouter une image</label>
+      <label htmlFor="file">Add a picture</label>
 
       <div className={classes.gallery}>
         {loading ? (
