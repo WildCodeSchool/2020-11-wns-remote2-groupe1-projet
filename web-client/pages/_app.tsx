@@ -11,6 +11,8 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { MultiContextProvider } from '../Components/contexts/contexts';
 import classes from './style.module.scss';
 
+import { createUploadLink } from 'apollo-upload-client';
+
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -21,7 +23,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   const client = new ApolloClient({
-    uri: '/graphql',
+    link: createUploadLink({
+      uri: '/graphql',
+    }),
     cache: new InMemoryCache(),
   });
 

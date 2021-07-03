@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
+import { gql, useMutation } from '@apollo/client';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,17 +29,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const UPLOAD_PICTURE = gql`
+  mutation UploadPicture($file: Upload!) {
+    uploadPicture(file: $file) {
+      id
+    }
+  }
+`;
+
 const PictureGalleryComponent = (): JSX.Element => {
   const classes = useStyles();
 
   const data = {
-    pictures: [{ id: 'dock-boat' }, { id: 'mtn-trees' }],
+    pictures: [],
   };
-  console.log(data);
+  const [mutate, { loading, error }] = useMutation(UPLOAD_PICTURE);
+
+  const uploadPicture = ({
+    target: {
+      validity,
+      files: [file],
+    },
+  }: any) => {
+    console.log({ file, validity });
+
+    validity.valid && mutate({ variables: { file } });
+  };
+  // && mutate({ variables: { file } })
   return (
     <>
       <h1>Galerie</h1>
-      <input type="file" id="file" required accept="image/*" />
+      <input
+        type="file"
+        id="file"
+        required
+        accept="image/*"
+        onChange={uploadPicture}
+      />
       <label htmlFor="file">Ajouter une image</label>
       <div className={classes.gallery}>
         {data?.pictures.map(({ id }) => (

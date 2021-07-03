@@ -1,5 +1,5 @@
 import { GraphQLUpload } from 'graphql-upload';
-import { Resolver, Query, Mutation, Arg, Ctx, Field, Int } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg } from 'type-graphql';
 import { UploadFileInput } from '../inputs/upload/UploadFileInput';
 import { Picture } from '../models/Picture';
 
@@ -12,7 +12,8 @@ export default class PictureResolver {
 
   @Mutation(() => Picture)
   uploadPicture(
-    @Arg('file', (type) => GraphQLUpload) file: UploadFileInput
+    @Arg('file', () => GraphQLUpload)
+    file: UploadFileInput
   ): void {
     const { stream, filename, mimetype, encoding } = file;
 
