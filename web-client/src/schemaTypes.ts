@@ -7,3 +7,27 @@ export interface GetArticles_articles {
 export interface GetArticles {
   articles: GetArticles_articles[];
 }
+
+export interface GetPictures_pictures {
+  __typename: 'Picture';
+  id: string;
+  extension: string;
+}
+
+export interface GetPictures {
+  pictures: GetPictures_pictures[];
+}
+
+export interface UploadPicture_uploadPicture {
+  __typename: 'Picture';
+  id: string;
+  extension: string;
+}
+
+export interface UploadPicture {
+  uploadPicture: UploadPicture_uploadPicture;
+}
+
+export interface UploadPictureVariables {
+  file: any;
+}

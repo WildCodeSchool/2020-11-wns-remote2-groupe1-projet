@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
+import { GetPictures, UploadPicture } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,13 +38,21 @@ const UPLOAD_PICTURE = gql`
   }
 `;
 
+const GET_PICTURES = gql`
+  query GetPictures {
+    pictures {
+      id
+      extension
+    }
+  }
+`;
+
 const PictureGalleryComponent = (): JSX.Element => {
   const classes = useStyles();
 
-  const data = {
-    pictures: [],
-  };
-  const [mutate, { loading, error }] = useMutation(UPLOAD_PICTURE);
+  const { loading, error, data } = useQuery<GetPictures>(GET_PICTURES);
+
+  const [mutate] = useMutation<UploadPicture>(UPLOAD_PICTURE);
 
   const uploadPicture = ({
     target: {
@@ -55,7 +64,6 @@ const PictureGalleryComponent = (): JSX.Element => {
 
     validity.valid && mutate({ variables: { file } });
   };
-  // && mutate({ variables: { file } })
   return (
     <>
       <h1>Galerie</h1>
@@ -67,15 +75,22 @@ const PictureGalleryComponent = (): JSX.Element => {
         onChange={uploadPicture}
       />
       <label htmlFor="file">Ajouter une image</label>
+
       <div className={classes.gallery}>
-        {data?.pictures.map(({ id }) => (
-          <div key={id}>
-            <img
-              className={classes.image}
-              src={`http://localhost:4000/public/media/pictures/${id}.jpeg`}
-            />
-          </div>
-        ))}
+        {loading ? (
+          <div> Loading...</div>
+        ) : error ? (
+          <div>Error.</div>
+        ) : (
+          data?.pictures.map(({ id, extension }) => (
+            <div key={id}>
+              <img
+                className={classes.image}
+                src={`http://localhost:4000/public/media/pictures/${id}${extension}`}
+              />
+            </div>
+          ))
+        )}
       </div>
     </>
   );
