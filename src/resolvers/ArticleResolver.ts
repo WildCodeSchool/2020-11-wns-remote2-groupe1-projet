@@ -11,25 +11,37 @@ export default class ArticleResolver {
     @Ctx() { user }: { user: User | null },
     @Arg('offset', { nullable: true }) offset: number,
     @Arg('limit', { nullable: true }) limit: number,
-    @Arg('isPublished', { nullable: true}) isPublished: boolean
+    @Arg('isPublished', { nullable: true }) isPublished: boolean
   ): Promise<Article[]> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    if(isPublished !== null) {
-      return Article.find({ relations: [
-        'user'
-      ],take: limit, skip: offset, where: {isPublished}  });
-    } else { return Article.find({ relations: [
-      'user'
-    ],take: limit, skip: offset});}
+    if (isPublished !== null) {
+      return Article.find({
+        relations: ['user'],
+        take: limit,
+        skip: offset,
+        where: { isPublished },
+      });
+    } else {
+      return Article.find({
+        relations: ['user'],
+        take: limit,
+        skip: offset,
+        where: { user },
+      });
+    }
   }
 
   @Query(() => Article)
-  async article(    
+  async article(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string): Promise<Article> {
-    const article = await Article.findOne({ where: { id }, relations: ['user',] });
+    @Arg('id') id: string
+  ): Promise<Article> {
+    const article = await Article.findOne({
+      where: { id },
+      relations: ['user'],
+    });
     if (!user) {
       throw Error('You are not authenticated.');
     }
@@ -43,10 +55,11 @@ export default class ArticleResolver {
   @Mutation(() => Article)
   async createArticle(
     @Ctx() { user }: { user: User | null },
-    @Arg('data') data: CreateArticleInput,): Promise<Article> {
-      if (!user) {
-        throw Error('You are not authenticated.');
-      }
+    @Arg('data') data: CreateArticleInput
+  ): Promise<Article> {
+    if (!user) {
+      throw Error('You are not authenticated.');
+    }
     const article = Article.create(data);
     article.user = user;
 
