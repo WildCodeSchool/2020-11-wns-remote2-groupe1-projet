@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -9,29 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState } from 'react';
-
-const REGISTER = gql`
-  # Create User
-  mutation CreateUser(
-    $firstName: String!
-    $lastName: String!
-    $password: String!
-    $school: String!
-    $email: String!
-  ) {
-    createUser(
-      input: {
-        firstName: $firstName
-        lastName: $lastName
-        password: $password
-        email: $email
-        school: $school
-      }
-    ) {
-      firstName
-    }
-  }
-`;
+import { REGISTER } from '../src/queries';
 
 const useStyles = makeStyles({
   root: {

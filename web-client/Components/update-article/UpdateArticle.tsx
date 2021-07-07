@@ -1,60 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-
-const GET_ARTICLE = gql`
-  query getArticleById($id: String!) {
-    article(id: $id) {
-      id
-      title
-      banner
-      content
-      createdAt
-      updatedAt
-      isPublished
-    }
-  }
-`;
-const UPDATE_ARTICLE = gql`
-  # Update Article
-  mutation UpdateArticle(
-    $id: String!
-    $title: String!
-    $banner: String!
-    $content: String!
-    $isPublished: Boolean!
-  ) {
-    updateArticle(
-      id: $id
-      data: {
-        title: $title
-        banner: $banner
-        content: $content
-        isPublished: $isPublished
-      }
-    ) {
-      id
-      title
-      banner
-      content
-      isPublished
-    }
-  }
-`;
-
-const DELETE_ARTICLE = gql`
-  mutation DeleteArticle($id: String!) {
-    deleteArticle(id: $id)
-  }
-`;
+import { GET_ARTICLE, UPDATE_ARTICLE, DELETE_ARTICLE } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {

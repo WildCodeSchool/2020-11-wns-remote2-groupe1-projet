@@ -2,7 +2,8 @@ import React from 'react';
 import ArticleCard from '../../Components/article-list/article-card/articleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { GET_ARTICLES } from '../../src/queries';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,22 +22,6 @@ const useStyles = makeStyles((theme) => ({
     margin: '2rem auto 2rem auto',
   },
 }));
-
-const GET_ARTICLES = gql`
-  query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
-    articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
-      id
-      title
-      banner
-      content
-      isPublished
-      user {
-        id
-        firstName
-      }
-    }
-  }
-`;
 
 const EditArticles = (): JSX.Element => {
   const { data, fetchMore } = useQuery(GET_ARTICLES, {

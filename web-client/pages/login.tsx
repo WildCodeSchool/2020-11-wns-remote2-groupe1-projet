@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
@@ -10,15 +10,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { UserContext } from '../Components/contexts/contexts';
-
-const LOGIN_MUTATION = gql`
-  mutation Login($email: String!, $password: String!) {
-    createSession(input: { email: $email, password: $password }) {
-      id
-      email
-    }
-  }
-`;
+import { LOGIN_MUTATION } from '../src/queries';
 
 const useStyles = makeStyles({
   root: {

@@ -1,17 +1,7 @@
 import React, { createContext } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import NavBar from '../layout/navbar';
-
-const GET_ME = gql`
-  query GetMe {
-    me {
-      id
-      firstName
-      lastName
-      school
-    }
-  }
-`;
+import { GET_ME } from '../../src/queries';
 
 export type me = {
   id: string;

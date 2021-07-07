@@ -1,4 +1,4 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -11,30 +11,7 @@ import Switch from '@material-ui/core/Switch';
 import { useRouter } from 'next/router';
 import { useState, useContext } from 'react';
 import { UserContext } from '../contexts/contexts';
-
-const CREATE_ARTICLE = gql`
-  # Create Article
-  mutation CreateArticle(
-    $title: String!
-    $banner: String!
-    $content: String!
-    $isPublished: Boolean!
-  ) {
-    createArticle(
-      data: {
-        title: $title
-        banner: $banner
-        content: $content
-        isPublished: $isPublished
-      }
-    ) {
-      title
-      banner
-      content
-      isPublished
-    }
-  }
-`;
+import { CREATE_ARTICLE } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {

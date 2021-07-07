@@ -1,17 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  Button,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
-  Avatar,
-  Grid,
-} from '@material-ui/core';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import { GetPictures, UploadPicture } from '../../src/schemaTypes';
+import { Button, Card, CardContent } from '@material-ui/core';
+import { useMutation, useQuery } from '@apollo/client';
+import { GetPictures, UploadPicture } from '../../src/generated/schemaTypes';
+import { GET_PICTURES, UPLOAD_PICTURE } from '../../src/queries';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,23 +53,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '1rem',
   },
 }));
-
-const UPLOAD_PICTURE = gql`
-  mutation UploadPicture($file: Upload!) {
-    uploadPicture(file: $file) {
-      id
-    }
-  }
-`;
-
-const GET_PICTURES = gql`
-  query GetPictures {
-    pictures {
-      id
-      extension
-    }
-  }
-`;
 
 const PictureGalleryComponent = (): JSX.Element => {
   const classes = useStyles();

@@ -1,25 +1,9 @@
 import { Box } from '@material-ui/core';
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-
-export const GET_ARTICLE = gql`
-  query getArticleById($id: String!) {
-    article(id: $id) {
-      id
-      title
-      banner
-      content
-      createdAt
-      updatedAt
-      user {
-        id
-        firstName
-      }
-    }
-  }
-`;
+import { GET_ARTICLE } from '../../src/queries';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
