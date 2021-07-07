@@ -4,7 +4,6 @@ import { Button, Card, CardContent } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
 import { GetImages, UploadImage } from '../../src/schemaTypes';
 import { GET_IMAGES, UPLOAD_IMAGE } from '../../src/queries';
-import { API_BASE_URL } from '../../config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -121,7 +120,7 @@ const ImageGalleryComponent = (): JSX.Element => {
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`${API_BASE_URL}/public/media/images/${id}${extension}`}
+                    src={`http://localhost:4000/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}

@@ -27,4 +27,4 @@ services:
       - 3000:3000
     environment:
       - NODE_ENV=development
-      - REACT_APP_API_BASE_URL=:http://localhost:${API_PORT}
+      - REACT_APP_API_BASE_URL=http://localhost:${API_PORT}
