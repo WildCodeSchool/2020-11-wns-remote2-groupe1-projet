@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
-import { GetPictures, UploadPicture } from '../../src/generated/schemaTypes';
+import { GetPictures, UploadPicture } from '../../src/schemaTypes';
 import { GET_PICTURES, UPLOAD_PICTURE } from '../../src/queries';
 
 const useStyles = makeStyles((theme) => ({
