@@ -2,16 +2,16 @@ import { Stream } from 'stream';
 import path from 'path';
 import { createWriteStream, mkdirSync } from 'fs';
 
-const PICTURES_DIRECTORY = path.join(__dirname, '../public/media/pictures');
+const IMAGES_DIRECTORY = path.join(__dirname, '../public/media/images');
 
-export async function writeFileToPictureDirectory(
+export async function writeFileToImageDirectory(
   stream: Stream,
   filename: string
 ): Promise<void> {
-  mkdirSync(PICTURES_DIRECTORY, { recursive: true });
+  mkdirSync(IMAGES_DIRECTORY, { recursive: true });
   await new Promise((res) =>
     stream
-      .pipe(createWriteStream(path.join(PICTURES_DIRECTORY, filename)))
+      .pipe(createWriteStream(path.join(IMAGES_DIRECTORY, filename)))
       .on('close', res)
   );
 }

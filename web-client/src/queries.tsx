@@ -134,17 +134,17 @@ export const GET_ME = gql`
   }
 `;
 
-export const UPLOAD_PICTURE = gql`
-  mutation UploadPicture($file: Upload!) {
-    uploadPicture(file: $file) {
+export const UPLOAD_IMAGE = gql`
+  mutation UploadImage($file: Upload!) {
+    uploadImage(file: $file) {
       id
     }
   }
 `;
 
-export const GET_PICTURES = gql`
-  query GetPictures {
-    pictures {
+export const GET_IMAGES = gql`
+  query GetImages {
+    images {
       id
       extension
     }

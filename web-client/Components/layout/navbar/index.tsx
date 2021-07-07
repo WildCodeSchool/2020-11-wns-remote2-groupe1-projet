@@ -119,8 +119,8 @@ const NavBar = (props: Props) => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link href="/picture-gallery">
-            <Button className={classes.link}>Picture Gallery</Button>
+          <Link href="/image-gallery">
+            <Button className={classes.link}>Image Gallery</Button>
           </Link>
         </ListItem>
       </List>
@@ -157,8 +157,8 @@ const NavBar = (props: Props) => {
                 <Link href="/edit-articles">
                   <Button className={classes.link}>Edit Article</Button>
                 </Link>
-                <Link href="/picture-gallery">
-                  <Button className={classes.link}>Picture Gallery</Button>
+                <Link href="/image-gallery">
+                  <Button className={classes.link}>Image Gallery</Button>
                 </Link>
               </div>
               <Link href="/login">

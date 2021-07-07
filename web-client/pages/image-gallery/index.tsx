@@ -1,10 +1,10 @@
 import React from 'react';
-import PictureGalleryComponent from '../../Components/picture-gallery/pictureGallery';
+import ImageGalleryComponent from '../../Components/image-gallery/imageGallery';
 
 function ImageGallery() {
   return (
     <div>
-      <PictureGalleryComponent />
+      <ImageGalleryComponent />
     </div>
   );
 }

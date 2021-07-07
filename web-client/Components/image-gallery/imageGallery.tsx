@@ -2,8 +2,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
-import { GetPictures, UploadPicture } from '../../src/schemaTypes';
-import { GET_PICTURES, UPLOAD_PICTURE } from '../../src/queries';
+import { GetImages, UploadImage } from '../../src/schemaTypes';
+import { GET_IMAGES, UPLOAD_IMAGE } from '../../src/queries';
+import { API_BASE_URL } from '../../config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,14 +55,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PictureGalleryComponent = (): JSX.Element => {
+const ImageGalleryComponent = (): JSX.Element => {
   const classes = useStyles();
 
-  const { loading, error, data } = useQuery<GetPictures>(GET_PICTURES);
+  const { loading, error, data } = useQuery<GetImages>(GET_IMAGES);
 
-  const [mutate] = useMutation<UploadPicture>(UPLOAD_PICTURE);
+  const [mutate] = useMutation<UploadImage>(UPLOAD_IMAGE);
 
-  const uploadPicture = ({
+  const uploadImage = ({
     target: {
       validity,
       files: [file],
@@ -73,15 +74,15 @@ const PictureGalleryComponent = (): JSX.Element => {
       mutate({
         variables: { file },
         update: (cache, { data }) => {
-          const existingData: GetPictures = cache.readQuery({
-            query: GET_PICTURES,
+          const existingData: GetImages = cache.readQuery({
+            query: GET_IMAGES,
           });
           if (existingData && data) {
             cache.writeQuery({
-              query: GET_PICTURES,
+              query: GET_IMAGES,
               data: {
                 ...existingData,
-                pictures: [...existingData.pictures, data.uploadPicture],
+                images: [...existingData.images, data.uploadImage],
               },
             });
           }
@@ -90,14 +91,14 @@ const PictureGalleryComponent = (): JSX.Element => {
   };
   return (
     <>
-      <h1 className={classes.galleryTitle}>Picture Gallery</h1>
+      <h1 className={classes.galleryTitle}>Image Gallery</h1>
       <input
         type="file"
         id="file"
         required
         accept="image/*"
         hidden
-        onChange={uploadPicture}
+        onChange={uploadImage}
       />
       <Button
         className={classes.uploadButton}
@@ -105,7 +106,7 @@ const PictureGalleryComponent = (): JSX.Element => {
         variant="contained"
         size="small"
       >
-        <label htmlFor="file">Add a picture</label>
+        <label htmlFor="file">Add a image</label>
       </Button>
 
       <div className={classes.gallery}>
@@ -114,13 +115,13 @@ const PictureGalleryComponent = (): JSX.Element => {
         ) : error ? (
           <div>Error.</div>
         ) : (
-          data?.pictures.map(({ id, extension }) => (
+          data?.images.map(({ id, extension }) => (
             <div key={id}>
               <Card className={classes.imageCard}>
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`http://localhost:4000/public/media/pictures/${id}${extension}`}
+                    src={`${API_BASE_URL}/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}
@@ -140,4 +141,4 @@ const PictureGalleryComponent = (): JSX.Element => {
   );
 };
 
-export default PictureGalleryComponent;
+export default ImageGalleryComponent;
