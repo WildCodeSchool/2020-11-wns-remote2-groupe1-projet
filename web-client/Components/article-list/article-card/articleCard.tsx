@@ -11,7 +11,6 @@ import {
   Button,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
-import { User } from '../../../../src/models/User';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -69,7 +68,7 @@ const ArticleCard = ({
   image: string;
   content: string;
   isPublished: boolean;
-  user: User;
+  user: any;
 }): JSX.Element => {
   const classes = useStyles();
 

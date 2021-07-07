@@ -3,7 +3,6 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { User } from '../../../src/models/User';
 
 export const GET_ARTICLE = gql`
   query getArticleById($id: String!) {
@@ -50,7 +49,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
     content: string;
     createdAt: string;
     updatedAt: string;
-    user: User;
+    user: any;
   } = data?.article || [];
 
   const classes = useStyles();
