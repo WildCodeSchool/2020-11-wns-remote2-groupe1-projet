@@ -4,7 +4,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 // MUI Core
 import { ServerStyleSheets } from '@material-ui/core/styles';
 // Utils
-import theme from '../src/theme';
+import theme from '../styles/theme';
 
 class MyDocument extends Document {
   render(): JSX.Element {

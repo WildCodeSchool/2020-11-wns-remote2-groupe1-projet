@@ -2,7 +2,7 @@ import { TextField, Button, Paper } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import theme from '../../src/theme';
+import theme from '../../styles/theme';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

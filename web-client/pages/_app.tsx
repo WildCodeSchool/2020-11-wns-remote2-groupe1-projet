@@ -6,7 +6,7 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 // Utils
-import theme from '../src/theme';
+import theme from '../styles/theme';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { MultiContextProvider } from '../Components/contexts/contexts';
 import classes from './style.module.scss';
