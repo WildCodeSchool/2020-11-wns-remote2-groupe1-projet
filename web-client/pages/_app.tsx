@@ -1,31 +1,63 @@
-import React from 'react';
-// Modules
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-// MUI Core
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  split,
+} from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
+import { getMainDefinition } from '@apollo/client/utilities';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { API_PORT } from '../config';
+import { MultiContextProvider } from '../Components/contexts/contexts';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
-// Utils
 import theme from '../styles/theme';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { MultiContextProvider } from '../Components/contexts/contexts';
 import classes from './style.module.scss';
 
-import { createUploadLink } from 'apollo-upload-client';
-
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
+  useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
 
+  const GRAPHQL_ENDPOINT = '/graphql';
+
+  const httpLink = createUploadLink({
+    uri: GRAPHQL_ENDPOINT,
+  });
+
+  const webSocketProtocolAndHost = API_PORT
+    ? `ws://localhost:${API_PORT}`
+    : `${document.location.origin.replace('http', 'ws')}${GRAPHQL_ENDPOINT}`;
+
+  const wsLink = new WebSocketLink({
+    uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
+    options: {
+      reconnect: true,
+    },
+  });
+
+  const splitLink = split(
+    ({ query }) => {
+      const definition = getMainDefinition(query);
+      return (
+        definition.kind === 'OperationDefinition' &&
+        definition.operation === 'subscription'
+      );
+    },
+    wsLink,
+    httpLink
+  );
+
   const client = new ApolloClient({
-    link: createUploadLink({
-      uri: '/graphql',
-    }),
+    link: splitLink,
     cache: new InMemoryCache(),
   });
 

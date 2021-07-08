@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ArticleCard from './article-card/articleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
-import { GET_ARTICLES } from '../../src/queries';
-import { getArticles } from '../../src/schemaTypes';
+import { GET_ARTICLES, SUBSCRIBE_TO_NEW_ARTICLE } from '../../src/queries';
+import { getArticles, SubscribeToNewArticle } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,14 +24,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Articles = (): JSX.Element => {
-  const { data, fetchMore } = useQuery<getArticles>(GET_ARTICLES, {
-    variables: {
-      offset: 0,
-      limit: 3,
-      isPublished: true,
-    },
-    fetchPolicy: 'cache-and-network',
-  });
+  const { data, fetchMore, subscribeToMore } = useQuery<getArticles>(
+    GET_ARTICLES,
+    {
+      variables: {
+        offset: 0,
+        limit: 3,
+        isPublished: true,
+      },
+      fetchPolicy: 'cache-and-network',
+    }
+  );
 
   const articles = data?.articles || [];
 
@@ -48,6 +51,24 @@ const Articles = (): JSX.Element => {
       },
     });
   };
+
+  // const [isSubscribedToNewArticle, setIsSubscribedToNewArticle] =
+  //   useState(false);
+  // useEffect(() => {
+  //   if (!isSubscribedToNewArticle) {
+  //     subscribeToMore<SubscribeToNewArticle>({
+  //       document: SUBSCRIBE_TO_NEW_ARTICLE,
+  //       updateQuery: (prev, { subscriptionData }): getArticles => {
+  //         if (!subscriptionData.data) return prev;
+  //         return {
+  //           articles: [...prev.articles, subscriptionData.data.newArticle],
+  //         };
+  //       },
+  //     });
+  //     setIsSubscribedToNewArticle(true);
+  //   }
+  // }, [data]);
+
   const classes = useStyles();
   return (
     <div className={classes.root}>

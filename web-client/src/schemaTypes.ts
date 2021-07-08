@@ -102,6 +102,28 @@ export interface CreateArticleVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL subscription operation: SubscribeToNewArticle
+// ====================================================
+
+export interface SubscribeToNewArticle_newArticle {
+  __typename: "Article";
+  id: string;
+  title: string;
+  banner: string;
+  content: string;
+  isPublished: boolean;
+}
+
+export interface SubscribeToNewArticle {
+  newArticle: SubscribeToNewArticle_newArticle;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateArticle
 // ====================================================
 

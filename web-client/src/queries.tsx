@@ -58,6 +58,18 @@ export const CREATE_ARTICLE = gql`
   }
 `;
 
+export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
+  subscription SubscribeToNewArticle {
+    newArticle {
+      id
+      title
+      banner
+      content
+      isPublished
+    }
+  }
+`;
+
 export const UPDATE_ARTICLE = gql`
   # Update Article
   mutation UpdateArticle(
