@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server-express';
 import { Request, Response } from 'express';
 import { buildSchema } from 'type-graphql';
+import { GraphQLSchema } from 'graphql';
 
 import { setSessionIdCookie } from './express-server';
 import { getUserFromSessionId } from './models/User';
@@ -9,7 +10,10 @@ import CommentResolver from './resolvers/CommentResolver';
 import ImageResolver from './resolvers/ImageResolver';
 import UserResolver from './resolvers/UserResolver';
 
-export const getApolloServer = async (): Promise<ApolloServer> => {
+export const getApolloServer = async (): Promise<{
+  apolloServer: ApolloServer;
+  graphQLSchema: GraphQLSchema;
+}> => {
   const schema = await buildSchema({
     resolvers: [CommentResolver, ArticleResolver, UserResolver, ImageResolver],
   });
@@ -21,5 +25,8 @@ export const getApolloServer = async (): Promise<ApolloServer> => {
       user,
     };
   };
-  return new ApolloServer({ schema, context });
+  return {
+    apolloServer: new ApolloServer({ schema, context }),
+    graphQLSchema: schema,
+  };
 };

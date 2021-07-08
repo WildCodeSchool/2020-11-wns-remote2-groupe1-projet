@@ -7,4 +7,7 @@ module.exports = {
       },
     ];
   },
+  publicRuntimeConfig: {
+    NEXT_PUBLIC_API_PORT: process.env.NEXT_PUBLIC_API_PORT,
+  },
 };

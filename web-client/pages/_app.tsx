@@ -11,7 +11,6 @@ import {
 import { createUploadLink } from 'apollo-upload-client';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { API_PORT } from '../config';
 import { MultiContextProvider } from '../Components/contexts/contexts';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,29 +32,33 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     uri: GRAPHQL_ENDPOINT,
   });
 
-  const webSocketProtocolAndHost = API_PORT
-    ? `ws://localhost:${API_PORT}`
-    : `${document.location.origin.replace('http', 'ws')}${GRAPHQL_ENDPOINT}`;
+  const webSocketProtocolAndHost = `ws://localhost:4000`;
 
-  const wsLink = new WebSocketLink({
-    uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
-    options: {
-      reconnect: true,
-    },
-  });
+  const wsLink =
+    process.browser &&
+    new WebSocketLink({
+      uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
+      options: {
+        reconnect: true,
+        minTimeout: 10000,
+      },
+    });
 
-  const splitLink = split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-      return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
-      );
-    },
-    wsLink,
-    httpLink
-  );
-
+  const splitLink =
+    process.browser &&
+    split(
+      ({ query }) => {
+        const definition = getMainDefinition(query);
+        return (
+          definition.kind === 'OperationDefinition' &&
+          definition.operation === 'subscription'
+        );
+      },
+      wsLink,
+      httpLink
+    );
+  console.log('wsLink: ', wsLink);
+  console.log(process.env.NEXT_PUBLIC_API_PORT);
   const client = new ApolloClient({
     link: splitLink,
     cache: new InMemoryCache(),

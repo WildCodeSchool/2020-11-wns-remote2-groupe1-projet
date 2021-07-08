@@ -1,8 +1,22 @@
-import { Resolver, Query, Mutation, Arg, Ctx, Field, Int } from 'type-graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Arg,
+  Ctx,
+  Subscription,
+  Root,
+  PubSub,
+  Publisher,
+} from 'type-graphql';
 import CreateArticleInput from '../inputs/articles/CreateArticleInput';
 import UpdateArticleInput from '../inputs/articles/UpdateArticleInput';
 import { Article } from '../models/Article';
 import { User } from '../models/User';
+
+type NewArticleNotificationPayload = {
+  article: Article;
+};
 
 @Resolver()
 export default class ArticleResolver {
@@ -55,15 +69,17 @@ export default class ArticleResolver {
   @Mutation(() => Article)
   async createArticle(
     @Ctx() { user }: { user: User | null },
-    @Arg('data') data: CreateArticleInput
+    @Arg('data') data: CreateArticleInput,
+    @PubSub('NOTIFICATIONS')
+    publishNewArticle: Publisher<NewArticleNotificationPayload>
   ): Promise<Article> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
     const article = Article.create(data);
     article.user = user;
-
     await article.save();
+    publishNewArticle({ article });
     return article;
   }
 
@@ -98,5 +114,14 @@ export default class ArticleResolver {
 
     await article.remove();
     return true;
+  }
+
+  @Subscription({
+    topics: 'NEW_ARTICLE',
+  })
+  newArticle(
+    @Root() notificationPayload: NewArticleNotificationPayload
+  ): Article {
+    return notificationPayload.article;
   }
 }
