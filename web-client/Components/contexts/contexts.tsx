@@ -2,19 +2,13 @@ import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
 import NavBar from '../layout/navbar';
 import { GET_ME } from '../../src/queries';
-
-export type me = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  school: string;
-};
+import { GetMe } from '../../src/schemaTypes';
 
 export const UserContext = createContext<any>({});
 
 export const MultiContextProvider = ({ children }) => {
-  const { data, loading } = useQuery(GET_ME);
-  const me: me | null = data?.me;
+  const { data } = useQuery<GetMe>(GET_ME);
+  const me = data?.me;
 
   return (
     <UserContext.Provider value={{ me }}>

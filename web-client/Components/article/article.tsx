@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { GET_ARTICLE } from '../../src/queries';
+import { getArticleById } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,16 +26,10 @@ const useStyles = makeStyles((theme: Theme) =>
 const Article: React.FC<{ router: NextRouter }> = ({}) => {
   const router = useRouter();
   const id = router?.query?.idArticle;
-  const { data } = useQuery(GET_ARTICLE, { variables: { id } });
-  const article: {
-    id: string;
-    title: string;
-    banner: string;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-    user: any;
-  } = data?.article || [];
+  const { data } = useQuery<getArticleById>(GET_ARTICLE, {
+    variables: { id },
+  });
+  const article = data?.article;
 
   const classes = useStyles();
   return (

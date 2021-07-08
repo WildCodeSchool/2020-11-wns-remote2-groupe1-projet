@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from '../../src/queries';
+import { getArticles } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Articles = (): JSX.Element => {
-  const { data, fetchMore } = useQuery(GET_ARTICLES, {
+  const { data, fetchMore } = useQuery<getArticles>(GET_ARTICLES, {
     variables: {
       offset: 0,
       limit: 3,
@@ -32,14 +33,7 @@ const Articles = (): JSX.Element => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const articles: Array<{
-    id: string;
-    title: string;
-    banner: string;
-    content: string;
-    isPublished: boolean;
-    user: any;
-  }> = data?.articles || [];
+  const articles = data?.articles || [];
 
   const fetchMoreArticles = () => {
     fetchMore({
