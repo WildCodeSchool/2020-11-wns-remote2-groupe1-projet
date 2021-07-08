@@ -110,7 +110,14 @@ const ArticleCard = ({
               </Avatar>
             }
           />
-          {image && <CardMedia className={classes.media} image={image} />}
+          {image ? (
+            <CardMedia className={classes.media} image={image} />
+          ) : (
+            <CardMedia
+              className={classes.media}
+              image="https://rent-my-boat-nice.fr/wp-content/uploads/2020/08/placeholder.png"
+            />
+          )}
           <Grid item zeroMinWidth>
             <CardContent>
               <p>by {user?.firstName}</p>

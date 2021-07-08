@@ -32,14 +32,18 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
   const article = data?.article;
 
   const classes = useStyles();
+
+  let banner;
+  if (article?.banner) {
+    banner = article?.banner;
+  } else
+    banner =
+      'https://rent-my-boat-nice.fr/wp-content/uploads/2020/08/placeholder.png';
+
   return (
     <Box m={2}>
       <div>
-        <img
-          src={article?.banner}
-          className={classes.media}
-          height="250px"
-        ></img>
+        <img src={banner} className={classes.media} height="250px"></img>
         <h1>{article?.title}</h1>
         <p>written by {article?.user?.firstName!}</p>
         <p className={classes.dateBlock}>
