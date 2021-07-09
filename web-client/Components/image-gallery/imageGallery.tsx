@@ -120,7 +120,7 @@ const ImageGalleryComponent = (): JSX.Element => {
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`http://localhost:4000/public/media/images/${id}${extension}`}
+                    src={`/api/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}

@@ -43,7 +43,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
       options: {
         reconnect: true,
-        minTimeout: 10000,
       },
     });
 

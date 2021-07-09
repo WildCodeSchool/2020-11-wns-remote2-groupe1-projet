@@ -70,7 +70,7 @@ export default class ArticleResolver {
   async createArticle(
     @Ctx() { user }: { user: User | null },
     @Arg('data') data: CreateArticleInput,
-    @PubSub('NOTIFICATIONS')
+    @PubSub('NEW_ARTICLE')
     publishNewArticle: Publisher<NewArticleNotificationPayload>
   ): Promise<Article> {
     if (!user) {
@@ -122,6 +122,7 @@ export default class ArticleResolver {
   newArticle(
     @Root() notificationPayload: NewArticleNotificationPayload
   ): Article {
+    console.log('ok');
     return notificationPayload.article;
   }
 }
