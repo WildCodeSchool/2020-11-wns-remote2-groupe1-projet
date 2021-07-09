@@ -32,7 +32,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     uri: GRAPHQL_ENDPOINT,
   });
 
-  const webSocketProtocolAndHost = `ws://localhost:4000`;
+  const webSocketProtocolAndHost =
+    process.env.NODE_ENV === 'development'
+      ? `ws://localhost:4000`
+      : `${document.location.origin.replace('http', 'ws')}${GRAPHQL_ENDPOINT}`;
 
   const wsLink =
     process.browser &&
@@ -57,8 +60,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       wsLink,
       httpLink
     );
-  console.log('wsLink: ', wsLink);
-  console.log(process.env.NEXT_PUBLIC_API_PORT);
+
   const client = new ApolloClient({
     link: splitLink,
     cache: new InMemoryCache(),

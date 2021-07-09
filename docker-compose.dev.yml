@@ -4,7 +4,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - NEXT_PUBLIC_NODE_ENV=development
+      - NODE_ENV=development
   api:
     depends_on:
       - db
@@ -13,9 +13,10 @@ services:
     volumes:
       - ./src:/app/src
     ports:
-      - ${NEXT_PUBLIC_API_PORT}:4000
+      - ${API_PORT}:4000
     environment:
-      - NEXT_PUBLIC_NODE_ENV=development
+      - NODE_ENV=development
+      - API_PORT=${API_PORT}
       - TYPEORM_LOGGING=true
   webclient:
     command: sh -c "npm install -g nodemon && (npm run dev & nodemon -w package-lock.json --exec 'npm install')"
@@ -24,7 +25,7 @@ services:
       - ./web-client:/app
       - /app/node_modules/
     ports:
-      - ${NEXT_PUBLIC_WEB_CLIENT_PORT}:3000
+      - ${WEB_CLIENT_PORT}:3000
     environment:
-      - NEXT_PUBLIC_NODE_ENV=development
-      - NEXT_PUBLIC_REACT_APP_API_PORT=${NEXT_PUBLIC_API_PORT}
+      - NODE_ENV=development
+      - REACT_APP_API_PORT=${API_PORT}
