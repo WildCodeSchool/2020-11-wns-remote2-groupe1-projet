@@ -88,6 +88,9 @@ const ImageGalleryComponent = (): JSX.Element => {
         },
       });
   };
+  const baseUrl =
+    process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000';
+
   return (
     <>
       <h1 className={classes.galleryTitle}>Image Gallery</h1>
@@ -120,7 +123,7 @@ const ImageGalleryComponent = (): JSX.Element => {
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`http://localhost:4000/public/media/images/${id}${extension}`}
+                    src={`${baseUrl}/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}
