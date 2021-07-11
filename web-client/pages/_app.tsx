@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -35,7 +34,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const webSocketProtocolAndHost =
     process.env.NODE_ENV === 'development'
       ? `ws://localhost:4000`
-      : `${document.location.origin.replace('http', 'ws')}${GRAPHQL_ENDPOINT}`;
+      : process.browser && `${window.location.origin.replace('http', 'ws')}`;
 
   const wsLink =
     process.browser &&
@@ -43,8 +42,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
       options: {
         reconnect: true,
+        minTimeout: 10000,
       },
     });
+  console.log(wsLink);
+  console.log(webSocketProtocolAndHost);
 
   const splitLink =
     process.browser &&

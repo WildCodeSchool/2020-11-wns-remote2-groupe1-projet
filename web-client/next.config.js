@@ -7,4 +7,6 @@ module.exports = {
       },
     ];
   },
+  websocketProxyPath: '/api',
+  websocketProxyPort: 8000,
 };
