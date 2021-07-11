@@ -22,6 +22,9 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  gridContainer: {
+    padding: '1rem',
+  },
 });
 
 const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
@@ -96,8 +99,10 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   }
 
   return (
-    <Paper>
-      <Typography variant="h2">Article Edit</Typography>
+    <Paper className={classes.gridContainer}>
+      <Typography align={'center'} variant="h2">
+        Article Edit
+      </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12} md={6}>
@@ -120,17 +125,19 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
               type="text"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             <TextField
               label="Content"
               name="content"
               value={values.content}
               onChange={changeHandler}
               fullWidth
+              multiline
+              rows={10}
               type="text"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} alignContent={'flex-start'}>
             <FormControlLabel
               control={
                 <Switch

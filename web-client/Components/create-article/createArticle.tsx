@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  gridContainer: {
+    padding: '1rem',
+  },
 });
 
 function CreateArticleComponent(): JSX.Element {
@@ -41,8 +44,10 @@ function CreateArticleComponent(): JSX.Element {
     },
   });
   return (
-    <Paper>
-      <Typography variant="h2">Article Creation</Typography>
+    <Paper className={classes.gridContainer}>
+      <Typography align={'center'} variant="h2">
+        Article Creation
+      </Typography>
       <p>{me?.firstName}</p>
       <form
         onSubmit={async (e) => {
@@ -76,16 +81,18 @@ function CreateArticleComponent(): JSX.Element {
               type="text"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             <TextField
               label="Content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               fullWidth
+              multiline
+              rows={10}
               type="text"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} alignContent={'flex-start'}>
             <FormControlLabel
               control={
                 <Switch
