@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   createStyles,
   makeStyles,
@@ -21,6 +21,7 @@ import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { DEFAULT_UI_COLOR } from '../../styles/theme';
+import { UserContext } from '../../contexts/Contexts';
 
 const drawerWidth = 240;
 
@@ -96,6 +97,7 @@ const NavBar = (props: Props) => {
   const { window } = props;
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { me } = useContext(UserContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -161,8 +163,8 @@ const NavBar = (props: Props) => {
                   <Button className={classes.link}>Image Gallery</Button>
                 </Link>
               </div>
-              <Link href="/login">
-                <Button color="inherit">Login</Button>
+              <Link href={me ? '/account' : '/login'}>
+                <Button color="inherit">{me ? 'Account' : 'Login'}</Button>
               </Link>
             </div>
           </Toolbar>

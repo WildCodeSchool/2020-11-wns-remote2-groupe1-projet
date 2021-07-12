@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Article: React.FC<{ router: NextRouter }> = ({}) => {
   const router = useRouter();
-  const id = router?.query?.idArticle;
+  const id = router?.query?.id;
   const { data } = useQuery<getArticleById>(GET_ARTICLE, {
     variables: { id },
   });
