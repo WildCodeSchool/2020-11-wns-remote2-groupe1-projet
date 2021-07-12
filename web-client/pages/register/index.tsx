@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState } from 'react';
-import { REGISTER } from '../src/queries';
+import { REGISTER } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {

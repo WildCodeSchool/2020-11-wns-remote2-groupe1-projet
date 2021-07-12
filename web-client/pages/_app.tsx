@@ -1,11 +1,8 @@
 import React from 'react';
-// Modules
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-// MUI Core
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
-// Utils
 import theme from '../styles/theme';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { MultiContextProvider } from '../contexts/Contexts';

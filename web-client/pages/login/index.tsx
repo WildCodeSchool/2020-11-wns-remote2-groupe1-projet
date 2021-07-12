@@ -9,8 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import { UserContext } from '../contexts/Contexts';
-import { LOGIN_MUTATION } from '../src/queries';
+import { UserContext } from '../../contexts/Contexts';
+import { LOGIN_MUTATION } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {
@@ -24,20 +24,17 @@ const useStyles = makeStyles({
     justifyContent: 'space-between',
   },
 });
+
 const Login: NextPage = () => {
   const { me } = useContext(UserContext);
   const router = useRouter();
   const classes = useStyles();
 
-  if (me) {
-    router.push('/account');
-  }
-
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [login, { error }] = useMutation(LOGIN_MUTATION, {
     onCompleted() {
-      router.push('/account');
+      router.push('/');
     },
   });
 
