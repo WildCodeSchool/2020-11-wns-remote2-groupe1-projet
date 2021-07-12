@@ -1,16 +1,18 @@
 import createTestClient from 'supertest';
-import { createConnection, getConnection } from 'typeorm';
+import { createConnection, getConnection, getConnectionOptions } from 'typeorm';
 
 import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
 import { User, UserRole } from '../models/User';
 
 describe('User resolvers', () => {
-  let testClient: createTestClient.SuperTest<createTestClient.Test>;
+  let testClient;
 
   beforeEach(async () => {
+    const connectionOptions = await getConnectionOptions();
     await createConnection({
-      type: 'sqlite',
+      ...connectionOptions,
+      type: 'postgres',
       database: ':memory:',
       dropSchema: true,
       entities: [User, UserSession],
