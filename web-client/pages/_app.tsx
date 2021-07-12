@@ -8,7 +8,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 // Utils
 import theme from '../styles/theme';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { MultiContextProvider } from '../Components/contexts/contexts';
+import { MultiContextProvider } from '../contexts/Contexts';
 import classes from './style.module.scss';
 
 import { createUploadLink } from 'apollo-upload-client';

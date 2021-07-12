@@ -1,5 +1,5 @@
 import React from 'react';
-import ArticleCard from '../../Components/article-list/article-card/articleCard';
+import ArticleCard from '../../components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';

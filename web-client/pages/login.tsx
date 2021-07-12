@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { NextPage } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
-import { UserContext } from '../Components/contexts/contexts';
+import { UserContext } from '../contexts/Contexts';
 import { LOGIN_MUTATION } from '../src/queries';
 
 const useStyles = makeStyles({

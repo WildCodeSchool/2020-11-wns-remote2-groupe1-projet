@@ -1,6 +1,6 @@
 import React from 'react';
-import Article from '../../Components/article/article';
-import Comment from '../../Components/article/comment';
+import Article from '../../components/article/article';
+import Comment from '../../components/article/comment';
 import { Container, Box, Link, Button } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';

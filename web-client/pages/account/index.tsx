@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NextPage } from 'next';
-import { UserContext } from '../../Components/contexts/contexts';
+import { UserContext } from '../../contexts/Contexts';
 
 const Account: NextPage = () => {
   const { me } = useContext(UserContext);
