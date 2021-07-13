@@ -70,13 +70,13 @@ export class User extends BaseEntity {
   @Field(() => String)
   email!: string;
 
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.STUDENT,
-  })
-  @Field(() => UserRole)
-  role!: UserRole;
+  // @Column({
+  //   type: 'enum',
+  //   enum: UserRole,
+  //   default: UserRole.STUDENT,
+  // })
+  // @Field(() => UserRole)
+  // role!: UserRole;
 
   @Column({ nullable: true })
   @Field(() => String)
@@ -99,20 +99,20 @@ export class User extends BaseEntity {
   @OneToMany(() => Article, (article) => article.user)
   articles?: Article[];
 
-  @ManyToOne(() => Comment, (comment) => comment.user)
-  comments?: Comment[];
+  // @ManyToOne(() => Comment, (comment) => comment.user)
+  // comments?: Comment[];
 
-  @ManyToMany(() => Conversation, (conversation) => conversation.users)
-  conversations?: Conversation[];
+  // @ManyToMany(() => Conversation, (conversation) => conversation.users)
+  // conversations?: Conversation[];
 
-  @ManyToOne(() => Message, (message) => message.user)
-  messages?: Message[];
+  // @ManyToOne(() => Message, (message) => message.user)
+  // messages?: Message[];
 
-  @ManyToMany(() => Classroom, (classroom) => classroom.teachers)
-  classrooms?: Classroom[];
+  // @ManyToMany(() => Classroom, (classroom) => classroom.teachers)
+  // classrooms?: Classroom[];
 
-  @OneToMany(() => Classroom, (classroom) => classroom.students)
-  classroom?: Classroom;
+  // @OneToMany(() => Classroom, (classroom) => classroom.students)
+  // classroom?: Classroom;
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

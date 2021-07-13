@@ -1,23 +1,44 @@
 import createTestClient from 'supertest';
-import { createConnection, getConnection, getConnectionOptions } from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 
 import { getExpressServer } from '../express-server';
 import { Article } from '../models/Article';
+import UserSession from '../models/UserSession';
+import { User } from '../models/User';
+import { Classroom } from '../models/Classroom';
+import { Conversation } from '../models/Conversation';
+import { Message } from '../models/Message';
 
 describe('Article resolvers', () => {
   let testClient;
 
   beforeEach(async () => {
-    const connectionOptions = await getConnectionOptions();
+    // const connectionOptions = await getConnectionOptions();
     await createConnection({
-      ...connectionOptions,
+      // ...connectionOptions,
+      type: 'sqlite',
+      database: ':memory:',
       dropSchema: true,
-      entities: [Article],
+      entities: [Article, User, UserSession, Classroom, Conversation, Message],
       synchronize: true,
       logging: false,
     });
     const { expressServer } = await getExpressServer();
     testClient = createTestClient(expressServer);
+
+    // const userSession = UserSession.create({ user: User });
+    // await userSession.save();
+
+    // await testClient.post('/graphql').send({
+    //   query: `mutation {
+    //               createSession(input: {
+    //                 email: "danielo.visage@gmail.com",
+    //                 password: "Test1234"
+    //               }) {
+    //                 email
+    //               }
+    //             }`,
+    // });
   });
 
   afterEach(() => {
@@ -45,12 +66,14 @@ describe('Article resolvers', () => {
 
       const response = await testClient.post('/graphql').send({
         query: `{
-            articles {
-                title
-                isPublished
-                content
-            }
-        }`,
+          articles{
+            title
+            banner
+            content
+            isPublished
+          }
+        }
+        `,
       });
 
       expect(JSON.parse(response.text).data).toEqual({
