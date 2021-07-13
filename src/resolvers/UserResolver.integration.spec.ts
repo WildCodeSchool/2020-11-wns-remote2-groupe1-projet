@@ -12,8 +12,6 @@ describe('User resolvers', () => {
     const connectionOptions = await getConnectionOptions();
     await createConnection({
       ...connectionOptions,
-      type: 'postgres',
-      database: ':memory:',
       dropSchema: true,
       entities: [User, UserSession],
       synchronize: true,
