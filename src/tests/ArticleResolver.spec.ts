@@ -66,7 +66,7 @@ describe('Article resolvers', () => {
 
       const response = await testClient.post('/graphql').send({
         query: `{
-          articles{
+          articles(limit: 10, offset: 0, isPublished: true){
             title
             banner
             content
