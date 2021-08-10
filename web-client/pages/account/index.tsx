@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import { NextPage } from 'next';
 import { UserContext } from '../../contexts/Contexts';
+import LoginComponent from '../../components/login/Login';
 
 const Account: NextPage = () => {
   const { me } = useContext(UserContext);
 
-  return <p>{`Hello ${!me ? 'World' : me?.firstName}`}</p>;
+  if (!me) {
+    return <LoginComponent />;
+  } else {
+    return <p>{`Hello ${me?.firstName}`}</p>;
+  }
 };
 
 export default Account;

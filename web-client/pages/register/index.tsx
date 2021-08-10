@@ -69,7 +69,7 @@ const Register = (): JSX.Element => {
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Prénom"
+              label="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               fullWidth
@@ -78,7 +78,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Nom"
+              label="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               fullWidth
@@ -87,7 +87,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={12}>
             <TextField
-              label="Adresse email"
+              label="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
@@ -97,25 +97,25 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="École"
+              label="School"
               value={school}
               onChange={(e) => setSchool(e.target.value)}
               fullWidth
               type="text"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <TextField
-              label="Date de naissance"
+              label="Birth date"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
               fullWidth
               type="text"
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={12}>
             <TextField
-              label="Mot de passe"
+              label="Password"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -129,7 +129,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={12}>
             <TextField
-              label="Confirmer le mot de passe"
+              label="Confirm password"
               value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
@@ -142,7 +142,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={12} className={classes.buttons}>
             <Link href="/login">
-              <Button>Se connecter</Button>
+              <Button>Sign In</Button>
             </Link>
             <Button
               variant="contained"
@@ -150,7 +150,7 @@ const Register = (): JSX.Element => {
               type="submit"
               disabled={!isEqual}
             >
-              Créer un compte
+              Create Account
             </Button>
           </Grid>
         </Grid>

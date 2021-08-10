@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ArticleCard from '../../components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from '../../src/queries';
+import { UserContext } from '../../contexts/Contexts';
+import LoginComponent from '../../components/login/Login';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditArticles = (): JSX.Element => {
+  const { me } = useContext(UserContext);
+
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {
       offset: 0,
@@ -58,36 +62,40 @@ const EditArticles = (): JSX.Element => {
 
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <Typography variant="h1" className={classes.feedTitle}>
-        Article Management
-      </Typography>
+  if (!me) {
+    return <LoginComponent />;
+  } else {
+    return (
+      <div className={classes.root}>
+        <Typography variant="h1" className={classes.feedTitle}>
+          Article Management
+        </Typography>
 
-      {articles?.map((article) => (
-        <ArticleCard
-          key={article.id}
-          id={article.id}
-          title={article.title}
-          image={article.banner}
-          content={article.content}
-          isPublished={article.isPublished}
-          user={article.user}
-        />
-      ))}
-      <div>
-        <Button
-          className={classes.feedButton}
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={fetchMoreArticles}
-        >
-          More
-        </Button>
+        {articles?.map((article) => (
+          <ArticleCard
+            key={article.id}
+            id={article.id}
+            title={article.title}
+            image={article.banner}
+            content={article.content}
+            isPublished={article.isPublished}
+            user={article.user}
+          />
+        ))}
+        <div>
+          <Button
+            className={classes.feedButton}
+            color="primary"
+            variant="contained"
+            size="large"
+            onClick={fetchMoreArticles}
+          >
+            More
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default EditArticles;
