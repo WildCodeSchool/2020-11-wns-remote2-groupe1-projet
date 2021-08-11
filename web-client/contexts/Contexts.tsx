@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
-import NavBar from '../components/layout/NavBar';
+// import NavBar from '../components/layout/NavBar';
 import { GET_ME } from '../src/queries';
 import { GetMe } from '../src/schemaTypes';
 import PropTypes from 'prop-types';
@@ -13,7 +13,7 @@ export const MultiContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ me }}>
-      <NavBar>{children}</NavBar>
+      {/* <NavBar>{children}</NavBar> */}
       {children}
     </UserContext.Provider>
   );
