@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import variables from "./theme.module.scss";
+import { createMuiTheme } from '@material-ui/core/styles';
+import variables from './theme.module.scss';
 
 export const DEFAULT_UI_COLOR = variables.DEFAULT_UI_COLOR;
 export const SPACER_L = variables.SPACER_L;
@@ -10,25 +10,23 @@ const Theme = createMuiTheme({
     primary: {
       main: DEFAULT_UI_COLOR,
     },
-
   },
-  typography:{
-    
-    h1:{
+  typography: {
+    h1: {
       fontSize: '2rem',
     },
-    h2:{
-      fontSize: '1.5rem'
-    }
+    h2: {
+      fontSize: '1.5rem',
+    },
   },
   overrides: {
     MuiCssBaseline: {
-      '@global':{
-        main:{
+      '@global': {
+        main: {
           paddingTop: '4rem',
-          backgroundColor: DEFAULT_BACKGROUND_COLOR
+          backgroundColor: DEFAULT_BACKGROUND_COLOR,
         },
-      }
+      },
     },
     MuiButton: {
       containedPrimary: {
