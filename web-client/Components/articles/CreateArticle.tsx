@@ -9,7 +9,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 import { useRouter } from 'next/router';
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/Contexts';
 import { CREATE_ARTICLE } from '../../src/queries';
 
