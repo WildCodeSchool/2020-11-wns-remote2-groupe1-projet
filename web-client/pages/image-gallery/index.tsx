@@ -4,7 +4,7 @@ import LoginComponent from '../../components/login/Login';
 import { UserContext } from '../../contexts/Contexts';
 
 function ImageGallery() {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   if (!me) {
     return <LoginComponent />;

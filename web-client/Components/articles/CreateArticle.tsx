@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 function CreateArticleComponent(): JSX.Element {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const router = useRouter();
   const classes = useStyles();
@@ -48,7 +48,7 @@ function CreateArticleComponent(): JSX.Element {
       <Typography align={'center'} variant="h2">
         Article Creation
       </Typography>
-      <p>{me?.firstName}</p>
+      <p>{currentUser?.firstName}</p>
       <form
         onSubmit={async (e) => {
           e.preventDefault();

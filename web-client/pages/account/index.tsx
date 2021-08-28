@@ -2,19 +2,16 @@ import React, { useContext } from 'react';
 import { NextPage } from 'next';
 import { UserContext } from '../../contexts/Contexts';
 import LoginComponent from '../../components/login/Login';
+import Dashboard from '../../components/login/Dashboard';
 
 const Account: NextPage = () => {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  if (!me) {
+  if (!currentUser) {
     return <LoginComponent />;
   } else {
-    return <p>{`Hello ${me?.firstName}`}</p>;
+    return <Dashboard />;
   }
 };
 
 export default Account;
-
-// export default function index() {
-//   return <div></div>;
-// }

@@ -14,7 +14,7 @@ interface WithRouterProps {
 const ArticleView: NextPage<WithRouterProps> = ({
   router,
 }: WithRouterProps) => {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   if (!me) {
     return <LoginComponent />;

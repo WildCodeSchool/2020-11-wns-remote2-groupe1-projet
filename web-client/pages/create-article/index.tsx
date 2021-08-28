@@ -6,7 +6,7 @@ import LoginComponent from '../../components/login/Login';
 import { UserContext } from '../../contexts/Contexts';
 
 export default function CreateArticle() {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   if (!me) {
     return <LoginComponent />;

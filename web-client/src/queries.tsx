@@ -97,7 +97,6 @@ export const REGISTER = gql`
     $firstName: String!
     $lastName: String!
     $password: String!
-    $school: String!
     $email: String!
   ) {
     createUser(
@@ -106,7 +105,6 @@ export const REGISTER = gql`
         lastName: $lastName
         password: $password
         email: $email
-        school: $school
       }
     ) {
       firstName
@@ -124,12 +122,11 @@ export const LOGIN_MUTATION = gql`
 `;
 
 export const GET_ME = gql`
-  query GetMe {
-    me {
+  query GetCurrentUser {
+    currentUser {
       id
       firstName
       lastName
-      school
     }
   }
 `;

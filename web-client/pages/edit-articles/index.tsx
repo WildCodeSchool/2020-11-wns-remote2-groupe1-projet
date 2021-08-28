@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditArticles = (): JSX.Element => {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {

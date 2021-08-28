@@ -8,7 +8,7 @@ import Articles from '../components/articles/ArticleList';
 import { UserContext } from '../contexts/Contexts';
 
 const Home: NextPage = () => {
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   if (!me) {
     return <LoginComponent />;
