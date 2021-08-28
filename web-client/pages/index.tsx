@@ -10,7 +10,7 @@ import { UserContext } from '../contexts/Contexts';
 const Home: NextPage = () => {
   const { currentUser } = useContext(UserContext);
 
-  if (!me) {
+  if (!currentUser) {
     return <LoginComponent />;
   } else {
     return (

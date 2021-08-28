@@ -16,7 +16,7 @@ const ArticleView: NextPage<WithRouterProps> = ({
 }: WithRouterProps) => {
   const { currentUser } = useContext(UserContext);
 
-  if (!me) {
+  if (!currentUser) {
     return <LoginComponent />;
   } else {
     return (

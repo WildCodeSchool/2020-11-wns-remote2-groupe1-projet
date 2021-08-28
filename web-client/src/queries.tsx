@@ -121,13 +121,19 @@ export const LOGIN_MUTATION = gql`
   }
 `;
 
-export const GET_ME = gql`
+export const GET_CURRENT_USER = gql`
   query GetCurrentUser {
     currentUser {
       id
       firstName
       lastName
     }
+  }
+`;
+
+export const GET_RECENT_USERS = gql`
+  query GetRecentUsers {
+    recentUsers
   }
 `;
 

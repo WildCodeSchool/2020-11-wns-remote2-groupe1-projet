@@ -8,7 +8,7 @@ import { UserContext } from '../../contexts/Contexts';
 export default function CreateArticle() {
   const { currentUser } = useContext(UserContext);
 
-  if (!me) {
+  if (!currentUser) {
     return <LoginComponent />;
   } else {
     return (

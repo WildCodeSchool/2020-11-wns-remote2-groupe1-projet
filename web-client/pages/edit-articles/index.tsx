@@ -62,7 +62,7 @@ const EditArticles = (): JSX.Element => {
 
   const classes = useStyles();
 
-  if (!me) {
+  if (!currentUser) {
     return <LoginComponent />;
   } else {
     return (

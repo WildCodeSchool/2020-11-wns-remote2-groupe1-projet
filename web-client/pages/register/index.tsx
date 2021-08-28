@@ -32,7 +32,6 @@ const Register = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [school, setSchool] = useState<string>('');
   const [birthDate, setBirthDate] = useState<string>(new Date().toString());
   const [register, { error }] = useMutation(REGISTER, {
     onCompleted: () => {
@@ -60,7 +59,6 @@ const Register = (): JSX.Element => {
               lastName,
               email,
               password,
-              school,
               //birthDate,
             },
           });
@@ -93,15 +91,6 @@ const Register = (): JSX.Element => {
               fullWidth
               type="email"
               error={!!error}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              label="School"
-              value={school}
-              onChange={(e) => setSchool(e.target.value)}
-              fullWidth
-              type="text"
             />
           </Grid>
           {/* <Grid item xs={12} md={6}>

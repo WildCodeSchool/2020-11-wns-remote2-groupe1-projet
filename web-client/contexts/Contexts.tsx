@@ -1,14 +1,14 @@
 import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
 import NavBar from '../components/layout/NavBar';
-import { GET_ME } from '../src/queries';
+import { GET_CURRENT_USER } from '../src/queries';
 import { GetCurrentUser } from '../src/schemaTypes';
 import PropTypes from 'prop-types';
 
 export const UserContext = createContext<any>({});
 
 export const MultiContextProvider = ({ children }) => {
-  const { data } = useQuery<GetCurrentUser>(GET_ME);
+  const { data } = useQuery<GetCurrentUser>(GET_CURRENT_USER);
   const currentUser = data?.currentUser;
 
   return (

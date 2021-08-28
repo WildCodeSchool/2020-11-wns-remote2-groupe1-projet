@@ -97,7 +97,7 @@ const NavBar = (props: Props) => {
   const { window } = props;
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { me } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -163,8 +163,10 @@ const NavBar = (props: Props) => {
                   <Button className={classes.link}>Image Gallery</Button>
                 </Link>
               </div>
-              <Link href={me ? '/account' : '/login'}>
-                <Button color="inherit">{me ? 'Account' : 'Login'}</Button>
+              <Link href={currentUser ? '/account' : '/login'}>
+                <Button color="inherit">
+                  {currentUser ? 'Account' : 'Login'}
+                </Button>
               </Link>
             </div>
           </Toolbar>

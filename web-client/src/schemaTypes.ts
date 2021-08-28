@@ -218,6 +218,19 @@ export interface GetCurrentUser {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetRecentUsers
+// ====================================================
+
+export interface GetRecentUsers {
+  recentUsers: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UploadImage
 // ====================================================
 

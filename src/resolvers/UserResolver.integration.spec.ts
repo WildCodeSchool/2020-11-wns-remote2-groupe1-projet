@@ -3,7 +3,7 @@ import { createConnection, getConnection } from 'typeorm';
 
 import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
-import { User, UserRole } from '../models/User';
+import { User } from '../models/User';
 
 describe('User resolvers', () => {
   let testClient: createTestClient.SuperTest<createTestClient.Test>;
@@ -34,8 +34,6 @@ describe('User resolvers', () => {
         firstName: 'Laure',
         lastName: 'Pinçon',
         birthDate: '10/10/1980',
-        school: 'Ecole de Reims',
-        role: UserRole.STUDENT,
       });
       await user1.save();
 
@@ -45,8 +43,6 @@ describe('User resolvers', () => {
         firstName: 'Pierre',
         lastName: 'Roulle',
         birthDate: '10/10/1984',
-        school: 'Ecole de Lille',
-        role: UserRole.STUDENT,
       });
       await user2.save();
 
@@ -75,7 +71,7 @@ describe('User resolvers', () => {
     });
   });
 
-  // describe('query me', () => {
+  // describe('query  currentUser', () => {
   //   let user: User;
 
   //   beforeEach(async () => {
@@ -85,8 +81,6 @@ describe('User resolvers', () => {
   //       firstName: 'Laure',
   //       lastName: 'Pinçon',
   //       birthDate: '10/10/1980',
-  //       school: 'Ecole de Reims',
-  //       role: UserRole.STUDENT,
   //     });
   //     await user.save();
   //   });
@@ -95,7 +89,7 @@ describe('User resolvers', () => {
   //     it('returns error', async () => {
   //       const response = await testClient.post('/graphql').send({
   //         query: `{
-  //           me {
+  //            currentUser {
   //             email
   //           }
   //         }
@@ -116,7 +110,7 @@ describe('User resolvers', () => {
   //         .set('Cookie', [`sessionId=${userSession.uuid}`])
   //         .send({
   //           query: `{
-  //               me {
+  //                currentUser {
   //                 email
   //               }
   //             }
@@ -124,7 +118,7 @@ describe('User resolvers', () => {
   //         });
 
   //       expect(JSON.parse(response.text).data).toEqual({
-  //         me: {
+  //          currentUser: {
   //           email: user.email,
   //         },
   //       });
@@ -143,8 +137,6 @@ describe('User resolvers', () => {
   //             firstName: "Arman"
   //             lastName: "Durand"
   //             birthDate: '10/10/1980',
-  //             school: 'Ecole de Rennes',
-  //             role: UserRole.STUDENT,
   //           }
   //         ) {
   //           firstName
@@ -191,8 +183,6 @@ describe('User resolvers', () => {
   //         firstName: 'Laure',
   //         lastName: 'Pinçon',
   //         birthDate: '10/10/1980',
-  //         school: 'Ecole de Reims',
-  //         role: UserRole.STUDENT,
   //       });
   //       await user.save();
   //     });
