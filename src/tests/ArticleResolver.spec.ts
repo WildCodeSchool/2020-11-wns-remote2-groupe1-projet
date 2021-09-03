@@ -5,9 +5,7 @@ import { getExpressServer } from '../express-server';
 import { Article } from '../models/Article';
 import UserSession from '../models/UserSession';
 import { User } from '../models/User';
-import { Classroom } from '../models/Classroom';
-import { Conversation } from '../models/Conversation';
-import { Message } from '../models/Message';
+// import { Message } from '../models/Message';
 
 describe('Article resolvers', () => {
   let testClient;
@@ -19,7 +17,7 @@ describe('Article resolvers', () => {
       type: 'sqlite',
       database: ':memory:',
       dropSchema: true,
-      entities: [Article, User, UserSession, Classroom, Conversation, Message],
+      entities: [Article, User, UserSession],
       synchronize: true,
       logging: false,
     });

@@ -3,11 +3,10 @@ import { createConnection, getConnection } from 'typeorm';
 
 import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
-import { User, UserRole } from '../models/User';
+import { User } from '../models/User';
 import { Article } from '../models/Article';
-import { Classroom } from '../models/Classroom';
-import { Conversation } from '../models/Conversation';
-import { Message } from '../models/Message';
+// import { Conversation } from '../models/Conversation';
+// import { Message } from '../models/Message';
 
 describe('User resolvers', () => {
   let testClient;
@@ -19,7 +18,7 @@ describe('User resolvers', () => {
       type: 'sqlite',
       database: ':memory:',
       dropSchema: true,
-      entities: [Article, User, UserSession, Classroom, Conversation, Message],
+      entities: [Article, User, UserSession],
       synchronize: true,
       logging: false,
     });
@@ -40,7 +39,6 @@ describe('User resolvers', () => {
         firstName: 'Laure',
         lastName: 'Pinçon',
         birthDate: '10/10/1980',
-        school: 'Ecole de Reims',
       });
       await user1.save();
 
@@ -50,7 +48,6 @@ describe('User resolvers', () => {
         firstName: 'Pierre',
         lastName: 'Roulle',
         birthDate: '10/10/1984',
-        school: 'Ecole de Lille',
       });
       await user2.save();
 
@@ -89,7 +86,6 @@ describe('User resolvers', () => {
         firstName: 'Laure',
         lastName: 'Pinçon',
         birthDate: '10/10/1980',
-        school: 'Ecole de Reims',
       });
       await user.save();
     });

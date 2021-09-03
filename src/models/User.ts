@@ -15,9 +15,9 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
-import { Comment } from './Comment';
-import { Conversation } from './Conversation';
-import { Message } from './Message';
+// import { Comment } from './Comment';
+// import { Conversation } from './Conversation';
+// import { Message } from './Message';
 import UserSession from './UserSession';
 
 @Entity()

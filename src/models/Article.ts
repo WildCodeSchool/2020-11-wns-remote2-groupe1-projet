@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
-import { Comment } from './Comment';
+// import { Comment } from './Comment';
 
 @Entity()
 @ObjectType()
