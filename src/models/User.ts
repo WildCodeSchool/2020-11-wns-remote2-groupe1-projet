@@ -15,9 +15,9 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
-import { Comment } from './Comment';
-import { Conversation } from './Conversation';
-import { Message } from './Message';
+// import { Comment } from './Comment';
+// import { Conversation } from './Conversation';
+// import { Message } from './Message';
 import UserSession from './UserSession';
 
 @Entity()
@@ -80,14 +80,14 @@ export class User extends BaseEntity {
   @OneToMany(() => Article, (article) => article.user)
   articles?: Article[];
 
-  @ManyToOne(() => Comment, (comment) => comment.user)
-  comments?: Comment[];
+  // @ManyToOne(() => Comment, (comment) => comment.user)
+  // comments?: Comment[];
 
-  @ManyToMany(() => Conversation, (conversation) => conversation.users)
-  conversations?: Conversation[];
+  // @ManyToMany(() => Conversation, (conversation) => conversation.users)
+  // conversations?: Conversation[];
 
-  @ManyToOne(() => Message, (message) => message.user)
-  messages?: Message[];
+  // @ManyToOne(() => Message, (message) => message.user)
+  // messages?: Message[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {
