@@ -6,7 +6,7 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  webpack5: false,
+  future: { webpack5: true },
 
   async rewrites() {
     return [
