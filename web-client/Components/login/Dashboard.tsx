@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useContext } from 'react';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../Contexts';
 import { GET_RECENT_USERS } from '../../src/queries';
 import { GetRecentUsers } from '../../src/schemaTypes';
 

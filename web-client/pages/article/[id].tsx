@@ -4,7 +4,7 @@ import Comment from '../../components/articles/Comment';
 import { Container, Box, Link, Button } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../../components/Contexts';
 import LoginComponent from '../../components/login/Login';
 
 interface WithRouterProps {

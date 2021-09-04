@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { NextPage } from 'next';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../../components/Contexts';
 import LoginComponent from '../../components/login/Login';
 import Dashboard from '../../components/login/Dashboard';
 

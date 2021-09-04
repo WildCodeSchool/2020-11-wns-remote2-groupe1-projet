@@ -10,7 +10,7 @@ import Switch from '@material-ui/core/Switch';
 
 import { useRouter } from 'next/router';
 import React, { useState, useContext } from 'react';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../Contexts';
 import { CREATE_ARTICLE } from '../../src/queries';
 
 const useStyles = makeStyles({

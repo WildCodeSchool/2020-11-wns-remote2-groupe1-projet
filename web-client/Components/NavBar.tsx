@@ -18,8 +18,8 @@ import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { DEFAULT_UI_COLOR } from '../styles/theme';
-import { UserContext } from '../contexts/Contexts';
+import { DEFAULT_UI_COLOR } from '../../styles/theme';
+import { UserContext } from '../Contexts';
 
 const drawerWidth = 240;
 

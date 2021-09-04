@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../styles/theme';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { MultiContextProvider } from '../contexts/Contexts';
+import { MultiContextProvider } from '../components/Contexts';
 import classes from './style.module.scss';
 
 import { createUploadLink } from 'apollo-upload-client';
