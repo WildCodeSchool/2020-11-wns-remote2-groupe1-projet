@@ -92,7 +92,7 @@ function HideOnScroll(props: Props) {
   );
 }
 
-const NavBar = (props: Props) => {
+const NavBarComponent = (props: Props) => {
   const classes = useStyles();
   const { window } = props;
   const theme = useTheme();
@@ -195,4 +195,4 @@ const NavBar = (props: Props) => {
   );
 };
 
-export default NavBar;
+export default NavBarComponent;
