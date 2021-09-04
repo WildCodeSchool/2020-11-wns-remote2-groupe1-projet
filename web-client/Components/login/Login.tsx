@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-const LoginComponent = () => {
+function LoginComponent() {
   const router = useRouter();
   const classes = useStyles();
 
@@ -80,5 +80,5 @@ const LoginComponent = () => {
       </form>
     </Paper>
   );
-};
+}
 export default LoginComponent;
