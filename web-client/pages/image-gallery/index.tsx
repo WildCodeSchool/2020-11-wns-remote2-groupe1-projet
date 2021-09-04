@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import ImageGalleryComponent from '../../components/image-gallery/imageGallery';
 import LoginComponent from '../../components/login/Login';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../../components/Contexts';
 
 function ImageGallery() {
   const { currentUser } = useContext(UserContext);

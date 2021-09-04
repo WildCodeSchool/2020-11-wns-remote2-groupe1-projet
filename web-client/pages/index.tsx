@@ -5,7 +5,7 @@ import LoginComponent from '../components/login/Login';
 import Head from 'next/head';
 import { NextPage } from 'next/types';
 import Articles from '../components/articles/ArticleList';
-import { UserContext } from '../contexts/Contexts';
+import { UserContext } from '../components/Contexts';
 
 const Home: NextPage = () => {
   const { currentUser } = useContext(UserContext);

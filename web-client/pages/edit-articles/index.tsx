@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from '../../src/queries';
-import { UserContext } from '../../contexts/Contexts';
+import { UserContext } from '../../components/Contexts';
 import LoginComponent from '../../components/login/Login';
 
 const useStyles = makeStyles((theme) => ({
