@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { useQuery } from '@apollo/client';
-import NavBarComponent from '../components/layout/NavBar';
+import NavBarComponent from '../components/NavBar';
 import { GET_CURRENT_USER } from '../src/queries';
 import { GetCurrentUser } from '../src/schemaTypes';
 import PropTypes from 'prop-types';
