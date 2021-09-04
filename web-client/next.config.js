@@ -6,11 +6,8 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  resolve: {
-    fallback: {
-      util: require.resolve("util/")
-    }
-},
+  webpack5: false,
+
   async rewrites() {
     return [
       {
