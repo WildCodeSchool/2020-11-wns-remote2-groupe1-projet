@@ -6,6 +6,11 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  resolve: {
+    fallback: {
+      util: require.resolve("util/")
+    }
+},
   async rewrites() {
     return [
       {
