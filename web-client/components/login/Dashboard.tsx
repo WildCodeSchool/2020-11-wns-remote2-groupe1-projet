@@ -61,9 +61,7 @@ function Dashboard() {
           Name : <span>{currentUser.firstName}</span>{' '}
           <span>{currentUser.lastName}</span>
         </p>
-        <Button color="primary" variant="contained" size="medium">
-          Log Out
-        </Button>
+
         <h2>Users Overview</h2>
         <div>{loading ? '…' : data?.recentUsers}</div>
 
