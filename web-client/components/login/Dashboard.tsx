@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
-import { makeStyles } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/Contexts';
 import { GET_ARTICLES, GET_RECENT_USERS } from '../../src/queries';
 import { GetRecentUsers } from '../../src/schemaTypes';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -18,11 +19,9 @@ const useStyles = makeStyles((theme) => ({
   },
   contentContainer: {
     margin: 'auto',
+    paddingTop: '1rem',
     maxWidth: '30%',
-  },
-  feedButton: {
-    display: 'block',
-    margin: '2rem auto 2rem auto',
+    textAlign: 'center',
   },
 }));
 
@@ -53,15 +52,18 @@ function Dashboard() {
 
   return (
     <div className={classes.root}>
+      <h1
+        className={classes.dashboardTitle}
+      >{`${currentUser?.firstName}'s dashboard`}</h1>
       <div className={classes.contentContainer}>
-        <h1
-          className={classes.dashboardTitle}
-        >{`${currentUser?.firstName}'s dashboard`}</h1>
         <h2>Account Information</h2>
         <p>
           Name : <span>{currentUser.firstName}</span>{' '}
           <span>{currentUser.lastName}</span>
         </p>
+        <Button color="primary" variant="contained" size="medium">
+          Log Out
+        </Button>
         <h2>Users Overview</h2>
         <div>{loading ? '…' : data?.recentUsers}</div>
 
