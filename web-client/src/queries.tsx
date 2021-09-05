@@ -153,3 +153,9 @@ export const GET_IMAGES = gql`
     }
   }
 `;
+
+export const DELETE_IMAGE = gql`
+  mutation DeleteImage($id: String!) {
+    deleteImage(id: $id)
+  }
+`;

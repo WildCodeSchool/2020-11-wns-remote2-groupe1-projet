@@ -18,4 +18,15 @@ export default class ImageResolver {
     const { filename, stream } = file;
     return saveAndWriteImageToFile(filename, stream);
   }
+  @Mutation(() => Boolean)
+  async deleteImage(@Arg('id') id: string): Promise<boolean> {
+    const image = await Image.findOne({ where: { id } });
+
+    if (!image) {
+      throw new Error(`The image with id: ${id} does not exist!`);
+    }
+
+    await image.remove();
+    return true;
+  }
 }
