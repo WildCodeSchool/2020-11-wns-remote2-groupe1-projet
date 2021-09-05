@@ -187,7 +187,6 @@ export interface CreateUserVariables {
   firstName: string;
   lastName: string;
   password: string;
-  school: string;
   email: string;
 }
 
@@ -221,19 +220,31 @@ export interface LoginVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetMe
+// GraphQL query operation: GetCurrentUser
 // ====================================================
 
-export interface GetMe_me {
+export interface GetCurrentUser_currentUser {
   __typename: "User";
   id: string;
   firstName: string;
   lastName: string;
-  school: string;
 }
 
-export interface GetMe {
-  me: GetMe_me;
+export interface GetCurrentUser {
+  currentUser: GetCurrentUser_currentUser;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetRecentUsers
+// ====================================================
+
+export interface GetRecentUsers {
+  recentUsers: string;
 }
 
 /* tslint:disable */

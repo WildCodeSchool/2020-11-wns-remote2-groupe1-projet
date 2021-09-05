@@ -10,12 +10,6 @@ import {
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
 
-export enum UserRole {
-  GHOST = 'ghost',
-  STUDENT = 'student',
-  TEACHER = 'teacher',
-  ADMIN = 'admin',
-}
 @Entity()
 @ObjectType()
 export default class UserSession extends BaseEntity {

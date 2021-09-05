@@ -9,14 +9,14 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:prettier/recommended',
-    'prettier/react',
+    'prettier',
     'plugin:jest/recommended',
   ],
   plugins: ['@typescript-eslint', 'react', 'prettier', 'jest'],

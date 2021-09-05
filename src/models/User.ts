@@ -11,27 +11,14 @@ import {
   OneToMany,
   UpdateDateColumn,
   BeforeInsert,
+  MoreThanOrEqual,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
-import { Comment } from './Comment';
-import { Conversation } from './Conversation';
-import { Message } from './Message';
-import { Classroom } from './Classroom';
+// import { Comment } from './Comment';
+// import { Conversation } from './Conversation';
+// import { Message } from './Message';
 import UserSession from './UserSession';
-import { registerEnumType } from 'type-graphql';
-
-export enum UserRole {
-  GHOST = 'ghost',
-  STUDENT = 'student',
-  TEACHER = 'teacher',
-  ADMIN = 'admin',
-}
-
-registerEnumType(UserRole, {
-  name: 'UserRole', // this one is mandatory
-  description: 'User role in app', // this one is optional
-});
 
 @Entity()
 @ObjectType()
@@ -55,10 +42,6 @@ export class User extends BaseEntity {
 
   @Column()
   @Field(() => String)
-  school!: string;
-
-  @Column()
-  @Field(() => String)
   password!: string;
 
   @Column({ nullable: true })
@@ -69,14 +52,6 @@ export class User extends BaseEntity {
   @Column()
   @Field(() => String)
   email!: string;
-
-  @Column({
-    type: 'enum',
-    enum: UserRole,
-    default: UserRole.STUDENT,
-  })
-  @Field(() => UserRole)
-  role!: UserRole;
 
   @Column({ nullable: true })
   @Field(() => String)
@@ -96,23 +71,23 @@ export class User extends BaseEntity {
   @Field(() => Boolean)
   isActive!: boolean;
 
+  // @ManyToOne(() => User, (user) => user.articles)
+  // user!: User;
+  // @ManyToOne(() => Article)
+  // @Field(() => Article)
+  // article!: Article;
+
   @OneToMany(() => Article, (article) => article.user)
   articles?: Article[];
 
-  @ManyToOne(() => Comment, (comment) => comment.user)
-  comments?: Comment[];
+  // @ManyToOne(() => Comment, (comment) => comment.user)
+  // comments?: Comment[];
 
-  @ManyToMany(() => Conversation, (conversation) => conversation.users)
-  conversations?: Conversation[];
+  // @ManyToMany(() => Conversation, (conversation) => conversation.users)
+  // conversations?: Conversation[];
 
-  @ManyToOne(() => Message, (message) => message.user)
-  messages?: Message[];
-
-  @ManyToMany(() => Classroom, (classroom) => classroom.teachers)
-  classrooms?: Classroom[];
-
-  @OneToMany(() => Classroom, (classroom) => classroom.students)
-  classroom?: Classroom;
+  // @ManyToOne(() => Message, (message) => message.user)
+  // messages?: Message[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {
@@ -129,3 +104,26 @@ export async function getUserFromSessionId(
   const user = userSession ? userSession.user : null;
   return user;
 }
+
+export const getRecentUsers = async (): Promise<string> => {
+  const now = new Date(Date.now());
+  now.setHours(now.getHours() - 24);
+
+  const users = await User.find({
+    where: { createdAt: MoreThanOrEqual(now) },
+  });
+  switch (users.length) {
+    case 0:
+      return 'Nobody registered today.';
+    case 1:
+      return `${users[0].firstName} registered today.`;
+    case 2:
+      return `${users[0].firstName} and ${users[1].firstName} registered today.`;
+    case 3:
+      return `${users[0].firstName}, ${users[1].firstName} and ${users[2].firstName} registered today.`;
+    default:
+      return `${users[0].firstName}, ${users[1].firstName} and ${
+        users.slice(2).length
+      } others registered today.`;
+  }
+};

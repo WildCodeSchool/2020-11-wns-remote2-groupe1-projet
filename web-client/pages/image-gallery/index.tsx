@@ -1,12 +1,20 @@
-import React from 'react';
-import ImageGalleryComponent from '../../Components/image-gallery/imageGallery';
+import React, { useContext } from 'react';
+import ImageGalleryComponent from '../../components/image-gallery/imageGallery';
+import LoginComponent from '../../components/login/Login';
+import { UserContext } from '../../contexts/Contexts';
 
 function ImageGallery() {
-  return (
-    <div>
-      <ImageGalleryComponent />
-    </div>
-  );
+  const { currentUser } = useContext(UserContext);
+
+  if (!currentUser) {
+    return <LoginComponent />;
+  } else {
+    return (
+      <div>
+        <ImageGalleryComponent />
+      </div>
+    );
+  }
 }
 
 export default ImageGallery;

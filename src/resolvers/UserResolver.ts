@@ -3,7 +3,7 @@ import { Resolver, Query, Ctx, Mutation, Arg } from 'type-graphql';
 import CreateUserInput from '../inputs/user/CreateUserInput';
 import CreateSessionInput from '../inputs/session/CreateSessionInput';
 
-import { User } from '../models/User';
+import { getRecentUsers, User } from '../models/User';
 import UserSession from '../models/UserSession';
 
 @Resolver()
@@ -14,7 +14,7 @@ export default class UserResolver {
   }
 
   @Query(() => User)
-  me(@Ctx() { user }: { user: User | null }): User {
+  currentUser(@Ctx() { user }: { user: User | null }): User {
     if (!user) {
       throw Error('You are not authenticated.');
     }
@@ -27,6 +27,12 @@ export default class UserResolver {
     await user.save();
     return user;
   }
+
+  @Query(() => String)
+  async recentUsers(): Promise<string> {
+    return getRecentUsers();
+  }
+
   @Mutation(() => User)
   async createSession(
     @Arg('input') input: CreateSessionInput,
@@ -36,7 +42,7 @@ export default class UserResolver {
     const { email, password } = input;
     const user = await User.findOne({ email });
     const authenticationError = new Error('Incorrect email and/or password.');
-    
+
     if (!user) {
       throw authenticationError;
     }
