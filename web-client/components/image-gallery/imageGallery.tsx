@@ -57,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageGalleryComponent = (): JSX.Element => {
   const classes = useStyles();
+  const baseUrl =
+    process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000';
 
   const { loading, error, data } = useQuery<GetImages>(GET_IMAGES);
 
@@ -126,7 +128,7 @@ const ImageGalleryComponent = (): JSX.Element => {
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`http://localhost:4000/public/media/images/${id}${extension}`}
+                    src={`${baseUrl}/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}
