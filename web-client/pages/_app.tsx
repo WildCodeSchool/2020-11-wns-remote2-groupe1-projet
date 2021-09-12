@@ -10,7 +10,7 @@ import {
 import { createUploadLink } from 'apollo-upload-client';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { MultiContextProvider } from '../components/contexts/contexts';
+import { MultiContextProvider } from '../contexts/Contexts';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
