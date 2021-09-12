@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Card, CardContent } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
 import { GetImages, UploadImage } from '../../src/schemaTypes';
-import { GET_IMAGES, UPLOAD_IMAGE } from '../../src/queries';
+import { GET_IMAGES, UPLOAD_IMAGE, DELETE_IMAGE } from '../../src/queries';
+import router from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,10 +57,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ImageGalleryComponent = (): JSX.Element => {
   const classes = useStyles();
+  const baseUrl =
+    process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000';
 
   const { loading, error, data } = useQuery<GetImages>(GET_IMAGES);
 
   const [mutate] = useMutation<UploadImage>(UPLOAD_IMAGE);
+  const [deleteImage] = useMutation(DELETE_IMAGE, {
+    onCompleted: () => {
+      router.push('/image-gallery');
+    },
+  });
 
   const uploadImage = ({
     target: {
@@ -120,13 +128,16 @@ const ImageGalleryComponent = (): JSX.Element => {
                 <CardContent className={classes.cardContent}>
                   <img
                     className={classes.image}
-                    src={`http://localhost:4000/public/media/images/${id}${extension}`}
+                    src={`${baseUrl}/public/media/images/${id}${extension}`}
                   />
                   <Button
                     className={classes.deleteBtn}
                     color="primary"
                     variant="contained"
                     size="small"
+                    onClick={(e) => {
+                      deleteImage({ variables: { id: id } });
+                    }}
                   >
                     Delete
                   </Button>
