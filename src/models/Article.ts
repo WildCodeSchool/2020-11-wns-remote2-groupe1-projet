@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
-// import { Comment } from './Comment';
+import { Comment } from './Comment';
 
 @Entity()
 @ObjectType()
@@ -47,6 +47,6 @@ export class Article extends BaseEntity {
   @Field(() => User)
   user!: User;
 
-  // @OneToMany(() => Comment, (comment) => comment.article)
-  // comments?: Comment;
+  @OneToMany(() => Comment, (comment) => comment)
+  comments?: Comment[];
 }

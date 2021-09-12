@@ -45,8 +45,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         minTimeout: 10000,
       },
     });
-  console.log(wsLink);
-  console.log(webSocketProtocolAndHost);
 
   const splitLink =
     process.browser &&

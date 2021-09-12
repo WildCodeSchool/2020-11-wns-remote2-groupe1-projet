@@ -58,6 +58,26 @@ export const CREATE_ARTICLE = gql`
   }
 `;
 
+export const CREATE_COMMENT = gql`
+  # Create comment
+  mutation CreateComment($content: String!) {
+    createComment(data: { content: $content }) {
+      id
+      content
+    }
+  }
+`;
+
+export const GET_COMMENTS = gql`
+  # Get Comments
+  query GetComments {
+    comments {
+      id
+      content
+    }
+  }
+`;
+
 export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
   subscription SubscribeToNewArticle {
     newArticle {

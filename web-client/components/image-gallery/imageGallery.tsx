@@ -75,8 +75,6 @@ const ImageGalleryComponent = (): JSX.Element => {
       files: [file],
     },
   }: any) => {
-    console.log({ file, validity });
-
     validity.valid &&
       mutate({
         variables: { file },

@@ -122,7 +122,6 @@ export default class ArticleResolver {
   newArticle(
     @Root() notificationPayload: NewArticleNotificationPayload
   ): Article {
-    console.log('ok');
     return notificationPayload.article;
   }
 }
