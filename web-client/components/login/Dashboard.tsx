@@ -49,7 +49,6 @@ function Dashboard() {
     isPublished: boolean;
     user: any;
   }> = articleData?.articles || [];
-
   return (
     <div className={classes.root}>
       <h1

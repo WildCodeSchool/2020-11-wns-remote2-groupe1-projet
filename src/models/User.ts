@@ -108,7 +108,6 @@ export async function getUserFromSessionId(
 export const getRecentUsers = async (): Promise<string> => {
   const now = new Date(Date.now());
   now.setHours(now.getHours() - 24);
-
   const users = await User.find({
     where: { createdAt: MoreThanOrEqual(now) },
   });
