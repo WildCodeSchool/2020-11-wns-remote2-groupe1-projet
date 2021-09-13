@@ -41,7 +41,7 @@ export class Comment extends BaseEntity {
   @Field(() => User)
   user!: User;
 
-  @ManyToOne(() => Article)
-  @Field(() => Article)
-  article!: Article;
+  // @ManyToOne(() => Article)
+  // @Field(() => Article)
+  // article!: Article;
 }

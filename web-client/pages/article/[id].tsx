@@ -15,6 +15,7 @@ const ArticleView: NextPage<WithRouterProps> = ({
   router,
 }: WithRouterProps) => {
   const { currentUser } = useContext(UserContext);
+  const id = router?.query?.id;
 
   if (!currentUser) {
     return <LoginComponent />;
@@ -28,7 +29,6 @@ const ArticleView: NextPage<WithRouterProps> = ({
           <Box mt={2}>
             <Article router={router} />
           </Box>
-          <Comment />
         </Container>
       </>
     );

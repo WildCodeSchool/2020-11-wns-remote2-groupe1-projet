@@ -5,6 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { GET_ARTICLE } from '../../src/queries';
 import { getArticleById } from '../../src/schemaTypes';
+import Comment from './Comment';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,40 +42,43 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
       'https://rent-my-boat-nice.fr/wp-content/uploads/2020/08/placeholder.png';
 
   return (
-    <Box m={2}>
-      <div>
-        <img src={banner} className={classes.media} height="250px"></img>
-        <h1>{article?.title}</h1>
-        <p>written by {article?.user?.firstName}</p>
-        <p className={classes.dateBlock}>
-          <span className={classes.dateUnit}>
-            Created at :
-            <span>
-              {new Date(article?.createdAt).toLocaleString('fr', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}{' '}
+    <div>
+      <Box m={2}>
+        <div>
+          <img src={banner} className={classes.media} height="250px"></img>
+          <h1>{article?.title}</h1>
+          <p>written by {article?.user?.firstName}</p>
+          <p className={classes.dateBlock}>
+            <span className={classes.dateUnit}>
+              Created at :
+              <span>
+                {new Date(article?.createdAt).toLocaleString('fr', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: 'numeric',
+                })}{' '}
+              </span>
             </span>
-          </span>
-          <span className={classes.dateUnit}>
-            Updated at :
-            <span>
-              {new Date(article?.updatedAt).toLocaleString('fr', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}{' '}
+            <span className={classes.dateUnit}>
+              Updated at :
+              <span>
+                {new Date(article?.updatedAt).toLocaleString('fr', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: 'numeric',
+                })}{' '}
+              </span>
             </span>
-          </span>
-        </p>
-        <p>{article?.content}</p>
-      </div>
-    </Box>
+          </p>
+          <p>{article?.content}</p>
+        </div>
+      </Box>
+      <Comment id={id} />
+    </div>
   );
 };
 

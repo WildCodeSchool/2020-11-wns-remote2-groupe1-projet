@@ -47,6 +47,6 @@ export class Article extends BaseEntity {
   @Field(() => User)
   user!: User;
 
-  @OneToMany(() => Comment, (comment) => comment)
-  comments?: Comment[];
+  // @OneToMany(() => Comment, (comment) => comment)
+  // comments?: Comment[];
 }

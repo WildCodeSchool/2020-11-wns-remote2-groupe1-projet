@@ -2,6 +2,7 @@
 // Here we define our solvers with TypeScript classes and decorators.
 // TypeGraphQL will generate the schema for us.
 
+import { Article } from '../models/Article';
 import { User } from 'src/models/User';
 import { Resolver, Query, Mutation, Arg, Ctx } from 'type-graphql';
 import CreateCommentInput from '../inputs/comments/CreateCommentInput';
@@ -26,18 +27,25 @@ export default class CommentResolver {
     if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
     return comment;
   }
+
   // query to create a new comment
   @Mutation(() => Comment)
   async createComment(
     @Ctx() { user }: { user: User | null },
     @Arg('data') data: CreateCommentInput
+    // @Arg('article_id') article_id: string
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    const commment = Comment.create(data);
-    await commment.save();
-    return commment;
+    const comment = Comment.create(data);
+    comment.user = user;
+    // const article = await Article.findOne(article_id);
+    // if (article) {
+    //   comment.article = article;
+    // }
+    await comment.save();
+    return comment;
   }
   // query to update a comment
   @Mutation(() => Comment)

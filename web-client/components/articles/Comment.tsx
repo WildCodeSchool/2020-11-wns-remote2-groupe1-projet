@@ -16,11 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Comment = (article): JSX.Element => {
+const Comment = (id): JSX.Element => {
   const [content, setContent] = useState<string>('');
 
   const { data: commentData, refetch } = useQuery(GET_COMMENTS, {
-    variables: {},
+    variables: {
+      // article_id: id,
+    },
   });
   const comments = commentData?.comments;
 
@@ -30,6 +32,7 @@ const Comment = (article): JSX.Element => {
     e.preventDefault();
     await addComment({
       variables: {
+        // article_id: id,
         content,
       },
     });
@@ -37,7 +40,7 @@ const Comment = (article): JSX.Element => {
   };
 
   const classes = useStyles();
-
+  console.log(comments);
   return (
     <div>
       <form onSubmit={onSubmit} className={classes.commentField}>
