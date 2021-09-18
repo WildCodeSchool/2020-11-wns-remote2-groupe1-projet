@@ -30,6 +30,14 @@ export const GET_ARTICLES = gql`
         id
         firstName
       }
+      # comments {
+      #   id
+      #   content
+      #   user {
+      #     id
+      #     firstName
+      #   }
+      # }
     }
   }
 `;
@@ -74,6 +82,14 @@ export const GET_COMMENTS = gql`
     comments {
       id
       content
+      user {
+        id
+        firstName
+      }
+      # article {
+      #   id
+      #   title
+      # }
     }
   }
 `;

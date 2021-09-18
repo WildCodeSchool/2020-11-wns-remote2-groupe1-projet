@@ -38,10 +38,10 @@ export class Comment extends BaseEntity {
   updatedAt?: Date;
 
   @ManyToOne(() => User)
-  @Field(() => User)
+  @Field((type) => User)
   user!: User;
 
-  // @ManyToOne(() => Article)
+  // @ManyToOne(() => Article, (article) => article.comments)
   // @Field(() => Article)
   // article!: Article;
 }

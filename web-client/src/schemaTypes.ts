@@ -102,6 +102,55 @@ export interface CreateArticleVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateComment
+// ====================================================
+
+export interface CreateComment_createComment {
+  __typename: "Comment";
+  id: string;
+  content: string;
+}
+
+export interface CreateComment {
+  createComment: CreateComment_createComment;
+}
+
+export interface CreateCommentVariables {
+  content: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetComments
+// ====================================================
+
+export interface GetComments_comments_user {
+  __typename: "User";
+  id: string;
+  firstName: string;
+}
+
+export interface GetComments_comments {
+  __typename: "Comment";
+  id: string;
+  content: string;
+  user: GetComments_comments_user;
+}
+
+export interface GetComments {
+  comments: GetComments_comments[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL subscription operation: SubscribeToNewArticle
 // ====================================================
 
@@ -286,6 +335,23 @@ export interface GetImages_images {
 
 export interface GetImages {
   images: GetImages_images[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: DeleteImage
+// ====================================================
+
+export interface DeleteImage {
+  deleteImage: boolean;
+}
+
+export interface DeleteImageVariables {
+  id: string;
 }
 
 /* tslint:disable */

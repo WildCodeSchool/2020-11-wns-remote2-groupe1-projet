@@ -16,8 +16,6 @@ import {
 import { ObjectType, Field, ID } from 'type-graphql';
 import { Article } from './Article';
 import { Comment } from './Comment';
-// import { Conversation } from './Conversation';
-// import { Message } from './Message';
 import UserSession from './UserSession';
 
 @Entity()
@@ -71,23 +69,13 @@ export class User extends BaseEntity {
   @Field(() => Boolean)
   isActive!: boolean;
 
-  // @ManyToOne(() => User, (user) => user.articles)
-  // user!: User;
-  // @ManyToOne(() => Article)
-  // @Field(() => Article)
-  // article!: Article;
-
   @OneToMany(() => Article, (article) => article.user)
+  @Field(() => Article)
   articles?: Article[];
 
-  @ManyToOne(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.user)
+  @Field(() => Comment)
   comments?: Comment[];
-
-  // @ManyToMany(() => Conversation, (conversation) => conversation.users)
-  // conversations?: Conversation[];
-
-  // @ManyToOne(() => Message, (message) => message.user)
-  // messages?: Message[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

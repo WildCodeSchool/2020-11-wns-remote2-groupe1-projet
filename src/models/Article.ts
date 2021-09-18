@@ -43,10 +43,11 @@ export class Article extends BaseEntity {
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user) => user.articles)
   @Field(() => User)
   user!: User;
 
-  // @OneToMany(() => Comment, (comment) => comment)
+  // @OneToMany(() => Comment, (comment) => comment.article, { eager: true })
+  // @Field(() => [Comment])
   // comments?: Comment[];
 }

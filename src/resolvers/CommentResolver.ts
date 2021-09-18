@@ -1,7 +1,3 @@
-// Revolvers are collections of functions that are mapped into a single object.
-// Here we define our solvers with TypeScript classes and decorators.
-// TypeGraphQL will generate the schema for us.
-
 import { Article } from '../models/Article';
 import { User } from 'src/models/User';
 import { Resolver, Query, Mutation, Arg, Ctx } from 'type-graphql';
@@ -16,14 +12,36 @@ export default class CommentResolver {
   comments(@Ctx() { user }: { user: User | null }): Promise<Comment[]> {
     if (!user) {
       throw Error('You are not authenticated.');
-    } else {
-      return Comment.find();
+    }
+    // if (!article) {
+    //   throw Error('There is no article with this id');
+    // }
+    else {
+      const comments = Comment.find({
+        relations: [
+          'user',
+          // 'article'
+        ],
+      });
+      return comments;
     }
   }
   // query to fetch an individual comment
   @Query(() => Comment)
-  async comment(@Arg('id') id: string): Promise<Comment | undefined> {
-    const comment = await Comment.findOne({ where: { id } });
+  async comment(
+    @Ctx() { user }: { user: User | null },
+    @Arg('id') id: string
+  ): Promise<Comment | undefined> {
+    const comment = await Comment.findOne({
+      where: { id },
+      relations: [
+        'user',
+        // 'article'
+      ],
+    });
+    if (!user) {
+      throw Error('You are not authenticated.');
+    }
     if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
     return comment;
   }
@@ -33,17 +51,12 @@ export default class CommentResolver {
   async createComment(
     @Ctx() { user }: { user: User | null },
     @Arg('data') data: CreateCommentInput
-    // @Arg('article_id') article_id: string
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
     const comment = Comment.create(data);
     comment.user = user;
-    // const article = await Article.findOne(article_id);
-    // if (article) {
-    //   comment.article = article;
-    // }
     await comment.save();
     return comment;
   }

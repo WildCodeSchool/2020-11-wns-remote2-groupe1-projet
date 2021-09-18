@@ -32,7 +32,6 @@ const Comment = (id): JSX.Element => {
     e.preventDefault();
     await addComment({
       variables: {
-        // article_id: id,
         content,
       },
     });
@@ -62,6 +61,7 @@ const Comment = (id): JSX.Element => {
             return (
               <div key={comment.id}>
                 <div className="comment-block">
+                  <div className="comment-header">{comment.user.firstName}</div>
                   <div className="comment-content">{comment.content}</div>
                 </div>
               </div>
