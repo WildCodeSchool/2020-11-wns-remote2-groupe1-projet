@@ -73,9 +73,9 @@ export class User extends BaseEntity {
   @Field(() => Article)
   articles?: Article[];
 
-  @OneToMany(() => Comment, (comment) => comment.user)
-  @Field(() => Comment)
-  comments?: Comment[];
+  // @OneToMany(() => Comment, (comment) => comment.user)
+  // @Field(() => Comment)
+  // comments?: Comment[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {
