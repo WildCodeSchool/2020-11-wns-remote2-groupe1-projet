@@ -77,7 +77,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
           <p>{article?.content}</p>
         </div>
       </Box>
-      <Comment id={id} />
+      {/* <Comment /> */}
     </div>
   );
 };

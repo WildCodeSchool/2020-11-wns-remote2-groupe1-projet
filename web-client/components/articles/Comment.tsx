@@ -16,13 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Comment = (id): JSX.Element => {
+const Comment = (): JSX.Element => {
   const [content, setContent] = useState<string>('');
 
   const { data: commentData, refetch } = useQuery(GET_COMMENTS, {
-    variables: {
-      // article_id: id,
-    },
+    variables: {},
   });
   const comments = commentData?.comments;
 
