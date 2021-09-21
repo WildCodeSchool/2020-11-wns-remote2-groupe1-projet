@@ -102,6 +102,10 @@ export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
       banner
       content
       isPublished
+      user {
+        id
+        firstName
+      }
     }
   }
 `;
