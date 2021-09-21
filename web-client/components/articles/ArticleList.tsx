@@ -52,22 +52,22 @@ const Articles = (): JSX.Element => {
     });
   };
 
-  // const [isSubscribedToNewArticle, setIsSubscribedToNewArticle] =
-  //   useState(false);
-  // useEffect(() => {
-  //   if (!isSubscribedToNewArticle) {
-  //     subscribeToMore<SubscribeToNewArticle>({
-  //       document: SUBSCRIBE_TO_NEW_ARTICLE,
-  //       updateQuery: (prev, { subscriptionData }): getArticles => {
-  //         if (!subscriptionData.data) return prev;
-  //         return {
-  //           articles: [...prev.articles, subscriptionData.data.newArticle],
-  //         };
-  //       },
-  //     });
-  //     setIsSubscribedToNewArticle(true);
-  //   }
-  // }, [data]);
+  const [isSubscribedToNewArticle, setIsSubscribedToNewArticle] =
+    useState(false);
+  useEffect(() => {
+    if (!isSubscribedToNewArticle) {
+      subscribeToMore<SubscribeToNewArticle>({
+        document: SUBSCRIBE_TO_NEW_ARTICLE,
+        updateQuery: (prev, { subscriptionData }): getArticles => {
+          if (!subscriptionData.data) return prev;
+          return {
+            articles: [...prev.articles, subscriptionData.data.newArticle],
+          };
+        },
+      });
+      setIsSubscribedToNewArticle(true);
+    }
+  }, [data]);
 
   const classes = useStyles();
   return (
