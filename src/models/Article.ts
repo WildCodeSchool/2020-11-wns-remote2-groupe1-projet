@@ -7,6 +7,7 @@ import {
   OneToMany,
   ManyToOne,
   UpdateDateColumn,
+  JoinTable,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -47,7 +48,7 @@ export class Article extends BaseEntity {
   @Field(() => User)
   user!: User;
 
-  // @OneToMany(() => Comment, (comment) => comment.article, { eager: true })
-  // @Field(() => [Comment])
-  // comments?: Comment[];
+  @OneToMany(() => Comment, (comment) => comment.article)
+  @Field(() => [Comment])
+  comments?: Comment[];
 }

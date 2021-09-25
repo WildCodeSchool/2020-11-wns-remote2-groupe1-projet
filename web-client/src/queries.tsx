@@ -60,8 +60,8 @@ export const CREATE_ARTICLE = gql`
 
 export const CREATE_COMMENT = gql`
   # Create comment
-  mutation CreateComment($content: String!) {
-    createComment(data: { content: $content }) {
+  mutation CreateComment($content: String!, $articleID: String!) {
+    createComment(articleID: $articleID, data: { content: $content }) {
       commentID
       content
     }
@@ -70,18 +70,17 @@ export const CREATE_COMMENT = gql`
 
 export const GET_COMMENTS = gql`
   # Get Comments
-  query GetComments {
-    comments {
+  query GetComments($articleID: String!) {
+    comments(articleID: $articleID) {
       commentID
       content
       user {
         userID
         firstName
       }
-      # article {
-      #   articleID
-      #   title
-      # }
+      article {
+        articleID
+      }
     }
   }
 `;

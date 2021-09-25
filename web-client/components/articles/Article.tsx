@@ -33,7 +33,6 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
   const article = data?.article;
 
   const classes = useStyles();
-
   let banner;
   if (article?.banner) {
     banner = article?.banner;
@@ -77,7 +76,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
           <p>{article?.content}</p>
         </div>
       </Box>
-      <Comment />
+      <Comment articleID={articleID} />
     </div>
   );
 };

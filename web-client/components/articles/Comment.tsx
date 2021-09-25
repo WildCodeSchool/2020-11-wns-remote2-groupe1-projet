@@ -37,21 +37,24 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Comment = (): JSX.Element => {
+const Comment = ({ articleID }): JSX.Element => {
   const [content, setContent] = useState<string>('');
 
   const { data: commentData, refetch } = useQuery(GET_COMMENTS, {
-    variables: {},
+    variables: {
+      articleID: articleID,
+    },
   });
   const comments = commentData?.comments;
 
   const [addComment, { data }] = useMutation(CREATE_COMMENT, {});
-
+  console.log(articleID);
   const onSubmit = async (e) => {
     e.preventDefault();
     await addComment({
       variables: {
         content,
+        articleID: articleID,
       },
     });
     refetch();
