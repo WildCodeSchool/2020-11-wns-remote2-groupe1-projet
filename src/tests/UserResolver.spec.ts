@@ -8,10 +8,9 @@ import {
 
 import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
-import { User, getRecentUsers } from '../models/User';
+import { User } from '../models/User';
+import { Comment } from '../models/Comment';
 import { Article } from '../models/Article';
-// import { Conversation } from '../models/Conversation';
-// import { Message } from '../models/Message';
 
 describe('User resolvers', () => {
   let testClient;
@@ -23,7 +22,7 @@ describe('User resolvers', () => {
       type: 'sqlite',
       database: ':memory:',
       dropSchema: true,
-      entities: [Article, User, UserSession],
+      entities: [Article, User, Comment, UserSession],
       synchronize: true,
       logging: false,
     });
@@ -91,7 +90,6 @@ describe('User resolvers', () => {
   //       password: 'laurepassword',
   //       firstName: 'Laure',
   //       lastName: 'Pinçon',
-  //       birthDate: '10/10/1980',
   //     });
   //     await user.save();
   //   });
@@ -145,7 +143,6 @@ describe('User resolvers', () => {
   //               password: "bateaubateau"
   //               firstName: "Arman"
   //               lastName: "Durand"
-  //               birthDate: '10/10/1980',
   //             }
   //           ) {
   //             id
