@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
 export const GET_ARTICLE = gql`
-  query getArticleById($id: String!) {
-    article(id: $id) {
-      id
+  query getArticleById($articleID: String!) {
+    article(articleID: $articleID) {
+      articleID
       title
       banner
       content
@@ -11,7 +11,7 @@ export const GET_ARTICLE = gql`
       updatedAt
       isPublished
       user {
-        id
+        userID
         firstName
       }
     }
@@ -21,23 +21,15 @@ export const GET_ARTICLE = gql`
 export const GET_ARTICLES = gql`
   query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
     articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
-      id
+      articleID
       title
       banner
       content
       isPublished
       user {
-        id
+        userID
         firstName
       }
-      # comments {
-      #   id
-      #   content
-      #   user {
-      #     id
-      #     firstName
-      #   }
-      # }
     }
   }
 `;
@@ -68,9 +60,9 @@ export const CREATE_ARTICLE = gql`
 
 export const CREATE_COMMENT = gql`
   # Create comment
-  mutation CreateComment($content: String!) {
-    createComment(data: { content: $content }) {
-      id
+  mutation CreateComment($content: String!, $articleID: String!) {
+    createComment(articleID: $articleID, data: { content: $content }) {
+      commentID
       content
     }
   }
@@ -78,18 +70,17 @@ export const CREATE_COMMENT = gql`
 
 export const GET_COMMENTS = gql`
   # Get Comments
-  query GetComments {
-    comments {
-      id
+  query GetComments($articleID: String!) {
+    comments(articleID: $articleID) {
+      commentID
       content
       user {
-        id
+        userID
         firstName
       }
-      # article {
-      #   id
-      #   title
-      # }
+      article {
+        articleID
+      }
     }
   }
 `;
@@ -97,7 +88,7 @@ export const GET_COMMENTS = gql`
 export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
   subscription SubscribeToNewArticle {
     newArticle {
-      id
+      articleID
       title
       banner
       content
@@ -113,14 +104,14 @@ export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
 export const UPDATE_ARTICLE = gql`
   # Update Article
   mutation UpdateArticle(
-    $id: String!
+    $articleID: String!
     $title: String!
     $banner: String!
     $content: String!
     $isPublished: Boolean!
   ) {
     updateArticle(
-      id: $id
+      articleID: $articleID
       data: {
         title: $title
         banner: $banner
@@ -128,7 +119,7 @@ export const UPDATE_ARTICLE = gql`
         isPublished: $isPublished
       }
     ) {
-      id
+      articleID
       title
       banner
       content
@@ -138,8 +129,8 @@ export const UPDATE_ARTICLE = gql`
 `;
 
 export const DELETE_ARTICLE = gql`
-  mutation DeleteArticle($id: String!) {
-    deleteArticle(id: $id)
+  mutation DeleteArticle($articleID: String!) {
+    deleteArticle(articleID: $articleID)
   }
 `;
 
@@ -167,7 +158,7 @@ export const REGISTER = gql`
 export const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
     createSession(input: { email: $email, password: $password }) {
-      id
+      userID
       email
     }
   }
@@ -176,7 +167,7 @@ export const LOGIN_MUTATION = gql`
 export const GET_CURRENT_USER = gql`
   query GetCurrentUser {
     currentUser {
-      id
+      userID
       firstName
       lastName
     }

@@ -31,11 +31,13 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   const classes = useStyles();
 
   const router = useRouter();
-  const id = router?.query?.id;
-  const { data: queryData } = useQuery(GET_ARTICLE, { variables: { id } });
+  const articleID = router?.query?.articleID;
+  const { data: queryData } = useQuery(GET_ARTICLE, {
+    variables: { articleID },
+  });
 
   const article: {
-    id: string;
+    articleID: string;
     title: string;
     banner: string;
     content: string;
@@ -45,7 +47,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   } = queryData?.article || [];
 
   const [values, setValues] = useState({
-    id: '',
+    articleID: '',
     title: '',
     banner: '',
     content: '',
@@ -55,7 +57,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   useEffect(() => {
     if (article) {
       setValues({
-        id: article.id,
+        articleID: article.articleID,
         title: article.title,
         banner: article.banner,
         content: article.content,
@@ -95,7 +97,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
 
   function handleDelete(e) {
     e.preventDefault();
-    deleteArticle({ variables: { id } });
+    deleteArticle({ variables: { articleID } });
   }
 
   return (

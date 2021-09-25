@@ -9,40 +9,39 @@ import { Comment } from '../models/Comment';
 export default class CommentResolver {
   // query that returns all our books
   @Query(() => [Comment])
-  comments(@Ctx() { user }: { user: User | null }): Promise<Comment[]> {
+  comments(
+    @Ctx() { user }: { user: User | null },
+    @Arg('articleID', { nullable: true }) articleID: string
+  ): Promise<Comment[]> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    // if (!article) {
-    //   throw Error('There is no article with this id');
-    // }
-    else {
-      const comments = Comment.find({
-        relations: [
-          'user',
-          // 'article'
-        ],
+    if (articleID !== null) {
+      return Comment.find({
+        relations: ['user', 'article'],
+        where: { article: { articleID: articleID } },
       });
-      return comments;
+    } else {
+      return Comment.find({
+        relations: ['user', 'article'],
+      });
     }
   }
   // query to fetch an individual comment
   @Query(() => Comment)
   async comment(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string
+    @Arg('commentID') commentID: string
   ): Promise<Comment | undefined> {
     const comment = await Comment.findOne({
-      where: { id },
-      relations: [
-        'user',
-        // 'article'
-      ],
+      where: { commentID },
+      relations: ['user', 'article'],
     });
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     return comment;
   }
 
@@ -50,13 +49,19 @@ export default class CommentResolver {
   @Mutation(() => Comment)
   async createComment(
     @Ctx() { user }: { user: User | null },
-    @Arg('data') data: CreateCommentInput
+    @Arg('data') data: CreateCommentInput,
+    @Arg('articleID') articleID: string
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
     const comment = Comment.create(data);
     comment.user = user;
+    const article = await Article.findOne(articleID);
+
+    if (article) {
+      comment.article = article;
+    }
     await comment.save();
     return comment;
   }
@@ -64,23 +69,25 @@ export default class CommentResolver {
   @Mutation(() => Comment)
   async updateComment(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string,
+    @Arg('commentID') commentID: string,
     @Arg('data') data: UpdateCommentInput
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+    const comment = await Comment.findOne({ where: { commentID } });
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     Object.assign(comment, data);
     await comment.save();
     return comment;
   }
   // query to delete a comment
   @Mutation(() => Boolean)
-  async deleteComment(@Arg('id') id: string): Promise<boolean> {
-    const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+  async deleteComment(@Arg('commentID') commentID: string): Promise<boolean> {
+    const comment = await Comment.findOne({ where: { commentID } });
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     await comment.remove();
     return true;
   }

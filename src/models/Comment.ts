@@ -12,6 +12,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
@@ -23,7 +24,7 @@ export class Comment extends BaseEntity {
   // BaseEntity class  contains useful methods to access our table
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  id!: string;
+  commentID!: string;
 
   @Column() // typeorm decorator
   @Field(() => String) // graphql decorator
@@ -39,9 +40,13 @@ export class Comment extends BaseEntity {
 
   @ManyToOne(() => User)
   @Field((type) => User)
+  @JoinColumn()
   user!: User;
 
-  // @ManyToOne(() => Article, (article) => article.comments)
-  // @Field(() => Article)
-  // article!: Article;
+  @ManyToOne(() => Article, (article) => article.comments, {
+    onDelete: 'CASCADE',
+  })
+  @Field(() => Article)
+  @JoinColumn({ name: 'articleID' })
+  article!: Article;
 }

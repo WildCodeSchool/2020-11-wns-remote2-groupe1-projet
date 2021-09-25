@@ -42,7 +42,7 @@ function Dashboard() {
   });
 
   const articles: Array<{
-    id: string;
+    articleID: string;
     title: string;
     banner: string;
     content: string;
@@ -66,7 +66,7 @@ function Dashboard() {
 
         <h2>Articles Overview</h2>
         {articles?.map((article) => {
-          return <div key={article.id}>{article.title}</div>;
+          return <div key={article.articleID}>{article.title}</div>;
         })}
       </div>
     </div>

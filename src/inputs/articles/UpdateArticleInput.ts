@@ -4,7 +4,7 @@ import { User } from '../../models/User';
 @InputType()
 export default class UpdateArticleInput {
   @Field({ nullable: true })
-  id?: string;
+  articleID?: string;
 
   @Field({ nullable: true })
   title?: string;
