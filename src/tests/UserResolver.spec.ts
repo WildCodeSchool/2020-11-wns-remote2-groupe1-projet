@@ -57,7 +57,7 @@ describe('User resolvers', () => {
       const response = await testClient.post('/graphql').send({
         query: `{
         users {
-          id
+          userID
           firstName
           lastName
         }
@@ -68,12 +68,12 @@ describe('User resolvers', () => {
       expect(JSON.parse(response.text).data).toEqual({
         users: [
           {
-            id: '1',
+            userID: '1',
             firstName: 'Laure',
             lastName: 'Pinçon',
           },
           {
-            id: '2',
+            userID: '2',
             firstName: 'Pierre',
             lastName: 'Roulle',
           },

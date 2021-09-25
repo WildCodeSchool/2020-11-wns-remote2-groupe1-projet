@@ -38,7 +38,7 @@ const EditArticles = (): JSX.Element => {
   });
 
   const articles: Array<{
-    id: string;
+    articleID: string;
     title: string;
     banner: string;
     content: string;
@@ -73,8 +73,8 @@ const EditArticles = (): JSX.Element => {
 
         {articles?.map((article) => (
           <ArticleCard
-            key={article.id}
-            id={article.id}
+            key={article.articleID}
+            articleID={article.articleID}
             title={article.title}
             image={article.banner}
             content={article.content}

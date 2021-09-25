@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "generate-gql-types": "apollo client:codegen --watch --includes='**/*.tsx' --endpoint=http://localhost:4000/graphql --target typescript --outputFlat src/schemaTypes.ts"
+    "gql-gen": "apollo client:codegen --watch --includes='**/*.tsx' --endpoint=http://localhost:4000/graphql --target typescript --outputFlat src/schemaTypes.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.3.6",

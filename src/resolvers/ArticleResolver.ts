@@ -50,17 +50,17 @@ export default class ArticleResolver {
   @Query(() => Article)
   async article(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string
+    @Arg('articleID') articleID: string
   ): Promise<Article> {
     const article = await Article.findOne({
-      where: { id },
+      where: { articleID },
       relations: ['user'],
     });
     if (!user) {
       throw Error('You are not authenticated.');
     }
     if (!article) {
-      throw new Error(`The article with id: ${id} does not exist!`);
+      throw new Error(`The article with id: ${articleID} does not exist!`);
     }
 
     return article;
@@ -86,16 +86,16 @@ export default class ArticleResolver {
   @Mutation(() => Article)
   async updateArticle(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string,
+    @Arg('articleID') articleID: string,
     @Arg('data') data: UpdateArticleInput
   ): Promise<Article> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    const article = await Article.findOne({ where: { id } });
+    const article = await Article.findOne({ where: { articleID } });
 
     if (!article) {
-      throw new Error(`The article with id: ${id} does not exist!`);
+      throw new Error(`The article with id: ${articleID} does not exist!`);
     }
 
     Object.assign(article, data);
@@ -105,11 +105,11 @@ export default class ArticleResolver {
   }
 
   @Mutation(() => Boolean)
-  async deleteArticle(@Arg('id') id: string): Promise<boolean> {
-    const article = await Article.findOne({ where: { id } });
+  async deleteArticle(@Arg('articleID') articleID: string): Promise<boolean> {
+    const article = await Article.findOne({ where: { articleID } });
 
     if (!article) {
-      throw new Error(`The article with id: ${id} does not exist!`);
+      throw new Error(`The article with id: ${articleID} does not exist!`);
     }
 
     await article.remove();

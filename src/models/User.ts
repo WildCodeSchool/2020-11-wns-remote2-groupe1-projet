@@ -23,7 +23,7 @@ import UserSession from './UserSession';
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  id!: string;
+  userID!: string;
 
   @Column()
   @Field(() => String)

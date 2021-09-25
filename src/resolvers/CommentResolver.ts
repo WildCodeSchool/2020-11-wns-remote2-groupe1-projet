@@ -30,10 +30,10 @@ export default class CommentResolver {
   @Query(() => Comment)
   async comment(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string
+    @Arg('commentID') commentID: string
   ): Promise<Comment | undefined> {
     const comment = await Comment.findOne({
-      where: { id },
+      where: { commentID },
       relations: [
         'user',
         // 'article'
@@ -42,7 +42,8 @@ export default class CommentResolver {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     return comment;
   }
 
@@ -64,23 +65,25 @@ export default class CommentResolver {
   @Mutation(() => Comment)
   async updateComment(
     @Ctx() { user }: { user: User | null },
-    @Arg('id') id: string,
+    @Arg('commentID') commentID: string,
     @Arg('data') data: UpdateCommentInput
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+    const comment = await Comment.findOne({ where: { commentID } });
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     Object.assign(comment, data);
     await comment.save();
     return comment;
   }
   // query to delete a comment
   @Mutation(() => Boolean)
-  async deleteComment(@Arg('id') id: string): Promise<boolean> {
-    const comment = await Comment.findOne({ where: { id } });
-    if (!comment) throw new Error(`The comment with id: ${id} does not exist`);
+  async deleteComment(@Arg('commentID') commentID: string): Promise<boolean> {
+    const comment = await Comment.findOne({ where: { commentID } });
+    if (!comment)
+      throw new Error(`The comment with id: ${commentID} does not exist`);
     await comment.remove();
     return true;
   }

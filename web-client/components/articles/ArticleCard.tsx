@@ -56,14 +56,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const ArticleCard = ({
-  id,
+  articleID,
   title,
   image,
   content,
   isPublished,
   user,
 }: {
-  id: string;
+  articleID: string;
   title: string;
   image: string;
   content: string;
@@ -78,10 +78,10 @@ const ArticleCard = ({
 
       switch (path) {
         case '/edit-articles':
-          window.location.assign(`/edit-articles/${id}`);
+          window.location.assign(`/edit-articles/${articleID}`);
           break;
         case '/':
-          window.location.assign(`/article/${id}`);
+          window.location.assign(`/article/${articleID}`);
       }
       event.preventDefault();
     };

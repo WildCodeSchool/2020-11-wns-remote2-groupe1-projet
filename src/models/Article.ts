@@ -17,7 +17,7 @@ import { Comment } from './Comment';
 export class Article extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  id!: string;
+  articleID!: string;
 
   @Column()
   @Field(() => String)

@@ -9,13 +9,13 @@
 
 export interface getArticleById_article_user {
   __typename: "User";
-  id: string;
+  userID: string;
   firstName: string;
 }
 
 export interface getArticleById_article {
   __typename: "Article";
-  id: string;
+  articleID: string;
   title: string;
   banner: string;
   content: string;
@@ -30,7 +30,7 @@ export interface getArticleById {
 }
 
 export interface getArticleByIdVariables {
-  id: string;
+  articleID: string;
 }
 
 /* tslint:disable */
@@ -44,13 +44,13 @@ export interface getArticleByIdVariables {
 
 export interface getArticles_articles_user {
   __typename: "User";
-  id: string;
+  userID: string;
   firstName: string;
 }
 
 export interface getArticles_articles {
   __typename: "Article";
-  id: string;
+  articleID: string;
   title: string;
   banner: string;
   content: string;
@@ -107,7 +107,7 @@ export interface CreateArticleVariables {
 
 export interface CreateComment_createComment {
   __typename: "Comment";
-  id: string;
+  commentID: string;
   content: string;
 }
 
@@ -130,13 +130,13 @@ export interface CreateCommentVariables {
 
 export interface GetComments_comments_user {
   __typename: "User";
-  id: string;
+  userID: string;
   firstName: string;
 }
 
 export interface GetComments_comments {
   __typename: "Comment";
-  id: string;
+  commentID: string;
   content: string;
   user: GetComments_comments_user;
 }
@@ -156,7 +156,7 @@ export interface GetComments {
 
 export interface SubscribeToNewArticle_newArticle {
   __typename: "Article";
-  id: string;
+  articleID: string;
   title: string;
   banner: string;
   content: string;
@@ -178,7 +178,7 @@ export interface SubscribeToNewArticle {
 
 export interface UpdateArticle_updateArticle {
   __typename: "Article";
-  id: string;
+  articleID: string;
   title: string;
   banner: string;
   content: string;
@@ -190,7 +190,7 @@ export interface UpdateArticle {
 }
 
 export interface UpdateArticleVariables {
-  id: string;
+  articleID: string;
   title: string;
   banner: string;
   content: string;
@@ -211,7 +211,7 @@ export interface DeleteArticle {
 }
 
 export interface DeleteArticleVariables {
-  id: string;
+  articleID: string;
 }
 
 /* tslint:disable */
@@ -250,7 +250,7 @@ export interface CreateUserVariables {
 
 export interface Login_createSession {
   __typename: "User";
-  id: string;
+  userID: string;
   email: string;
 }
 
@@ -274,7 +274,7 @@ export interface LoginVariables {
 
 export interface GetCurrentUser_currentUser {
   __typename: "User";
-  id: string;
+  userID: string;
   firstName: string;
   lastName: string;
 }

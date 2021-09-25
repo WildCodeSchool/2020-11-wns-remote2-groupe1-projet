@@ -23,7 +23,7 @@ export class Comment extends BaseEntity {
   // BaseEntity class  contains useful methods to access our table
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  id!: string;
+  commentID!: string;
 
   @Column() // typeorm decorator
   @Field(() => String) // graphql decorator

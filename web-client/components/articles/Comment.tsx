@@ -82,7 +82,7 @@ const Comment = (): JSX.Element => {
         <div className="comments-container">
           {comments.map((comment) => {
             return (
-              <Card className={classes.commentCard} key={comment.id}>
+              <Card className={classes.commentCard} key={comment.commentID}>
                 <div className={classes.commentBlock}>
                   <div className={classes.commentHeader}>
                     {comment.user.firstName}
