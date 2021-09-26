@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '1.5rem',
       marginBottom: '1.5rem',
     },
+    commentsComponent: {
+      paddingBottom: '2rem',
+    },
     commentCard: {
       display: 'flex',
       flexDirection: 'column',
@@ -63,7 +66,7 @@ const Comment = ({ articleID }): JSX.Element => {
   const classes = useStyles();
   console.log(comments);
   return (
-    <div>
+    <div className={classes.commentsComponent}>
       <Card className={classes.formCard}>
         <form onSubmit={onSubmit} className={classes.commentField}>
           <TextField

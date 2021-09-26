@@ -1,10 +1,5 @@
 import createTestClient from 'supertest';
-import {
-  createConnection,
-  getConnection,
-  getConnectionOptions,
-  MoreThanOrEqual,
-} from 'typeorm';
+import { createConnection, getConnection, getConnectionOptions } from 'typeorm';
 
 import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
