@@ -1,9 +1,14 @@
 import { TextField, Button, Paper, Card } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { CREATE_COMMENT, GET_COMMENTS } from '../../src/queries';
+import {
+  CREATE_COMMENT,
+  GET_COMMENTS,
+  SUBSCRIBE_TO_NEW_COMMENT,
+} from '../../src/queries';
 import { useMutation, useQuery } from '@apollo/client';
+import { GetComments, SubscribeToNewComment } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,15 +48,18 @@ const useStyles = makeStyles((theme: Theme) =>
 const Comment = ({ articleID }): JSX.Element => {
   const [content, setContent] = useState<string>('');
 
-  const { data: commentData, refetch } = useQuery(GET_COMMENTS, {
+  const {
+    data: commentData,
+    refetch,
+    subscribeToMore,
+  } = useQuery<GetComments>(GET_COMMENTS, {
     variables: {
       articleID: articleID,
     },
   });
   const comments = commentData?.comments;
 
-  const [addComment, { data }] = useMutation(CREATE_COMMENT, {});
-  console.log(articleID);
+  const [addComment] = useMutation(CREATE_COMMENT, {});
   const onSubmit = async (e) => {
     e.preventDefault();
     await addComment({
@@ -60,11 +68,29 @@ const Comment = ({ articleID }): JSX.Element => {
         articleID: articleID,
       },
     });
+    setContent('');
     refetch();
   };
 
+  const [isSubscribedToNewComment, setIsSubscribedToNewComment] =
+    useState(false);
+  useEffect(() => {
+    if (!isSubscribedToNewComment) {
+      subscribeToMore<SubscribeToNewComment>({
+        document: SUBSCRIBE_TO_NEW_COMMENT,
+        updateQuery: (prev, { subscriptionData }): GetComments => {
+          if (!subscriptionData.data) return prev;
+          return {
+            comments: [...prev.comments, subscriptionData.data.newComment],
+          };
+        },
+      });
+      setIsSubscribedToNewComment(true);
+    }
+  }, [commentData]);
+
   const classes = useStyles();
-  console.log(comments);
+
   return (
     <div className={classes.commentsComponent}>
       <Card className={classes.formCard}>

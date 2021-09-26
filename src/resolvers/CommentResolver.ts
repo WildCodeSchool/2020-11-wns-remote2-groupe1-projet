@@ -1,10 +1,23 @@
 import { Article } from '../models/Article';
 import { User } from 'src/models/User';
-import { Resolver, Query, Mutation, Arg, Ctx } from 'type-graphql';
+import {
+  Resolver,
+  Query,
+  Subscription,
+  Mutation,
+  Arg,
+  Ctx,
+  Publisher,
+  PubSub,
+  Root,
+} from 'type-graphql';
 import CreateCommentInput from '../inputs/comments/CreateCommentInput';
 import UpdateCommentInput from '../inputs/comments/UpdateCommentInput';
 import { Comment } from '../models/Comment';
 
+type NewCommentNotificationPayload = {
+  comment: Comment;
+};
 @Resolver()
 export default class CommentResolver {
   // query that returns all our books
@@ -50,7 +63,9 @@ export default class CommentResolver {
   async createComment(
     @Ctx() { user }: { user: User | null },
     @Arg('data') data: CreateCommentInput,
-    @Arg('articleID') articleID: string
+    @Arg('articleID') articleID: string,
+    @PubSub('NEW_COMMENT')
+    publishNewComment: Publisher<NewCommentNotificationPayload>
   ): Promise<Comment> {
     if (!user) {
       throw Error('You are not authenticated.');
@@ -63,6 +78,7 @@ export default class CommentResolver {
       comment.article = article;
     }
     await comment.save();
+    publishNewComment({ comment });
     return comment;
   }
   // query to update a comment
@@ -90,5 +106,12 @@ export default class CommentResolver {
       throw new Error(`The comment with id: ${commentID} does not exist`);
     await comment.remove();
     return true;
+  }
+
+  @Subscription({ topics: 'NEW_COMMENT' })
+  newComment(
+    @Root() notificationPayload: NewCommentNotificationPayload
+  ): Comment {
+    return notificationPayload.comment;
   }
 }

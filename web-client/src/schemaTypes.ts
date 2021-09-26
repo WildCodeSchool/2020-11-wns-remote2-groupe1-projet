@@ -8,13 +8,13 @@
 // ====================================================
 
 export interface getArticleById_article_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   firstName: string;
 }
 
 export interface getArticleById_article {
-  __typename: 'Article';
+  __typename: "Article";
   articleID: string;
   title: string;
   banner: string;
@@ -43,13 +43,13 @@ export interface getArticleByIdVariables {
 // ====================================================
 
 export interface getArticles_articles_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   firstName: string;
 }
 
 export interface getArticles_articles {
-  __typename: 'Article';
+  __typename: "Article";
   articleID: string;
   title: string;
   banner: string;
@@ -78,7 +78,7 @@ export interface getArticlesVariables {
 // ====================================================
 
 export interface CreateArticle_createArticle {
-  __typename: 'Article';
+  __typename: "Article";
   title: string;
   banner: string;
   content: string;
@@ -106,7 +106,7 @@ export interface CreateArticleVariables {
 // ====================================================
 
 export interface CreateComment_createComment {
-  __typename: 'Comment';
+  __typename: "Comment";
   commentID: string;
   content: string;
 }
@@ -117,6 +117,7 @@ export interface CreateComment {
 
 export interface CreateCommentVariables {
   content: string;
+  articleID: string;
 }
 
 /* tslint:disable */
@@ -129,20 +130,30 @@ export interface CreateCommentVariables {
 // ====================================================
 
 export interface GetComments_comments_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   firstName: string;
 }
 
+export interface GetComments_comments_article {
+  __typename: "Article";
+  articleID: string;
+}
+
 export interface GetComments_comments {
-  __typename: 'Comment';
+  __typename: "Comment";
   commentID: string;
   content: string;
   user: GetComments_comments_user;
+  article: GetComments_comments_article;
 }
 
 export interface GetComments {
   comments: GetComments_comments[];
+}
+
+export interface GetCommentsVariables {
+  articleID: string;
 }
 
 /* tslint:disable */
@@ -154,14 +165,20 @@ export interface GetComments {
 // GraphQL subscription operation: SubscribeToNewArticle
 // ====================================================
 
+export interface SubscribeToNewArticle_newArticle_user {
+  __typename: "User";
+  userID: string;
+  firstName: string;
+}
+
 export interface SubscribeToNewArticle_newArticle {
-  __typename: 'Article';
+  __typename: "Article";
   articleID: string;
   title: string;
   banner: string;
   content: string;
   isPublished: boolean;
-  user: getArticles_articles_user;
+  user: SubscribeToNewArticle_newArticle_user;
 }
 
 export interface SubscribeToNewArticle {
@@ -174,11 +191,43 @@ export interface SubscribeToNewArticle {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL subscription operation: SubscribeToNewComment
+// ====================================================
+
+export interface SubscribeToNewComment_newComment_user {
+  __typename: "User";
+  userID: string;
+  firstName: string;
+}
+
+export interface SubscribeToNewComment_newComment_article {
+  __typename: "Article";
+  articleID: string;
+}
+
+export interface SubscribeToNewComment_newComment {
+  __typename: "Comment";
+  commentID: string;
+  content: string;
+  user: SubscribeToNewComment_newComment_user;
+  article: SubscribeToNewComment_newComment_article;
+}
+
+export interface SubscribeToNewComment {
+  newComment: SubscribeToNewComment_newComment;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateArticle
 // ====================================================
 
 export interface UpdateArticle_updateArticle {
-  __typename: 'Article';
+  __typename: "Article";
   articleID: string;
   title: string;
   banner: string;
@@ -225,7 +274,7 @@ export interface DeleteArticleVariables {
 // ====================================================
 
 export interface CreateUser_createUser {
-  __typename: 'User';
+  __typename: "User";
   firstName: string;
 }
 
@@ -250,7 +299,7 @@ export interface CreateUserVariables {
 // ====================================================
 
 export interface Login_createSession {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   email: string;
 }
@@ -274,7 +323,7 @@ export interface LoginVariables {
 // ====================================================
 
 export interface GetCurrentUser_currentUser {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   firstName: string;
   lastName: string;
@@ -307,7 +356,7 @@ export interface GetRecentUsers {
 // ====================================================
 
 export interface UploadImage_uploadImage {
-  __typename: 'Image';
+  __typename: "Image";
   id: string;
 }
 
@@ -329,7 +378,7 @@ export interface UploadImageVariables {
 // ====================================================
 
 export interface GetImages_images {
-  __typename: 'Image';
+  __typename: "Image";
   id: string;
   extension: string;
 }

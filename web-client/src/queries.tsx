@@ -94,8 +94,24 @@ export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
       content
       isPublished
       user {
-        id
+        userID
         firstName
+      }
+    }
+  }
+`;
+
+export const SUBSCRIBE_TO_NEW_COMMENT = gql`
+  subscription SubscribeToNewComment {
+    newComment {
+      commentID
+      content
+      user {
+        userID
+        firstName
+      }
+      article {
+        articleID
       }
     }
   }
