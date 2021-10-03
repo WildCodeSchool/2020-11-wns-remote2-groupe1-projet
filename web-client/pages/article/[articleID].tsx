@@ -6,6 +6,7 @@ import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
 import { UserContext } from '../../contexts/Contexts';
 import LoginComponent from '../../components/login/Login';
+import withAuth from '../../components/withAuth';
 
 interface WithRouterProps {
   router: NextRouter;
@@ -14,14 +15,6 @@ interface WithRouterProps {
 const ArticleView: NextPage<WithRouterProps> = ({
   router,
 }: WithRouterProps) => {
-  const { currentUser } = useContext(UserContext);
-
-  // useEffect(() => {
-  // if (!currentUser) {
-  //  router.push(`/login`);
-  //}
-  //}, []);
-
   return (
     <>
       <Link href="/">
@@ -36,4 +29,4 @@ const ArticleView: NextPage<WithRouterProps> = ({
   );
 };
 
-export default ArticleView;
+export default withAuth(ArticleView);

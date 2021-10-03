@@ -1,21 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 
-import { Container, Box, Link, Button } from '@material-ui/core';
+import { Container, Box } from '@material-ui/core';
 import CreateArticleComponent from '../../components/articles/CreateArticle';
-import LoginComponent from '../../components/login/Login';
-import { UserContext } from '../../contexts/Contexts';
-import { useRouter } from 'next/router';
 
-export default function CreateArticle() {
-  const { currentUser } = useContext(UserContext);
-  const router = useRouter();
+import withAuth from '../../components/withAuth';
 
-  // useEffect(() => {
-  //   if (!currentUser) {
-  //     router.push(`/login`);
-  //   }
-  // }, []);
-
+function CreateArticle() {
   return (
     <div>
       <Container maxWidth="sm">
@@ -26,3 +16,5 @@ export default function CreateArticle() {
     </div>
   );
 }
+
+export default withAuth(CreateArticle);

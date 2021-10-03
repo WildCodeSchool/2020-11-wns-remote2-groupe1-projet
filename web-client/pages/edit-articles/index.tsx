@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import ArticleCard from '../../components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from '../../src/queries';
-import { UserContext } from '../../contexts/Contexts';
-import LoginComponent from '../../components/login/Login';
-import { useRouter } from 'next/router';
+import withAuth from '../../components/withAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,15 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EditArticles = (): JSX.Element => {
-  const { currentUser } = useContext(UserContext);
-  const router = useRouter();
-
-  // useEffect(() => {
-  // if (!currentUser) {
-  //  router.push(`/login`);
-  //}
-  //}, []);
-
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {
       offset: 0,
@@ -102,4 +91,4 @@ const EditArticles = (): JSX.Element => {
   );
 };
 
-export default EditArticles;
+export default withAuth(EditArticles);

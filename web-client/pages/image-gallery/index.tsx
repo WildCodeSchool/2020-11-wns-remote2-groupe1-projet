@@ -1,19 +1,8 @@
-import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import ImageGalleryComponent from '../../components/image-gallery/imageGallery';
-import LoginComponent from '../../components/login/Login';
-import { UserContext } from '../../contexts/Contexts';
+import withAuth from '../../components/withAuth';
 
 function ImageGallery() {
-  const { currentUser } = useContext(UserContext);
-  const router = useRouter();
-
-  // useEffect(() => {
-  // if (!currentUser) {
-  //  router.push(`/login`);
-  //}
-  //}, []);
-
   return (
     <div>
       <ImageGalleryComponent />
@@ -21,4 +10,4 @@ function ImageGallery() {
   );
 }
 
-export default ImageGallery;
+export default withAuth(ImageGallery);
