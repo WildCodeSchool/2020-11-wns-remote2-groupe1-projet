@@ -77,8 +77,8 @@ const PostCard = ({
       const path = window.location.pathname;
 
       switch (path) {
-        case '/edit-posts':
-          window.location.assign(`/edit-posts/${postID}`);
+        case '/my-posts':
+          window.location.assign(`/my-posts/${postID}`);
           break;
         case '/':
           window.location.assign(`/post/${postID}`);
