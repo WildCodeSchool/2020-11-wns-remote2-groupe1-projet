@@ -1,8 +1,13 @@
 import { MaxLength, MinLength } from 'class-validator';
 import { InputType, Field } from 'type-graphql';
+import { Column } from 'typeorm';
 
 @InputType()
 export default class CreateUserInput {
+  @Field()
+  @MaxLength(25)
+  username!: string;
+
   @Field()
   @MaxLength(25)
   firstName!: string;

@@ -17,7 +17,7 @@ const withAuth = (WrappedComponent) => {
             if (currentUser) {
               return;
             } else {
-              Router.replace('./login');
+              Router.replace('/login');
 
               return;
             }

@@ -96,7 +96,7 @@ const Comment = ({ postID }): JSX.Element => {
       <Card className={classes.formCard}>
         <form onSubmit={onSubmit} className={classes.commentField}>
           <TextField
-            label="Ajouter un commentaire"
+            label="Add a comment"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             fullWidth
@@ -117,7 +117,7 @@ const Comment = ({ postID }): JSX.Element => {
               <Card className={classes.commentCard} key={comment.commentID}>
                 <div className={classes.commentBlock}>
                   <div className={classes.commentHeader}>
-                    {comment.user.firstName}
+                    {comment.user.username}
                   </div>
                   <div className={classes.commentBody}>{comment.content}</div>
                 </div>

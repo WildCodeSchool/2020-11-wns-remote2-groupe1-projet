@@ -120,7 +120,7 @@ const PostCard = ({
           )}
           <Grid item zeroMinWidth>
             <CardContent>
-              <p>by {user?.firstName}</p>
+              <p>by {user?.username}</p>
 
               <Typography noWrap>{content}</Typography>
             </CardContent>

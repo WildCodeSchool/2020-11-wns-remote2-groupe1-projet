@@ -27,6 +27,7 @@ const useStyles = makeStyles({
 const Register = (): JSX.Element => {
   const router = useRouter();
   const classes = useStyles();
+  const [username, setUsername] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -55,16 +56,25 @@ const Register = (): JSX.Element => {
           e.preventDefault();
           await register({
             variables: {
+              username,
               firstName,
               lastName,
               email,
               password,
-              //birthDate,
             },
           });
         }}
       >
         <Grid container justify="center" spacing={2}>
+          <Grid item xs={12} md={6}>
+            <TextField
+              label="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              fullWidth
+              type="text"
+            />
+          </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               label="First Name"
@@ -93,15 +103,6 @@ const Register = (): JSX.Element => {
               error={!!error}
             />
           </Grid>
-          {/* <Grid item xs={12} md={6}>
-            <TextField
-              label="Birth date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-              fullWidth
-              type="text"
-            />
-          </Grid> */}
           <Grid item xs={12} md={12}>
             <TextField
               label="Password"
@@ -113,7 +114,7 @@ const Register = (): JSX.Element => {
               fullWidth
               type="password"
               error={!isEqual && password.length !== 0}
-              helperText={'Minimum 8 caractères'}
+              helperText={'8 characters minimum required'}
             />
           </Grid>
           <Grid item xs={12} md={12}>

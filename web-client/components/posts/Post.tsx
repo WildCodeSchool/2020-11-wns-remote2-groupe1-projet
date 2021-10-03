@@ -46,7 +46,7 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
         <div>
           <img src={image} className={classes.media} height="250px"></img>
           <h1>{post?.title}</h1>
-          <p>written by {post?.user?.firstName}</p>
+          <p>written by {post?.user?.username}</p>
           <p className={classes.dateBlock}>
             <span className={classes.dateUnit}>
               Created at :

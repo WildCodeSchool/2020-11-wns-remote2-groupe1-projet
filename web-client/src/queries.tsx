@@ -12,7 +12,7 @@ export const GET_POST = gql`
       isPublished
       user {
         userID
-        firstName
+        username
       }
     }
   }
@@ -28,7 +28,7 @@ export const GET_POSTS = gql`
       isPublished
       user {
         userID
-        firstName
+        username
       }
     }
   }
@@ -76,7 +76,7 @@ export const GET_COMMENTS = gql`
       content
       user {
         userID
-        firstName
+        username
       }
       post {
         postID
@@ -95,7 +95,7 @@ export const SUBSCRIBE_TO_NEW_POST = gql`
       isPublished
       user {
         userID
-        firstName
+        username
       }
     }
   }
@@ -108,7 +108,7 @@ export const SUBSCRIBE_TO_NEW_COMMENT = gql`
       content
       user {
         userID
-        firstName
+        username
       }
       post {
         postID
@@ -153,6 +153,7 @@ export const DELETE_POST = gql`
 export const REGISTER = gql`
   # Create User
   mutation CreateUser(
+    $username: String!
     $firstName: String!
     $lastName: String!
     $password: String!
@@ -160,13 +161,14 @@ export const REGISTER = gql`
   ) {
     createUser(
       input: {
+        username: $username
         firstName: $firstName
         lastName: $lastName
         password: $password
         email: $email
       }
     ) {
-      firstName
+      username
     }
   }
 `;
@@ -184,6 +186,7 @@ export const GET_CURRENT_USER = gql`
   query GetCurrentUser {
     currentUser {
       userID
+      username
       firstName
       lastName
     }

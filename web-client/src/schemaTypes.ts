@@ -8,13 +8,13 @@
 // ====================================================
 
 export interface getPostById_post_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
-  firstName: string;
+  username: string;
 }
 
 export interface getPostById_post {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
   title: string;
   image: string;
@@ -43,13 +43,13 @@ export interface getPostByIdVariables {
 // ====================================================
 
 export interface getPosts_posts_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
-  firstName: string;
+  username: string;
 }
 
 export interface getPosts_posts {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
   title: string;
   image: string;
@@ -78,7 +78,7 @@ export interface getPostsVariables {
 // ====================================================
 
 export interface CreatePost_createPost {
-  __typename: 'Post';
+  __typename: "Post";
   title: string;
   image: string;
   content: string;
@@ -106,7 +106,7 @@ export interface CreatePostVariables {
 // ====================================================
 
 export interface CreateComment_createComment {
-  __typename: 'Comment';
+  __typename: "Comment";
   commentID: string;
   content: string;
 }
@@ -130,18 +130,18 @@ export interface CreateCommentVariables {
 // ====================================================
 
 export interface GetComments_comments_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
-  firstName: string;
+  username: string;
 }
 
 export interface GetComments_comments_post {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
 }
 
 export interface GetComments_comments {
-  __typename: 'Comment';
+  __typename: "Comment";
   commentID: string;
   content: string;
   user: GetComments_comments_user;
@@ -166,13 +166,13 @@ export interface GetCommentsVariables {
 // ====================================================
 
 export interface SubscribeToNewPost_newPost_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
-  firstName: string;
+  username: string;
 }
 
 export interface SubscribeToNewPost_newPost {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
   title: string;
   image: string;
@@ -195,18 +195,18 @@ export interface SubscribeToNewPost {
 // ====================================================
 
 export interface SubscribeToNewComment_newComment_user {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
-  firstName: string;
+  username: string;
 }
 
 export interface SubscribeToNewComment_newComment_post {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
 }
 
 export interface SubscribeToNewComment_newComment {
-  __typename: 'Comment';
+  __typename: "Comment";
   commentID: string;
   content: string;
   user: SubscribeToNewComment_newComment_user;
@@ -227,7 +227,7 @@ export interface SubscribeToNewComment {
 // ====================================================
 
 export interface UpdatePost_updatePost {
-  __typename: 'Post';
+  __typename: "Post";
   postID: string;
   title: string;
   image: string;
@@ -274,8 +274,8 @@ export interface DeletePostVariables {
 // ====================================================
 
 export interface CreateUser_createUser {
-  __typename: 'User';
-  firstName: string;
+  __typename: "User";
+  username: string;
 }
 
 export interface CreateUser {
@@ -283,6 +283,7 @@ export interface CreateUser {
 }
 
 export interface CreateUserVariables {
+  username: string;
   firstName: string;
   lastName: string;
   password: string;
@@ -299,7 +300,7 @@ export interface CreateUserVariables {
 // ====================================================
 
 export interface Login_createSession {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
   email: string;
 }
@@ -323,8 +324,9 @@ export interface LoginVariables {
 // ====================================================
 
 export interface GetCurrentUser_currentUser {
-  __typename: 'User';
+  __typename: "User";
   userID: string;
+  username: string;
   firstName: string;
   lastName: string;
 }
@@ -356,7 +358,7 @@ export interface GetRecentUsers {
 // ====================================================
 
 export interface UploadImage_uploadImage {
-  __typename: 'Image';
+  __typename: "Image";
   id: string;
 }
 
@@ -378,7 +380,7 @@ export interface UploadImageVariables {
 // ====================================================
 
 export interface GetImages_images {
-  __typename: 'Image';
+  __typename: "Image";
   id: string;
   extension: string;
 }

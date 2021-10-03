@@ -54,7 +54,7 @@ function Dashboard() {
     <div className={classes.root}>
       <h1
         className={classes.dashboardTitle}
-      >{`${currentUser?.firstName}'s dashboard`}</h1>
+      >{`${currentUser?.username}'s dashboard`}</h1>
       <div className={classes.contentContainer}>
         <h2>Account Information</h2>
         <p>
