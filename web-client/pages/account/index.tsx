@@ -1,17 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NextPage } from 'next';
 import { UserContext } from '../../contexts/Contexts';
-import LoginComponent from '../../components/login/Login';
 import Dashboard from '../../components/login/Dashboard';
+import { useRouter } from 'next/router';
 
 const Account: NextPage = () => {
   const { currentUser } = useContext(UserContext);
 
-  if (!currentUser) {
-    return <LoginComponent />;
-  } else {
-    return <Dashboard />;
-  }
+  const router = useRouter();
+
+  // useEffect(() => {
+  // if (!currentUser) {
+  //  router.push(`/login`);
+  //}
+  //}, []);
+
+  return <Dashboard />;
 };
 
 export default Account;

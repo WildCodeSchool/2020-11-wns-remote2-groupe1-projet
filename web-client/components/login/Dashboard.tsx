@@ -49,6 +49,7 @@ function Dashboard() {
     isPublished: boolean;
     user: any;
   }> = articleData?.articles || [];
+
   return (
     <div className={classes.root}>
       <h1
@@ -57,8 +58,8 @@ function Dashboard() {
       <div className={classes.contentContainer}>
         <h2>Account Information</h2>
         <p>
-          Name : <span>{currentUser.firstName}</span>{' '}
-          <span>{currentUser.lastName}</span>
+          Name : <span>{currentUser?.firstName}</span>{' '}
+          <span>{currentUser?.lastName}</span>
         </p>
 
         <h2>Users Overview</h2>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Article from '../../components/articles/Article';
 import Comment from '../../components/articles/Comment';
 import { Container, Box, Link, Button } from '@material-ui/core';
@@ -15,24 +15,25 @@ const ArticleView: NextPage<WithRouterProps> = ({
   router,
 }: WithRouterProps) => {
   const { currentUser } = useContext(UserContext);
-  const articleID = router?.query?.articleID;
 
-  if (!currentUser) {
-    return <LoginComponent />;
-  } else {
-    return (
-      <>
-        <Link href="/">
-          <Button color="inherit"> Retour aux articles</Button>
-        </Link>
-        <Container maxWidth="sm">
-          <Box mt={2}>
-            <Article router={router} />
-          </Box>
-        </Container>
-      </>
-    );
-  }
+  // useEffect(() => {
+  // if (!currentUser) {
+  //  router.push(`/login`);
+  //}
+  //}, []);
+
+  return (
+    <>
+      <Link href="/">
+        <Button color="inherit"> Retour aux articles</Button>
+      </Link>
+      <Container maxWidth="sm">
+        <Box mt={2}>
+          <Article router={router} />
+        </Box>
+      </Container>
+    </>
+  );
 };
 
 export default ArticleView;

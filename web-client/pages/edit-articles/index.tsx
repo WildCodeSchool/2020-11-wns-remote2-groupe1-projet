@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ArticleCard from '../../components/articles/ArticleCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ARTICLES } from '../../src/queries';
 import { UserContext } from '../../contexts/Contexts';
 import LoginComponent from '../../components/login/Login';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 const EditArticles = (): JSX.Element => {
   const { currentUser } = useContext(UserContext);
+  const router = useRouter();
+
+  // useEffect(() => {
+  // if (!currentUser) {
+  //  router.push(`/login`);
+  //}
+  //}, []);
 
   const { data, fetchMore } = useQuery(GET_ARTICLES, {
     variables: {
@@ -62,40 +70,36 @@ const EditArticles = (): JSX.Element => {
 
   const classes = useStyles();
 
-  if (!currentUser) {
-    return <LoginComponent />;
-  } else {
-    return (
-      <div className={classes.root}>
-        <Typography variant="h1" className={classes.feedTitle}>
-          Article Management
-        </Typography>
+  return (
+    <div className={classes.root}>
+      <Typography variant="h1" className={classes.feedTitle}>
+        Article Management
+      </Typography>
 
-        {articles?.map((article) => (
-          <ArticleCard
-            key={article.articleID}
-            articleID={article.articleID}
-            title={article.title}
-            image={article.banner}
-            content={article.content}
-            isPublished={article.isPublished}
-            user={article.user}
-          />
-        ))}
-        <div>
-          <Button
-            className={classes.feedButton}
-            color="primary"
-            variant="contained"
-            size="large"
-            onClick={fetchMoreArticles}
-          >
-            More
-          </Button>
-        </div>
+      {articles?.map((article) => (
+        <ArticleCard
+          key={article.articleID}
+          articleID={article.articleID}
+          title={article.title}
+          image={article.banner}
+          content={article.content}
+          isPublished={article.isPublished}
+          user={article.user}
+        />
+      ))}
+      <div>
+        <Button
+          className={classes.feedButton}
+          color="primary"
+          variant="contained"
+          size="large"
+          onClick={fetchMoreArticles}
+        >
+          More
+        </Button>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default EditArticles;
