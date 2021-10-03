@@ -6,7 +6,7 @@ export default class CreatePostInput {
   title!: string;
 
   @Field()
-  banner!: string;
+  image!: string;
 
   @Field()
   content!: string;

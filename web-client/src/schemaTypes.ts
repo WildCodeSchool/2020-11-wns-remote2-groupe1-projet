@@ -17,7 +17,7 @@ export interface getPostById_post {
   __typename: 'Post';
   postID: string;
   title: string;
-  banner: string;
+  image: string;
   content: string;
   createdAt: any;
   updatedAt: any;
@@ -52,7 +52,7 @@ export interface getPosts_posts {
   __typename: 'Post';
   postID: string;
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
   user: getPosts_posts_user;
@@ -80,7 +80,7 @@ export interface getPostsVariables {
 export interface CreatePost_createPost {
   __typename: 'Post';
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
 }
@@ -91,7 +91,7 @@ export interface CreatePost {
 
 export interface CreatePostVariables {
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
 }
@@ -175,7 +175,7 @@ export interface SubscribeToNewPost_newPost {
   __typename: 'Post';
   postID: string;
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
   user: SubscribeToNewPost_newPost_user;
@@ -230,7 +230,7 @@ export interface UpdatePost_updatePost {
   __typename: 'Post';
   postID: string;
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
 }
@@ -242,7 +242,7 @@ export interface UpdatePost {
 export interface UpdatePostVariables {
   postID: string;
   title: string;
-  banner: string;
+  image: string;
   content: string;
   isPublished: boolean;
 }

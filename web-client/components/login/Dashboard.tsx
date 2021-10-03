@@ -44,7 +44,7 @@ function Dashboard() {
   const posts: Array<{
     postID: string;
     title: string;
-    banner: string;
+    image: string;
     content: string;
     isPublished: boolean;
     user: any;

@@ -39,7 +39,7 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
   const post: {
     postID: string;
     title: string;
-    banner: string;
+    image: string;
     content: string;
     isPublished: boolean;
     createdAt: Date;
@@ -49,7 +49,7 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
   const [values, setValues] = useState({
     postID: '',
     title: '',
-    banner: '',
+    image: '',
     content: '',
     isPublished: null,
   });
@@ -59,7 +59,7 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
       setValues({
         postID: post.postID,
         title: post.title,
-        banner: post.banner,
+        image: post.image,
         content: post.content,
         isPublished: post.isPublished,
       });
@@ -126,9 +126,9 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Banner"
-              name="banner"
-              value={values.banner}
+              label="Image"
+              name="image"
+              value={values.image}
               onChange={changeHandler}
               fullWidth
               type="text"

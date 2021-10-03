@@ -35,7 +35,7 @@ function CreatePostComponent(): JSX.Element {
   const router = useRouter();
   const classes = useStyles();
   const [title, setTitle] = useState<string>('');
-  const [banner, setBanner] = useState<string>('');
+  const [image, setImage] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [isPublished, setIsPublished] = useState<boolean>(false);
   const [createPost, { error }] = useMutation(CREATE_POST, {
@@ -55,7 +55,7 @@ function CreatePostComponent(): JSX.Element {
           await createPost({
             variables: {
               title,
-              banner,
+              image,
               content,
               isPublished,
             },
@@ -74,9 +74,9 @@ function CreatePostComponent(): JSX.Element {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
-              label="Banner"
-              value={banner}
-              onChange={(e) => setBanner(e.target.value)}
+              label="Image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
               fullWidth
               type="text"
             />

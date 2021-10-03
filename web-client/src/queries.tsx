@@ -5,7 +5,7 @@ export const GET_POST = gql`
     post(postID: $postID) {
       postID
       title
-      banner
+      image
       content
       createdAt
       updatedAt
@@ -23,7 +23,7 @@ export const GET_POSTS = gql`
     posts(limit: $limit, offset: $offset, isPublished: $isPublished) {
       postID
       title
-      banner
+      image
       content
       isPublished
       user {
@@ -38,20 +38,20 @@ export const CREATE_POST = gql`
   # Create Post
   mutation CreatePost(
     $title: String!
-    $banner: String!
+    $image: String!
     $content: String!
     $isPublished: Boolean!
   ) {
     createPost(
       data: {
         title: $title
-        banner: $banner
+        image: $image
         content: $content
         isPublished: $isPublished
       }
     ) {
       title
-      banner
+      image
       content
       isPublished
     }
@@ -90,7 +90,7 @@ export const SUBSCRIBE_TO_NEW_POST = gql`
     newPost {
       postID
       title
-      banner
+      image
       content
       isPublished
       user {
@@ -122,7 +122,7 @@ export const UPDATE_POST = gql`
   mutation UpdatePost(
     $postID: String!
     $title: String!
-    $banner: String!
+    $image: String!
     $content: String!
     $isPublished: Boolean!
   ) {
@@ -130,14 +130,14 @@ export const UPDATE_POST = gql`
       postID: $postID
       data: {
         title: $title
-        banner: $banner
+        image: $image
         content: $content
         isPublished: $isPublished
       }
     ) {
       postID
       title
-      banner
+      image
       content
       isPublished
     }

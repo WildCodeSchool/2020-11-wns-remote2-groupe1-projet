@@ -33,18 +33,18 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
   const post = data?.post;
 
   const classes = useStyles();
-  let banner;
-  if (post?.banner) {
-    banner = post?.banner;
+  let image;
+  if (post?.image) {
+    image = post?.image;
   } else
-    banner =
+    image =
       'https://rent-my-boat-nice.fr/wp-content/uploads/2020/08/placeholder.png';
 
   return (
     <div>
       <Box m={2}>
         <div>
-          <img src={banner} className={classes.media} height="250px"></img>
+          <img src={image} className={classes.media} height="250px"></img>
           <h1>{post?.title}</h1>
           <p>written by {post?.user?.firstName}</p>
           <p className={classes.dateBlock}>

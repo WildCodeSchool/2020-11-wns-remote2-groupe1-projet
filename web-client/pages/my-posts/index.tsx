@@ -37,7 +37,7 @@ const EditPosts = (): JSX.Element => {
   const posts: Array<{
     postID: string;
     title: string;
-    banner: string;
+    image: string;
     content: string;
     isPublished: boolean;
     user: any;
@@ -70,7 +70,7 @@ const EditPosts = (): JSX.Element => {
           key={post.postID}
           postID={post.postID}
           title={post.title}
-          image={post.banner}
+          image={post.image}
           content={post.content}
           isPublished={post.isPublished}
           user={post.user}

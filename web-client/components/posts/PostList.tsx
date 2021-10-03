@@ -77,7 +77,7 @@ const Posts = (): JSX.Element => {
           key={post.postID}
           postID={post.postID}
           title={post.title}
-          image={post.banner}
+          image={post.image}
           content={post.content}
           isPublished={post.isPublished}
           user={post.user}

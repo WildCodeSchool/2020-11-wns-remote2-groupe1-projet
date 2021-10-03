@@ -10,7 +10,7 @@ export default class UpdatePostInput {
   title?: string;
 
   @Field({ nullable: true })
-  banner?: string;
+  image?: string;
 
   @Field({ nullable: true })
   content?: string;

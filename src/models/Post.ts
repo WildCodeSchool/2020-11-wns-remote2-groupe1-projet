@@ -26,7 +26,7 @@ export class Post extends BaseEntity {
 
   @Column()
   @Field(() => String)
-  banner!: string;
+  image!: string;
 
   @Column()
   @Field(() => String)
