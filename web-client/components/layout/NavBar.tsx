@@ -109,13 +109,13 @@ const NavBarComponent = (props: Props) => {
       <Divider />
       <List>
         <ListItem>
-          <Link href="/create-article">
-            <Button className={classes.link}>New Article</Button>
+          <Link href="/new-post">
+            <Button className={classes.link}>New Post</Button>
           </Link>
         </ListItem>
         <ListItem>
-          <Link href="/edit-articles">
-            <Button className={classes.link}>Edit Article</Button>
+          <Link href="/my-posts">
+            <Button className={classes.link}>My Posts</Button>
           </Link>
         </ListItem>
         <ListItem>
@@ -151,11 +151,11 @@ const NavBarComponent = (props: Props) => {
 
             <div className={classes.navBarContent}>
               <div className={classes.respNavBarContent}>
-                <Link href="/create-article">
-                  <Button className={classes.link}>New Article</Button>
+                <Link href="/new-post">
+                  <Button className={classes.link}>New Post</Button>
                 </Link>
-                <Link href="/edit-articles">
-                  <Button className={classes.link}>Edit Article</Button>
+                <Link href="/my-posts">
+                  <Button className={classes.link}>My Posts</Button>
                 </Link>
                 <Link href="/image-gallery">
                   <Button className={classes.link}>Image Gallery</Button>

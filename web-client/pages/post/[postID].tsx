@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import Article from '../../components/articles/Article';
-import Comment from '../../components/articles/Comment';
+import Post from '../../components/posts/Post';
+import Comment from '../../components/posts/Comment';
 import { Container, Box, Link, Button } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
@@ -12,21 +12,19 @@ interface WithRouterProps {
   router: NextRouter;
 }
 
-const ArticleView: NextPage<WithRouterProps> = ({
-  router,
-}: WithRouterProps) => {
+const PostView: NextPage<WithRouterProps> = ({ router }: WithRouterProps) => {
   return (
     <>
       <Link href="/">
-        <Button color="inherit"> Retour aux articles</Button>
+        <Button color="inherit"> Retour aux posts</Button>
       </Link>
       <Container maxWidth="sm">
         <Box mt={2}>
-          <Article router={router} />
+          <Post router={router} />
         </Box>
       </Container>
     </>
   );
 };
 
-export default withAuth(ArticleView);
+export default withAuth(PostView);

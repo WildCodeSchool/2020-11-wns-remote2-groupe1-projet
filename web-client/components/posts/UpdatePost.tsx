@@ -9,7 +9,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { GET_ARTICLE, UPDATE_ARTICLE, DELETE_ARTICLE } from '../../src/queries';
+import { GET_POST, UPDATE_POST, DELETE_POST } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {
@@ -27,27 +27,27 @@ const useStyles = makeStyles({
   },
 });
 
-const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
+const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
   const classes = useStyles();
 
   const router = useRouter();
-  const articleID = router?.query?.articleID;
-  const { data: queryData } = useQuery(GET_ARTICLE, {
-    variables: { articleID },
+  const postID = router?.query?.postID;
+  const { data: queryData } = useQuery(GET_POST, {
+    variables: { postID },
   });
 
-  const article: {
-    articleID: string;
+  const post: {
+    postID: string;
     title: string;
     banner: string;
     content: string;
     isPublished: boolean;
     createdAt: Date;
     updatedAt: Date;
-  } = queryData?.article || [];
+  } = queryData?.post || [];
 
   const [values, setValues] = useState({
-    articleID: '',
+    postID: '',
     title: '',
     banner: '',
     content: '',
@@ -55,16 +55,16 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   });
 
   useEffect(() => {
-    if (article) {
+    if (post) {
       setValues({
-        articleID: article.articleID,
-        title: article.title,
-        banner: article.banner,
-        content: article.content,
-        isPublished: article.isPublished,
+        postID: post.postID,
+        title: post.title,
+        banner: post.banner,
+        content: post.content,
+        isPublished: post.isPublished,
       });
     }
-  }, [article]);
+  }, [post]);
 
   const changeHandler = (e) => {
     setValues((prevValues) => {
@@ -83,34 +83,34 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
     });
   };
 
-  const [updateArticle] = useMutation(UPDATE_ARTICLE, {
+  const [updatePost] = useMutation(UPDATE_POST, {
     onCompleted: () => {
-      router.push('/edit-articles');
+      router.push('/edit-posts');
     },
   });
 
-  const [deleteArticle] = useMutation(DELETE_ARTICLE, {
+  const [deletePost] = useMutation(DELETE_POST, {
     onCompleted: () => {
-      router.push('/edit-articles');
+      router.push('/edit-posts');
     },
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    updateArticle({
+    updatePost({
       variables: values,
     });
   }
 
   function handleDelete(e) {
     e.preventDefault();
-    deleteArticle({ variables: { articleID } });
+    deletePost({ variables: { postID } });
   }
 
   return (
     <Paper className={classes.gridContainer}>
       <Typography align={'center'} variant="h2">
-        Article Edit
+        Post Edit
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container justify="center" spacing={2}>
@@ -178,4 +178,4 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
   );
 };
 
-export default UpdateArticleComponent;
+export default UpdatePostComponent;

@@ -2,7 +2,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { NextPage } from 'next/types';
-import Articles from '../components/articles/ArticleList';
+import Posts from '../components/posts/PostList';
 import withAuth from '../components/withAuth';
 
 const Home: NextPage = () => {
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Chatter App </title>
       </Head>
-      <Articles />
+      <Posts />
     </div>
   );
 };

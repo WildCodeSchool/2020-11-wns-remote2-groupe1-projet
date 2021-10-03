@@ -3,8 +3,8 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { GET_ARTICLE } from '../../src/queries';
-import { getArticleById } from '../../src/schemaTypes';
+import { GET_POST } from '../../src/queries';
+import { getPostById } from '../../src/schemaTypes';
 import Comment from './Comment';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,18 +24,18 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Article: React.FC<{ router: NextRouter }> = ({}) => {
+const Post: React.FC<{ router: NextRouter }> = ({}) => {
   const router = useRouter();
-  const articleID = router?.query?.articleID;
-  const { data } = useQuery<getArticleById>(GET_ARTICLE, {
-    variables: { articleID },
+  const postID = router?.query?.postID;
+  const { data } = useQuery<getPostById>(GET_POST, {
+    variables: { postID },
   });
-  const article = data?.article;
+  const post = data?.post;
 
   const classes = useStyles();
   let banner;
-  if (article?.banner) {
-    banner = article?.banner;
+  if (post?.banner) {
+    banner = post?.banner;
   } else
     banner =
       'https://rent-my-boat-nice.fr/wp-content/uploads/2020/08/placeholder.png';
@@ -45,13 +45,13 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
       <Box m={2}>
         <div>
           <img src={banner} className={classes.media} height="250px"></img>
-          <h1>{article?.title}</h1>
-          <p>written by {article?.user?.firstName}</p>
+          <h1>{post?.title}</h1>
+          <p>written by {post?.user?.firstName}</p>
           <p className={classes.dateBlock}>
             <span className={classes.dateUnit}>
               Created at :
               <span>
-                {new Date(article?.createdAt).toLocaleString('fr', {
+                {new Date(post?.createdAt).toLocaleString('fr', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -63,7 +63,7 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
             <span className={classes.dateUnit}>
               Updated at :
               <span>
-                {new Date(article?.updatedAt).toLocaleString('fr', {
+                {new Date(post?.updatedAt).toLocaleString('fr', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
@@ -73,12 +73,12 @@ const Article: React.FC<{ router: NextRouter }> = ({}) => {
               </span>
             </span>
           </p>
-          <p>{article?.content}</p>
+          <p>{post?.content}</p>
         </div>
       </Box>
-      <Comment articleID={articleID} />
+      <Comment postID={postID} />
     </div>
   );
 };
 
-export default Article;
+export default Post;

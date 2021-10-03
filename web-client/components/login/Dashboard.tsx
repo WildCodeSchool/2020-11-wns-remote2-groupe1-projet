@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Button, makeStyles } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { UserContext } from '../../contexts/Contexts';
-import { GET_ARTICLES, GET_RECENT_USERS } from '../../src/queries';
+import { GET_POSTS, GET_RECENT_USERS } from '../../src/queries';
 import { GetRecentUsers } from '../../src/schemaTypes';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ function Dashboard() {
 
   const { loading, data } = useQuery<GetRecentUsers>(GET_RECENT_USERS);
 
-  const { data: articleData } = useQuery(GET_ARTICLES, {
+  const { data: postData } = useQuery(GET_POSTS, {
     variables: {
       offset: 0,
       limit: 3,
@@ -41,14 +41,14 @@ function Dashboard() {
     fetchPolicy: 'cache-and-network',
   });
 
-  const articles: Array<{
-    articleID: string;
+  const posts: Array<{
+    postID: string;
     title: string;
     banner: string;
     content: string;
     isPublished: boolean;
     user: any;
-  }> = articleData?.articles || [];
+  }> = postData?.posts || [];
 
   return (
     <div className={classes.root}>
@@ -65,9 +65,9 @@ function Dashboard() {
         <h2>Users Overview</h2>
         <div>{loading ? '…' : data?.recentUsers}</div>
 
-        <h2>Articles Overview</h2>
-        {articles?.map((article) => {
-          return <div key={article.articleID}>{article.title}</div>;
+        <h2>Posts Overview</h2>
+        {posts?.map((post) => {
+          return <div key={post.postID}>{post.title}</div>;
         })}
       </div>
     </div>

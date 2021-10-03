@@ -1,9 +1,9 @@
 import React from 'react';
-import ArticleCard from '../../components/articles/ArticleCard';
+import PostCard from '../../components/posts/PostCard';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
-import { GET_ARTICLES } from '../../src/queries';
+import { GET_POSTS } from '../../src/queries';
 import withAuth from '../../components/withAuth';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditArticles = (): JSX.Element => {
-  const { data, fetchMore } = useQuery(GET_ARTICLES, {
+const EditPosts = (): JSX.Element => {
+  const { data, fetchMore } = useQuery(GET_POSTS, {
     variables: {
       offset: 0,
       limit: 3,
@@ -34,24 +34,24 @@ const EditArticles = (): JSX.Element => {
     fetchPolicy: 'cache-and-network',
   });
 
-  const articles: Array<{
-    articleID: string;
+  const posts: Array<{
+    postID: string;
     title: string;
     banner: string;
     content: string;
     isPublished: boolean;
     user: any;
-  }> = data?.articles || [];
+  }> = data?.posts || [];
 
-  const fetchMoreArticles = () => {
+  const fetchMorePosts = () => {
     fetchMore({
       variables: {
-        offset: articles.length,
+        offset: posts.length,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
         return Object.assign({}, prev, {
-          articles: [...prev.articles, ...fetchMoreResult.articles],
+          posts: [...prev.posts, ...fetchMoreResult.posts],
         });
       },
     });
@@ -62,18 +62,18 @@ const EditArticles = (): JSX.Element => {
   return (
     <div className={classes.root}>
       <Typography variant="h1" className={classes.feedTitle}>
-        Article Management
+        Post Management
       </Typography>
 
-      {articles?.map((article) => (
-        <ArticleCard
-          key={article.articleID}
-          articleID={article.articleID}
-          title={article.title}
-          image={article.banner}
-          content={article.content}
-          isPublished={article.isPublished}
-          user={article.user}
+      {posts?.map((post) => (
+        <PostCard
+          key={post.postID}
+          postID={post.postID}
+          title={post.title}
+          image={post.banner}
+          content={post.content}
+          isPublished={post.isPublished}
+          user={post.user}
         />
       ))}
       <div>
@@ -82,7 +82,7 @@ const EditArticles = (): JSX.Element => {
           color="primary"
           variant="contained"
           size="large"
-          onClick={fetchMoreArticles}
+          onClick={fetchMorePosts}
         >
           More
         </Button>
@@ -91,4 +91,4 @@ const EditArticles = (): JSX.Element => {
   );
 };
 
-export default withAuth(EditArticles);
+export default withAuth(EditPosts);

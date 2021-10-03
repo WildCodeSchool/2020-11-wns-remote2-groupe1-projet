@@ -16,7 +16,7 @@ import {
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';
-import { Article } from './Article';
+import { Post } from './Post';
 
 @Entity()
 @ObjectType()
@@ -43,10 +43,10 @@ export class Comment extends BaseEntity {
   @JoinColumn()
   user!: User;
 
-  @ManyToOne(() => Article, (article) => article.comments, {
+  @ManyToOne(() => Post, (post) => post.comments, {
     onDelete: 'CASCADE',
   })
-  @Field(() => Article)
-  @JoinColumn({ name: 'articleID' })
-  article!: Article;
+  @Field(() => Post)
+  @JoinColumn({ name: 'postID' })
+  post!: Post;
 }

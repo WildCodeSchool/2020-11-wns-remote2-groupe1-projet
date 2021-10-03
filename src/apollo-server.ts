@@ -5,7 +5,7 @@ import { GraphQLSchema } from 'graphql';
 
 import { setSessionIdCookie } from './express-server';
 import { getUserFromSessionId } from './models/User';
-import ArticleResolver from './resolvers/ArticleResolver';
+import PostResolver from './resolvers/PostResolver';
 import CommentResolver from './resolvers/CommentResolver';
 import ImageResolver from './resolvers/ImageResolver';
 import UserResolver from './resolvers/UserResolver';
@@ -15,7 +15,7 @@ export const getApolloServer = async (): Promise<{
   graphQLSchema: GraphQLSchema;
 }> => {
   const schema = await buildSchema({
-    resolvers: [ArticleResolver, UserResolver, ImageResolver, CommentResolver],
+    resolvers: [PostResolver, UserResolver, ImageResolver, CommentResolver],
   });
   const context = async ({ req, res }: { req: Request; res: Response }) => {
     const { sessionId } = req.cookies;

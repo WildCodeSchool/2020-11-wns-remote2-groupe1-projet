@@ -5,7 +5,7 @@ import { getExpressServer } from '../express-server';
 import UserSession from '../models/UserSession';
 import { User } from '../models/User';
 import { Comment } from '../models/Comment';
-import { Article } from '../models/Article';
+import { Post } from '../models/Post';
 
 describe('User resolvers', () => {
   let testClient;
@@ -17,7 +17,7 @@ describe('User resolvers', () => {
       type: 'sqlite',
       database: ':memory:',
       dropSchema: true,
-      entities: [Article, User, Comment, UserSession],
+      entities: [Post, User, Comment, UserSession],
       synchronize: true,
       logging: false,
     });

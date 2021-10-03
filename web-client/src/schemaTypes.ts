@@ -4,33 +4,33 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getArticleById
+// GraphQL query operation: getPostById
 // ====================================================
 
-export interface getArticleById_article_user {
-  __typename: "User";
+export interface getPostById_post_user {
+  __typename: 'User';
   userID: string;
   firstName: string;
 }
 
-export interface getArticleById_article {
-  __typename: "Article";
-  articleID: string;
+export interface getPostById_post {
+  __typename: 'Post';
+  postID: string;
   title: string;
   banner: string;
   content: string;
   createdAt: any;
   updatedAt: any;
   isPublished: boolean;
-  user: getArticleById_article_user;
+  user: getPostById_post_user;
 }
 
-export interface getArticleById {
-  article: getArticleById_article;
+export interface getPostById {
+  post: getPostById_post;
 }
 
-export interface getArticleByIdVariables {
-  articleID: string;
+export interface getPostByIdVariables {
+  postID: string;
 }
 
 /* tslint:disable */
@@ -39,30 +39,30 @@ export interface getArticleByIdVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getArticles
+// GraphQL query operation: getPosts
 // ====================================================
 
-export interface getArticles_articles_user {
-  __typename: "User";
+export interface getPosts_posts_user {
+  __typename: 'User';
   userID: string;
   firstName: string;
 }
 
-export interface getArticles_articles {
-  __typename: "Article";
-  articleID: string;
+export interface getPosts_posts {
+  __typename: 'Post';
+  postID: string;
   title: string;
   banner: string;
   content: string;
   isPublished: boolean;
-  user: getArticles_articles_user;
+  user: getPosts_posts_user;
 }
 
-export interface getArticles {
-  articles: getArticles_articles[];
+export interface getPosts {
+  posts: getPosts_posts[];
 }
 
-export interface getArticlesVariables {
+export interface getPostsVariables {
   offset: number;
   limit: number;
   isPublished?: boolean | null;
@@ -74,22 +74,22 @@ export interface getArticlesVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: CreateArticle
+// GraphQL mutation operation: CreatePost
 // ====================================================
 
-export interface CreateArticle_createArticle {
-  __typename: "Article";
+export interface CreatePost_createPost {
+  __typename: 'Post';
   title: string;
   banner: string;
   content: string;
   isPublished: boolean;
 }
 
-export interface CreateArticle {
-  createArticle: CreateArticle_createArticle;
+export interface CreatePost {
+  createPost: CreatePost_createPost;
 }
 
-export interface CreateArticleVariables {
+export interface CreatePostVariables {
   title: string;
   banner: string;
   content: string;
@@ -106,7 +106,7 @@ export interface CreateArticleVariables {
 // ====================================================
 
 export interface CreateComment_createComment {
-  __typename: "Comment";
+  __typename: 'Comment';
   commentID: string;
   content: string;
 }
@@ -117,7 +117,7 @@ export interface CreateComment {
 
 export interface CreateCommentVariables {
   content: string;
-  articleID: string;
+  postID: string;
 }
 
 /* tslint:disable */
@@ -130,22 +130,22 @@ export interface CreateCommentVariables {
 // ====================================================
 
 export interface GetComments_comments_user {
-  __typename: "User";
+  __typename: 'User';
   userID: string;
   firstName: string;
 }
 
-export interface GetComments_comments_article {
-  __typename: "Article";
-  articleID: string;
+export interface GetComments_comments_post {
+  __typename: 'Post';
+  postID: string;
 }
 
 export interface GetComments_comments {
-  __typename: "Comment";
+  __typename: 'Comment';
   commentID: string;
   content: string;
   user: GetComments_comments_user;
-  article: GetComments_comments_article;
+  post: GetComments_comments_post;
 }
 
 export interface GetComments {
@@ -153,7 +153,7 @@ export interface GetComments {
 }
 
 export interface GetCommentsVariables {
-  articleID: string;
+  postID: string;
 }
 
 /* tslint:disable */
@@ -162,27 +162,27 @@ export interface GetCommentsVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL subscription operation: SubscribeToNewArticle
+// GraphQL subscription operation: SubscribeToNewPost
 // ====================================================
 
-export interface SubscribeToNewArticle_newArticle_user {
-  __typename: "User";
+export interface SubscribeToNewPost_newPost_user {
+  __typename: 'User';
   userID: string;
   firstName: string;
 }
 
-export interface SubscribeToNewArticle_newArticle {
-  __typename: "Article";
-  articleID: string;
+export interface SubscribeToNewPost_newPost {
+  __typename: 'Post';
+  postID: string;
   title: string;
   banner: string;
   content: string;
   isPublished: boolean;
-  user: SubscribeToNewArticle_newArticle_user;
+  user: SubscribeToNewPost_newPost_user;
 }
 
-export interface SubscribeToNewArticle {
-  newArticle: SubscribeToNewArticle_newArticle;
+export interface SubscribeToNewPost {
+  newPost: SubscribeToNewPost_newPost;
 }
 
 /* tslint:disable */
@@ -195,22 +195,22 @@ export interface SubscribeToNewArticle {
 // ====================================================
 
 export interface SubscribeToNewComment_newComment_user {
-  __typename: "User";
+  __typename: 'User';
   userID: string;
   firstName: string;
 }
 
-export interface SubscribeToNewComment_newComment_article {
-  __typename: "Article";
-  articleID: string;
+export interface SubscribeToNewComment_newComment_post {
+  __typename: 'Post';
+  postID: string;
 }
 
 export interface SubscribeToNewComment_newComment {
-  __typename: "Comment";
+  __typename: 'Comment';
   commentID: string;
   content: string;
   user: SubscribeToNewComment_newComment_user;
-  article: SubscribeToNewComment_newComment_article;
+  post: SubscribeToNewComment_newComment_post;
 }
 
 export interface SubscribeToNewComment {
@@ -223,24 +223,24 @@ export interface SubscribeToNewComment {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: UpdateArticle
+// GraphQL mutation operation: UpdatePost
 // ====================================================
 
-export interface UpdateArticle_updateArticle {
-  __typename: "Article";
-  articleID: string;
+export interface UpdatePost_updatePost {
+  __typename: 'Post';
+  postID: string;
   title: string;
   banner: string;
   content: string;
   isPublished: boolean;
 }
 
-export interface UpdateArticle {
-  updateArticle: UpdateArticle_updateArticle;
+export interface UpdatePost {
+  updatePost: UpdatePost_updatePost;
 }
 
-export interface UpdateArticleVariables {
-  articleID: string;
+export interface UpdatePostVariables {
+  postID: string;
   title: string;
   banner: string;
   content: string;
@@ -253,15 +253,15 @@ export interface UpdateArticleVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: DeleteArticle
+// GraphQL mutation operation: DeletePost
 // ====================================================
 
-export interface DeleteArticle {
-  deleteArticle: boolean;
+export interface DeletePost {
+  deletePost: boolean;
 }
 
-export interface DeleteArticleVariables {
-  articleID: string;
+export interface DeletePostVariables {
+  postID: string;
 }
 
 /* tslint:disable */
@@ -274,7 +274,7 @@ export interface DeleteArticleVariables {
 // ====================================================
 
 export interface CreateUser_createUser {
-  __typename: "User";
+  __typename: 'User';
   firstName: string;
 }
 
@@ -299,7 +299,7 @@ export interface CreateUserVariables {
 // ====================================================
 
 export interface Login_createSession {
-  __typename: "User";
+  __typename: 'User';
   userID: string;
   email: string;
 }
@@ -323,7 +323,7 @@ export interface LoginVariables {
 // ====================================================
 
 export interface GetCurrentUser_currentUser {
-  __typename: "User";
+  __typename: 'User';
   userID: string;
   firstName: string;
   lastName: string;
@@ -356,7 +356,7 @@ export interface GetRecentUsers {
 // ====================================================
 
 export interface UploadImage_uploadImage {
-  __typename: "Image";
+  __typename: 'Image';
   id: string;
 }
 
@@ -378,7 +378,7 @@ export interface UploadImageVariables {
 // ====================================================
 
 export interface GetImages_images {
-  __typename: "Image";
+  __typename: 'Image';
   id: string;
   extension: string;
 }

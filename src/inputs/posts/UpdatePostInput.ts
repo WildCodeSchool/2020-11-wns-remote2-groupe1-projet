@@ -2,9 +2,9 @@ import { InputType, Field } from 'type-graphql';
 import { User } from '../../models/User';
 
 @InputType()
-export default class UpdateArticleInput {
+export default class UpdatePostInput {
   @Field({ nullable: true })
-  articleID?: string;
+  postID?: string;
 
   @Field({ nullable: true })
   title?: string;

@@ -11,7 +11,7 @@ import Switch from '@material-ui/core/Switch';
 import { useRouter } from 'next/router';
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/Contexts';
-import { CREATE_ARTICLE } from '../../src/queries';
+import { CREATE_POST } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   },
 });
 
-function CreateArticleComponent(): JSX.Element {
+function CreatePostComponent(): JSX.Element {
   const { currentUser } = useContext(UserContext);
 
   const router = useRouter();
@@ -38,7 +38,7 @@ function CreateArticleComponent(): JSX.Element {
   const [banner, setBanner] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [isPublished, setIsPublished] = useState<boolean>(false);
-  const [createArticle, { error }] = useMutation(CREATE_ARTICLE, {
+  const [createPost, { error }] = useMutation(CREATE_POST, {
     onCompleted: () => {
       router.push('/');
     },
@@ -46,13 +46,13 @@ function CreateArticleComponent(): JSX.Element {
   return (
     <Paper className={classes.gridContainer}>
       <Typography align={'center'} variant="h2">
-        Article Creation
+        Post Creation
       </Typography>
       <p>{currentUser?.firstName}</p>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          await createArticle({
+          await createPost({
             variables: {
               title,
               banner,
@@ -106,7 +106,7 @@ function CreateArticleComponent(): JSX.Element {
           </Grid>
           <Grid item xs={12} md={12} className={classes.buttons}>
             <Button variant="contained" color="primary" type="submit">
-              Submit article
+              Submit post
             </Button>
           </Grid>
         </Grid>
@@ -115,4 +115,4 @@ function CreateArticleComponent(): JSX.Element {
   );
 }
 
-export default CreateArticleComponent;
+export default CreatePostComponent;

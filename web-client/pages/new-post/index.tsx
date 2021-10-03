@@ -1,20 +1,20 @@
 import React from 'react';
 
 import { Container, Box } from '@material-ui/core';
-import CreateArticleComponent from '../../components/articles/CreateArticle';
+import CreatePostComponent from '../../components/posts/CreatePost';
 
 import withAuth from '../../components/withAuth';
 
-function CreateArticle() {
+function CreatePost() {
   return (
     <div>
       <Container maxWidth="sm">
         <Box mt={2}>
-          <CreateArticleComponent />
+          <CreatePostComponent />
         </Box>
       </Container>
     </div>
   );
 }
 
-export default withAuth(CreateArticle);
+export default withAuth(CreatePost);

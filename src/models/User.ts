@@ -14,7 +14,7 @@ import {
   MoreThanOrEqual,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Article } from './Article';
+import { Post } from './Post';
 import { Comment } from './Comment';
 import UserSession from './UserSession';
 
@@ -69,9 +69,9 @@ export class User extends BaseEntity {
   @Field(() => Boolean)
   isActive!: boolean;
 
-  @OneToMany(() => Article, (article) => article.user)
-  @Field(() => Article)
-  articles?: Article[];
+  @OneToMany(() => Post, (post) => post.user)
+  @Field(() => Post)
+  posts?: Post[];
 
   @OneToMany(() => Comment, (comment) => comment.user)
   @Field(() => Comment)

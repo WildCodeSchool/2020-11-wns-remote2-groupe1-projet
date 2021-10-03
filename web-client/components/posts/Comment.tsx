@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Comment = ({ articleID }): JSX.Element => {
+const Comment = ({ postID }): JSX.Element => {
   const [content, setContent] = useState<string>('');
 
   const {
@@ -54,7 +54,7 @@ const Comment = ({ articleID }): JSX.Element => {
     subscribeToMore,
   } = useQuery<GetComments>(GET_COMMENTS, {
     variables: {
-      articleID: articleID,
+      postID: postID,
     },
   });
   const comments = commentData?.comments;
@@ -65,7 +65,7 @@ const Comment = ({ articleID }): JSX.Element => {
     await addComment({
       variables: {
         content,
-        articleID: articleID,
+        postID: postID,
       },
     });
     setContent('');

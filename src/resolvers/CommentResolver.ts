@@ -1,4 +1,4 @@
-import { Article } from '../models/Article';
+import { Post } from '../models/Post';
 import { User } from 'src/models/User';
 import {
   Resolver,
@@ -24,19 +24,19 @@ export default class CommentResolver {
   @Query(() => [Comment])
   comments(
     @Ctx() { user }: { user: User | null },
-    @Arg('articleID', { nullable: true }) articleID: string
+    @Arg('postID', { nullable: true }) postID: string
   ): Promise<Comment[]> {
     if (!user) {
       throw Error('You are not authenticated.');
     }
-    if (articleID !== null) {
+    if (postID !== null) {
       return Comment.find({
-        relations: ['user', 'article'],
-        where: { article: { articleID: articleID } },
+        relations: ['user', 'post'],
+        where: { post: { postID: postID } },
       });
     } else {
       return Comment.find({
-        relations: ['user', 'article'],
+        relations: ['user', 'post'],
       });
     }
   }
@@ -48,7 +48,7 @@ export default class CommentResolver {
   ): Promise<Comment | undefined> {
     const comment = await Comment.findOne({
       where: { commentID },
-      relations: ['user', 'article'],
+      relations: ['user', 'post'],
     });
     if (!user) {
       throw Error('You are not authenticated.');
@@ -63,7 +63,7 @@ export default class CommentResolver {
   async createComment(
     @Ctx() { user }: { user: User | null },
     @Arg('data') data: CreateCommentInput,
-    @Arg('articleID') articleID: string,
+    @Arg('postID') postID: string,
     @PubSub('NEW_COMMENT')
     publishNewComment: Publisher<NewCommentNotificationPayload>
   ): Promise<Comment> {
@@ -72,10 +72,10 @@ export default class CommentResolver {
     }
     const comment = Comment.create(data);
     comment.user = user;
-    const article = await Article.findOne(articleID);
+    const post = await Post.findOne(postID);
 
-    if (article) {
-      comment.article = article;
+    if (post) {
+      comment.post = post;
     }
     await comment.save();
     publishNewComment({ comment });

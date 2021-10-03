@@ -55,15 +55,15 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const ArticleCard = ({
-  articleID,
+const PostCard = ({
+  postID,
   title,
   image,
   content,
   isPublished,
   user,
 }: {
-  articleID: string;
+  postID: string;
   title: string;
   image: string;
   content: string;
@@ -77,11 +77,11 @@ const ArticleCard = ({
       const path = window.location.pathname;
 
       switch (path) {
-        case '/edit-articles':
-          window.location.assign(`/edit-articles/${articleID}`);
+        case '/edit-posts':
+          window.location.assign(`/edit-posts/${postID}`);
           break;
         case '/':
-          window.location.assign(`/article/${articleID}`);
+          window.location.assign(`/post/${postID}`);
       }
       event.preventDefault();
     };
@@ -131,4 +131,4 @@ const ArticleCard = ({
   );
 };
 
-export default ArticleCard;
+export default PostCard;

@@ -1,9 +1,9 @@
 import { gql } from '@apollo/client';
 
-export const GET_ARTICLE = gql`
-  query getArticleById($articleID: String!) {
-    article(articleID: $articleID) {
-      articleID
+export const GET_POST = gql`
+  query getPostById($postID: String!) {
+    post(postID: $postID) {
+      postID
       title
       banner
       content
@@ -18,10 +18,10 @@ export const GET_ARTICLE = gql`
   }
 `;
 
-export const GET_ARTICLES = gql`
-  query getArticles($offset: Float!, $limit: Float!, $isPublished: Boolean) {
-    articles(limit: $limit, offset: $offset, isPublished: $isPublished) {
-      articleID
+export const GET_POSTS = gql`
+  query getPosts($offset: Float!, $limit: Float!, $isPublished: Boolean) {
+    posts(limit: $limit, offset: $offset, isPublished: $isPublished) {
+      postID
       title
       banner
       content
@@ -34,15 +34,15 @@ export const GET_ARTICLES = gql`
   }
 `;
 
-export const CREATE_ARTICLE = gql`
-  # Create Article
-  mutation CreateArticle(
+export const CREATE_POST = gql`
+  # Create Post
+  mutation CreatePost(
     $title: String!
     $banner: String!
     $content: String!
     $isPublished: Boolean!
   ) {
-    createArticle(
+    createPost(
       data: {
         title: $title
         banner: $banner
@@ -60,8 +60,8 @@ export const CREATE_ARTICLE = gql`
 
 export const CREATE_COMMENT = gql`
   # Create comment
-  mutation CreateComment($content: String!, $articleID: String!) {
-    createComment(articleID: $articleID, data: { content: $content }) {
+  mutation CreateComment($content: String!, $postID: String!) {
+    createComment(postID: $postID, data: { content: $content }) {
       commentID
       content
     }
@@ -70,25 +70,25 @@ export const CREATE_COMMENT = gql`
 
 export const GET_COMMENTS = gql`
   # Get Comments
-  query GetComments($articleID: String!) {
-    comments(articleID: $articleID) {
+  query GetComments($postID: String!) {
+    comments(postID: $postID) {
       commentID
       content
       user {
         userID
         firstName
       }
-      article {
-        articleID
+      post {
+        postID
       }
     }
   }
 `;
 
-export const SUBSCRIBE_TO_NEW_ARTICLE = gql`
-  subscription SubscribeToNewArticle {
-    newArticle {
-      articleID
+export const SUBSCRIBE_TO_NEW_POST = gql`
+  subscription SubscribeToNewPost {
+    newPost {
+      postID
       title
       banner
       content
@@ -110,24 +110,24 @@ export const SUBSCRIBE_TO_NEW_COMMENT = gql`
         userID
         firstName
       }
-      article {
-        articleID
+      post {
+        postID
       }
     }
   }
 `;
 
-export const UPDATE_ARTICLE = gql`
-  # Update Article
-  mutation UpdateArticle(
-    $articleID: String!
+export const UPDATE_POST = gql`
+  # Update Post
+  mutation UpdatePost(
+    $postID: String!
     $title: String!
     $banner: String!
     $content: String!
     $isPublished: Boolean!
   ) {
-    updateArticle(
-      articleID: $articleID
+    updatePost(
+      postID: $postID
       data: {
         title: $title
         banner: $banner
@@ -135,7 +135,7 @@ export const UPDATE_ARTICLE = gql`
         isPublished: $isPublished
       }
     ) {
-      articleID
+      postID
       title
       banner
       content
@@ -144,9 +144,9 @@ export const UPDATE_ARTICLE = gql`
   }
 `;
 
-export const DELETE_ARTICLE = gql`
-  mutation DeleteArticle($articleID: String!) {
-    deleteArticle(articleID: $articleID)
+export const DELETE_POST = gql`
+  mutation DeletePost($postID: String!) {
+    deletePost(postID: $postID)
   }
 `;
 

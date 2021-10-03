@@ -15,10 +15,10 @@ import { Comment } from './Comment';
 
 @Entity()
 @ObjectType()
-export class Article extends BaseEntity {
+export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   @Field(() => ID)
-  articleID!: string;
+  postID!: string;
 
   @Column()
   @Field(() => String)
@@ -44,11 +44,11 @@ export class Article extends BaseEntity {
   @UpdateDateColumn()
   updatedAt?: Date;
 
-  @ManyToOne(() => User, (user) => user.articles)
+  @ManyToOne(() => User, (user) => user.posts)
   @Field(() => User)
   user!: User;
 
-  @OneToMany(() => Comment, (comment) => comment.article)
+  @OneToMany(() => Comment, (comment) => comment.post)
   @Field(() => [Comment])
   comments?: Comment[];
 }

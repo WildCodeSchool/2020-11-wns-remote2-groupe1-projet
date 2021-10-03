@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import UpdateArticleComponent from '../../components/articles/UpdateArticle';
+import UpdatePostComponent from '../../components/posts/UpdatePost';
 import { Container, Box } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
@@ -10,20 +10,18 @@ interface WithRouterProps {
   router: NextRouter;
 }
 
-const EditArticle: NextPage<WithRouterProps> = ({
-  router,
-}: WithRouterProps) => {
+const EditPost: NextPage<WithRouterProps> = ({ router }: WithRouterProps) => {
   const { currentUser } = useContext(UserContext);
 
   return (
     <>
       <Container maxWidth="sm">
         <Box mt={2}>
-          <UpdateArticleComponent router={router} />
+          <UpdatePostComponent router={router} />
         </Box>
       </Container>
     </>
   );
 };
 
-export default withAuth(EditArticle);
+export default withAuth(EditPost);
