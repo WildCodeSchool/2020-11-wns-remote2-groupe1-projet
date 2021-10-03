@@ -27,7 +27,7 @@ const withAuth = (WrappedComponent) => {
               return;
             }
           }
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(checkLoginStatus);
       }, [currentUser]);
