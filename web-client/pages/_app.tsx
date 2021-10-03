@@ -34,7 +34,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const webSocketProtocolAndHost =
     process.env.NODE_ENV === 'development'
       ? `ws://localhost:4000`
-      : process.browser && `${window.location.origin.replace('http', 'w')}`;
+      : process.browser && `${window.location.origin.replace('http', 'ws')}`;
 
   const wsLink =
     process.browser &&
