@@ -71,6 +71,13 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
       return {
         ...prevValues,
         [e.target.name]: e.target.value,
+      };
+    });
+  };
+  const publishHandler = (e) => {
+    setValues((prevValues) => {
+      return {
+        ...prevValues,
         isPublished: !values.isPublished,
       };
     });
@@ -146,7 +153,7 @@ const UpdateArticleComponent: React.FC<{ router: NextRouter }> = ({}) => {
                   name="isPublished"
                   checked={values.isPublished}
                   value={values.isPublished}
-                  onChange={changeHandler}
+                  onChange={publishHandler}
                 />
               }
               label={values.isPublished ? 'Published' : 'Draft'}
