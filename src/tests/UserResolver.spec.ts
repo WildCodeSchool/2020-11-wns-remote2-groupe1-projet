@@ -35,6 +35,7 @@ describe('User resolvers', () => {
       const user1 = User.create({
         email: 'laurepincon@gmail.com',
         password: 'laurepassword',
+        username: 'Derpyderp',
         firstName: 'Laure',
         lastName: 'Pinçon',
       });
@@ -43,6 +44,7 @@ describe('User resolvers', () => {
       const user2 = User.create({
         email: 'pierreroulle@gmail.com',
         password: 'pierrepassword',
+        username: 'CookieMaster',
         firstName: 'Pierre',
         lastName: 'Roulle',
       });
@@ -52,6 +54,7 @@ describe('User resolvers', () => {
         query: `{
         users {
           userID
+          username
           firstName
           lastName
         }
@@ -63,11 +66,13 @@ describe('User resolvers', () => {
         users: [
           {
             userID: '1',
+            username: 'Derpyderp',
             firstName: 'Laure',
             lastName: 'Pinçon',
           },
           {
             userID: '2',
+            username: 'CookieMaster',
             firstName: 'Pierre',
             lastName: 'Roulle',
           },
