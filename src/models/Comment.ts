@@ -32,7 +32,7 @@ export class Comment extends BaseEntity {
 
   @Field(() => Date)
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt!: Date;
 
   @Field(() => Date)
   @UpdateDateColumn()

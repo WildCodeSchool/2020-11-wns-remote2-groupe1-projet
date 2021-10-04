@@ -81,6 +81,7 @@ export const GET_COMMENTS = gql`
       post {
         postID
       }
+      createdAt
     }
   }
 `;
@@ -113,6 +114,7 @@ export const SUBSCRIBE_TO_NEW_COMMENT = gql`
       post {
         postID
       }
+      createdAt
     }
   }
 `;

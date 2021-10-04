@@ -35,9 +35,15 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: '0.5rem',
       margin: '0.5rem',
     },
+    commentUser: {
+      fontWeight: 'bold',
+    },
+    commentDate: {},
     commentBlock: {},
     commentHeader: {
-      fontWeight: 'bold',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
     },
     commentBody: {
       marginLeft: '1rem',
@@ -117,7 +123,18 @@ const Comment = ({ postID }): JSX.Element => {
               <Card className={classes.commentCard} key={comment.commentID}>
                 <div className={classes.commentBlock}>
                   <div className={classes.commentHeader}>
-                    {comment.user.username}
+                    <span className={classes.commentUser}>
+                      {comment.user.username}
+                    </span>{' '}
+                    <span>
+                      {new Date(comment?.createdAt).toLocaleString('fr', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                      })}
+                    </span>
                   </div>
                   <div className={classes.commentBody}>{comment.content}</div>
                 </div>

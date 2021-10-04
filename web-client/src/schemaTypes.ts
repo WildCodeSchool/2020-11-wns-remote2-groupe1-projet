@@ -146,6 +146,7 @@ export interface GetComments_comments {
   content: string;
   user: GetComments_comments_user;
   post: GetComments_comments_post;
+  createdAt: any;
 }
 
 export interface GetComments {
@@ -211,6 +212,7 @@ export interface SubscribeToNewComment_newComment {
   content: string;
   user: SubscribeToNewComment_newComment_user;
   post: SubscribeToNewComment_newComment_post;
+  createdAt: any;
 }
 
 export interface SubscribeToNewComment {

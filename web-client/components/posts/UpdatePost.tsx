@@ -85,13 +85,13 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
 
   const [updatePost] = useMutation(UPDATE_POST, {
     onCompleted: () => {
-      router.push('/edit-posts');
+      router.push('/my-posts');
     },
   });
 
   const [deletePost] = useMutation(DELETE_POST, {
     onCompleted: () => {
-      router.push('/edit-posts');
+      router.push('/my-posts');
     },
   });
 
