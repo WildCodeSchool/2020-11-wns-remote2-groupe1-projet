@@ -50,7 +50,7 @@ const Register = (): JSX.Element => {
   };
   return (
     <Paper className={classes.root}>
-      <Typography variant="h2">Login Page</Typography>
+      <Typography variant="h2">Create Account</Typography>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
