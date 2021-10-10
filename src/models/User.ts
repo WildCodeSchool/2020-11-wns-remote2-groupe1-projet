@@ -6,8 +6,6 @@ import {
   Column,
   Index,
   CreateDateColumn,
-  ManyToOne,
-  ManyToMany,
   OneToMany,
   UpdateDateColumn,
   BeforeInsert,
@@ -107,13 +105,13 @@ export const getRecentUsers = async (): Promise<string> => {
     case 0:
       return 'Nobody registered today.';
     case 1:
-      return `${users[0].firstName} registered today.`;
+      return `${users[0].username} registered today.`;
     case 2:
-      return `${users[0].firstName} and ${users[1].firstName} registered today.`;
+      return `${users[0].username} and ${users[1].username} registered today.`;
     case 3:
-      return `${users[0].firstName}, ${users[1].firstName} and ${users[2].firstName} registered today.`;
+      return `${users[0].username}, ${users[1].username} and ${users[2].username} registered today.`;
     default:
-      return `${users[0].firstName}, ${users[1].firstName} and ${
+      return `${users[0].username}, ${users[1].username} and ${
         users.slice(2).length
       } others registered today.`;
   }

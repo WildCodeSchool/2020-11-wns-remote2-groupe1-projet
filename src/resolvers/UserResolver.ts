@@ -1,6 +1,7 @@
 import { compare } from 'bcrypt';
 import { Resolver, Query, Ctx, Mutation, Arg } from 'type-graphql';
 import CreateUserInput from '../inputs/user/CreateUserInput';
+import UpdateUserInput from '../inputs/user/UpdateUserInput';
 import CreateSessionInput from '../inputs/session/CreateSessionInput';
 
 import { getRecentUsers, User } from '../models/User';
@@ -25,6 +26,24 @@ export default class UserResolver {
   async createUser(@Arg('input') input: CreateUserInput): Promise<User> {
     const user = User.create(input);
     await user.save();
+    return user;
+  }
+
+  @Mutation(() => User)
+  async updateUser(
+    @Ctx() { user }: { user: User | null },
+    @Arg('userID') userID: string,
+    @Arg('input') input: UpdateUserInput
+  ): Promise<User> {
+    if (!user) {
+      throw Error('You are not authenticated.');
+    }
+
+    await User.findOne({ where: { userID } });
+
+    Object.assign(user, input);
+    await user.save();
+
     return user;
   }
 

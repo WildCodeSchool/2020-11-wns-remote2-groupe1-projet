@@ -146,6 +146,32 @@ export const UPDATE_POST = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $userID: String!
+    $username: String!
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+  ) {
+    updateUser(
+      userID: $userID
+      input: {
+        username: $username
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+      }
+    ) {
+      userID
+      username
+      firstName
+      lastName
+      email
+    }
+  }
+`;
+
 export const DELETE_POST = gql`
   mutation DeletePost($postID: String!) {
     deletePost(postID: $postID)
@@ -191,6 +217,7 @@ export const GET_CURRENT_USER = gql`
       username
       firstName
       lastName
+      email
     }
   }
 `;
