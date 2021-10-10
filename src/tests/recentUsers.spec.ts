@@ -2,11 +2,11 @@ import { MoreThanOrEqual } from 'typeorm';
 import { getRecentUsers, User } from '../models/User';
 
 describe('getRecentUsers', () => {
-  const user1Firstname = 'Laure';
-  const user2Firstname = 'Laurent';
-  const user3Firstname = 'Lorenzo';
-  const user4Firstname = 'Luc';
-  const user5Firstname = 'Lise';
+  const user1Username = 'Laure';
+  const user2Username = 'Laurent';
+  const user3Username = 'Lorenzo';
+  const user4Username = 'Luc';
+  const user5Username = 'Lise';
 
   const arbitraryTimestamp = 1625669251746;
   Date.now = jest.fn(() => arbitraryTimestamp);
@@ -30,12 +30,8 @@ describe('getRecentUsers', () => {
 
   describe('when one user created in the last 24 hours', () => {
     it('returns proper summary', async () => {
-      User.find = jest.fn(() =>
-        Promise.resolve([{ firstName: user1Firstname }])
-      );
-      expect(await getRecentUsers()).toBe(
-        `${user1Firstname} registered today.`
-      );
+      User.find = jest.fn(() => Promise.resolve([{ username: user1Username }]));
+      expect(await getRecentUsers()).toBe(`${user1Username} registered today.`);
     });
   });
 
@@ -43,12 +39,12 @@ describe('getRecentUsers', () => {
     it('returns proper summary', async () => {
       User.find = jest.fn(() =>
         Promise.resolve([
-          { firstName: user1Firstname },
-          { firstName: user2Firstname },
+          { username: user1Username },
+          { username: user2Username },
         ])
       );
       expect(await getRecentUsers()).toBe(
-        `${user1Firstname} and ${user2Firstname} registered today.`
+        `${user1Username} and ${user2Username} registered today.`
       );
     });
   });
@@ -57,13 +53,13 @@ describe('getRecentUsers', () => {
     it('returns proper summary', async () => {
       User.find = jest.fn(() =>
         Promise.resolve([
-          { firstName: user1Firstname },
-          { firstName: user2Firstname },
-          { firstName: user3Firstname },
+          { username: user1Username },
+          { username: user2Username },
+          { username: user3Username },
         ])
       );
       expect(await getRecentUsers()).toBe(
-        `${user1Firstname}, ${user2Firstname} and ${user3Firstname} registered today.`
+        `${user1Username}, ${user2Username} and ${user3Username} registered today.`
       );
     });
   });
@@ -72,14 +68,14 @@ describe('getRecentUsers', () => {
     it('returns proper summary', async () => {
       User.find = jest.fn(() =>
         Promise.resolve([
-          { firstName: user1Firstname },
-          { firstName: user2Firstname },
-          { firstName: user3Firstname },
-          { firstName: user4Firstname },
+          { username: user1Username },
+          { username: user2Username },
+          { username: user3Username },
+          { username: user4Username },
         ])
       );
       expect(await getRecentUsers()).toBe(
-        `${user1Firstname}, ${user2Firstname} and 2 others registered today.`
+        `${user1Username}, ${user2Username} and 2 others registered today.`
       );
     });
   });
@@ -88,15 +84,15 @@ describe('getRecentUsers', () => {
     it('returns proper summary', async () => {
       User.find = jest.fn(() =>
         Promise.resolve([
-          { firstName: user1Firstname },
-          { firstName: user2Firstname },
-          { firstName: user3Firstname },
-          { firstName: user4Firstname },
-          { firstName: user5Firstname },
+          { username: user1Username },
+          { username: user2Username },
+          { username: user3Username },
+          { username: user4Username },
+          { username: user5Username },
         ])
       );
       expect(await getRecentUsers()).toBe(
-        `${user1Firstname}, ${user2Firstname} and 3 others registered today.`
+        `${user1Username}, ${user2Username} and 3 others registered today.`
       );
     });
   });
