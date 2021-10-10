@@ -58,67 +58,6 @@ export const CREATE_POST = gql`
   }
 `;
 
-export const CREATE_COMMENT = gql`
-  # Create comment
-  mutation CreateComment($content: String!, $postID: String!) {
-    createComment(postID: $postID, data: { content: $content }) {
-      commentID
-      content
-    }
-  }
-`;
-
-export const GET_COMMENTS = gql`
-  # Get Comments
-  query GetComments($postID: String!) {
-    comments(postID: $postID) {
-      commentID
-      content
-      user {
-        userID
-        username
-      }
-      post {
-        postID
-      }
-      createdAt
-    }
-  }
-`;
-
-export const SUBSCRIBE_TO_NEW_POST = gql`
-  subscription SubscribeToNewPost {
-    newPost {
-      postID
-      title
-      image
-      content
-      isPublished
-      user {
-        userID
-        username
-      }
-    }
-  }
-`;
-
-export const SUBSCRIBE_TO_NEW_COMMENT = gql`
-  subscription SubscribeToNewComment {
-    newComment {
-      commentID
-      content
-      user {
-        userID
-        username
-      }
-      post {
-        postID
-      }
-      createdAt
-    }
-  }
-`;
-
 export const UPDATE_POST = gql`
   # Update Post
   mutation UpdatePost(
@@ -146,35 +85,35 @@ export const UPDATE_POST = gql`
   }
 `;
 
-export const UPDATE_USER = gql`
-  mutation UpdateUser(
-    $userID: String!
-    $username: String!
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-  ) {
-    updateUser(
-      userID: $userID
-      input: {
-        username: $username
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-      }
-    ) {
-      userID
-      username
-      firstName
-      lastName
-      email
-    }
-  }
-`;
-
 export const DELETE_POST = gql`
   mutation DeletePost($postID: String!) {
     deletePost(postID: $postID)
+  }
+`;
+export const CREATE_COMMENT = gql`
+  # Create comment
+  mutation CreateComment($content: String!, $postID: String!) {
+    createComment(postID: $postID, data: { content: $content }) {
+      commentID
+      content
+    }
+  }
+`;
+export const GET_COMMENTS = gql`
+  # Get Comments
+  query GetComments($postID: String!) {
+    comments(postID: $postID) {
+      commentID
+      content
+      user {
+        userID
+        username
+      }
+      post {
+        postID
+      }
+      createdAt
+    }
   }
 `;
 
@@ -218,6 +157,9 @@ export const GET_CURRENT_USER = gql`
       firstName
       lastName
       email
+      phoneNo
+      country
+      birthDate
     }
   }
 `;
@@ -227,7 +169,40 @@ export const GET_RECENT_USERS = gql`
     recentUsers
   }
 `;
-
+export const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $userID: String!
+    $username: String!
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $birthDate: String
+    $country: String
+    $phoneNo: String
+  ) {
+    updateUser(
+      userID: $userID
+      input: {
+        username: $username
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        birthDate: $birthDate
+        country: $country
+        phoneNo: $phoneNo
+      }
+    ) {
+      userID
+      username
+      firstName
+      lastName
+      email
+      phoneNo
+      country
+      birthDate
+    }
+  }
+`;
 export const UPLOAD_IMAGE = gql`
   mutation UploadImage($file: Upload!) {
     uploadImage(file: $file) {
@@ -248,5 +223,38 @@ export const GET_IMAGES = gql`
 export const DELETE_IMAGE = gql`
   mutation DeleteImage($id: String!) {
     deleteImage(id: $id)
+  }
+`;
+
+export const SUBSCRIBE_TO_NEW_POST = gql`
+  subscription SubscribeToNewPost {
+    newPost {
+      postID
+      title
+      image
+      content
+      isPublished
+      user {
+        userID
+        username
+      }
+    }
+  }
+`;
+
+export const SUBSCRIBE_TO_NEW_COMMENT = gql`
+  subscription SubscribeToNewComment {
+    newComment {
+      commentID
+      content
+      user {
+        userID
+        username
+      }
+      post {
+        postID
+      }
+      createdAt
+    }
   }
 `;

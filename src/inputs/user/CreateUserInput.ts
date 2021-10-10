@@ -22,7 +22,4 @@ export default class CreateUserInput {
 
   @Field()
   email!: string;
-
-  @Field({ nullable: true })
-  birthDate?: Date;
 }

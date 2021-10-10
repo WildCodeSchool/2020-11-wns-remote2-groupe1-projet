@@ -52,6 +52,18 @@ export default class UserResolver {
     return getRecentUsers();
   }
 
+  // @Mutation(() => Boolean)
+  // async deleteUser(@Arg('userID') userID: string): Promise<boolean> {
+  //   const user = await User.findOne({ where: { userID } });
+
+  //   if (!user) {
+  //     throw new Error(`The post with id: ${userID} does not exist!`);
+  //   }
+
+  //   await user.remove();
+  //   return true;
+  // }
+
   @Mutation(() => User)
   async createSession(
     @Arg('input') input: CreateSessionInput,

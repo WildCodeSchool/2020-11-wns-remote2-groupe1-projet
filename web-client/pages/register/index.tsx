@@ -33,7 +33,6 @@ const Register = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [birthDate, setBirthDate] = useState<string>(new Date().toString());
   const [register, { error }] = useMutation(REGISTER, {
     onCompleted: () => {
       router.push('/login');

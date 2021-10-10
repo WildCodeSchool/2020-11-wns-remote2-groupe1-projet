@@ -64,6 +64,9 @@ function Dashboard() {
     firstName: '',
     lastName: '',
     email: '',
+    country: '',
+    phoneNo: '',
+    birthDate: '',
   });
 
   useEffect(() => {
@@ -74,6 +77,9 @@ function Dashboard() {
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
         email: currentUser.email,
+        birthDate: currentUser.birthDate,
+        country: currentUser.country,
+        phoneNo: currentUser.phoneNo,
       });
     }
   }, [currentUser]);
@@ -152,6 +158,36 @@ function Dashboard() {
                 onChange={changeHandler}
                 fullWidth
                 type="email"
+              />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <TextField
+                label="Phone Number"
+                name="phoneNo"
+                value={values.phoneNo}
+                onChange={changeHandler}
+                fullWidth
+                type="number"
+              />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <TextField
+                label="Country"
+                name="country"
+                value={values.country}
+                onChange={changeHandler}
+                fullWidth
+                type="text"
+              />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <TextField
+                label="Date of Birth"
+                name="birthDate"
+                value={values.birthDate}
+                onChange={changeHandler}
+                fullWidth
+                type="date"
               />
             </Grid>
             <Grid item xs={12} md={12} className={classes.buttons}>

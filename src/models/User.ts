@@ -35,23 +35,29 @@ export class User extends BaseEntity {
   @Field(() => String)
   lastName!: string;
 
-  @Column({ nullable: true })
-  @CreateDateColumn()
-  @Field(() => Date)
-  birthDate?: Date;
+  @Column({
+    nullable: true,
+    default: '',
+  })
+  @Field(() => String)
+  birthDate?: string;
 
   @Column()
   @Field(() => String)
   password!: string;
 
-  @Column({ nullable: true })
-  @Field(() => String)
-  tel?: string;
-
   @Index({ unique: true })
   @Column()
   @Field(() => String)
   email!: string;
+
+  @Column({ nullable: true, default: '' })
+  @Field(() => String)
+  phoneNo?: string;
+
+  @Column({ nullable: true, default: '' })
+  @Field(() => String)
+  country?: string;
 
   @Column({ nullable: true })
   @Field(() => String)
