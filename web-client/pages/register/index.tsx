@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { LOGIN_MUTATION, REGISTER } from '../../src/queries';
 
@@ -40,14 +40,33 @@ const Register = (): JSX.Element => {
     },
   });
   const [isEqual, setIsEqual] = useState<boolean>(false);
+  const [minLength, setMinLength] = useState<boolean>(false);
+  const [passwordEmpty, setPasswordEmpty] = useState<boolean>(true);
+  const [confirmPasswordEmpty, setConfirmPasswordEmpty] =
+    useState<boolean>(true);
 
-  const checkPassword = (password, confirmPassword) => {
-    if (password !== confirmPassword) {
-      setIsEqual(true);
-    } else {
-      setIsEqual(false);
-    }
-  };
+  useEffect(() => {
+    const checkPassword = (password, confirmPassword) => {
+      if (password == confirmPassword) {
+        setIsEqual(true);
+      } else if (password !== confirmPassword) {
+        setIsEqual(false);
+      }
+
+      if (password.length >= 8 && confirmPassword.length >= 8) {
+        setMinLength(true);
+      } else {
+        setMinLength(false);
+      }
+
+      password.length > 0 ? setPasswordEmpty(false) : setPasswordEmpty(true);
+      confirmPassword.length > 0
+        ? setConfirmPasswordEmpty(false)
+        : setConfirmPasswordEmpty(true);
+    };
+    checkPassword(password, confirmPassword);
+  }, [password, confirmPassword]);
+
   return (
     <Paper className={classes.root}>
       <Typography variant="h2">Create Account</Typography>
@@ -74,6 +93,7 @@ const Register = (): JSX.Element => {
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
+              required
               label="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -83,6 +103,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              required
               label="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
@@ -92,6 +113,7 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
+              required
               label="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
@@ -101,37 +123,37 @@ const Register = (): JSX.Element => {
           </Grid>
           <Grid item xs={12} md={12}>
             <TextField
+              required
               label="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               fullWidth
               type="email"
-              error={!!error}
             />
           </Grid>
           <Grid item xs={12} md={12}>
             <TextField
+              required
               label="Password"
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
-                checkPassword(password, confirmPassword);
               }}
               fullWidth
               type="password"
-              error={!isEqual && password.length !== 0}
+              error={(!isEqual || !minLength) && !passwordEmpty}
               helperText={'8 characters minimum required'}
             />
           </Grid>
           <Grid item xs={12} md={12}>
             <TextField
+              required
               label="Confirm password"
               value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
-                checkPassword(password, confirmPassword);
               }}
-              error={!isEqual && confirmPassword.length !== 0}
+              error={(!isEqual || !minLength) && !confirmPasswordEmpty}
               fullWidth
               type="password"
             />
@@ -144,7 +166,7 @@ const Register = (): JSX.Element => {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={!isEqual}
+              disabled={!isEqual || !minLength}
             >
               Create Account
             </Button>
