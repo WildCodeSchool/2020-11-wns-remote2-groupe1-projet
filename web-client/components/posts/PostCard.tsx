@@ -15,7 +15,7 @@ import { grey } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: 450,
+      width: '100%',
       cursor: 'pointer',
     },
     media: {

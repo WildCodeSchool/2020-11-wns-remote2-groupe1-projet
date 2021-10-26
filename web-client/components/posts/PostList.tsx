@@ -21,6 +21,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     margin: '2rem auto 2rem auto',
   },
+  postList: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '720px',
+    margin: '0 auto',
+    padding: '0 1.5rem',
+    gap: '1.5rem',
+  },
 }));
 
 const Posts = (): JSX.Element => {
@@ -71,18 +79,20 @@ const Posts = (): JSX.Element => {
       <Typography variant="h1" className={classes.feedTitle}>
         Posts
       </Typography>
+      <div className={classes.postList}>
+        {posts?.map((post) => (
+          <PostCard
+            key={post.postID}
+            postID={post.postID}
+            title={post.title}
+            image={post.image}
+            content={post.content}
+            isPublished={post.isPublished}
+            user={post.user}
+          />
+        ))}
+      </div>
 
-      {posts?.map((post) => (
-        <PostCard
-          key={post.postID}
-          postID={post.postID}
-          title={post.title}
-          image={post.image}
-          content={post.content}
-          isPublished={post.isPublished}
-          user={post.user}
-        />
-      ))}
       <div>
         <Button
           className={classes.feedButton}
