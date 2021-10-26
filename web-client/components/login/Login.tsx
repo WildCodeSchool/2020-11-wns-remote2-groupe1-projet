@@ -69,10 +69,10 @@ function LoginComponent() {
           </Grid>
           <Grid item xs={12} className={classes.buttons}>
             <Link href="/register">
-              <Button>Register</Button>
+              <Button>Sign up</Button>
             </Link>
             <Button variant="contained" color="primary" type="submit">
-              Sign In
+              Log in
             </Button>
           </Grid>
         </Grid>
