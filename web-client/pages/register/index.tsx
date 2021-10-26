@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState } from 'react';
-import { REGISTER } from '../../src/queries';
+import { LOGIN_MUTATION, REGISTER } from '../../src/queries';
 
 const useStyles = makeStyles({
   root: {
@@ -33,9 +33,10 @@ const Register = (): JSX.Element => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [register, { error }] = useMutation(REGISTER, {
-    onCompleted: () => {
-      router.push('/login');
+  const [register, { error }] = useMutation(REGISTER);
+  const [login, { error: loginError }] = useMutation(LOGIN_MUTATION, {
+    onCompleted() {
+      router.push('/');
     },
   });
   const [isEqual, setIsEqual] = useState<boolean>(false);
@@ -58,6 +59,12 @@ const Register = (): JSX.Element => {
               username,
               firstName,
               lastName,
+              email,
+              password,
+            },
+          });
+          login({
+            variables: {
               email,
               password,
             },
