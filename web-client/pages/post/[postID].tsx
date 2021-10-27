@@ -15,14 +15,7 @@ interface WithRouterProps {
 const PostView: NextPage<WithRouterProps> = ({ router }: WithRouterProps) => {
   return (
     <>
-      <Link href="/">
-        <Button color="inherit"> Retour aux posts</Button>
-      </Link>
-      <Container maxWidth="sm">
-        <Box mt={2}>
-          <Post router={router} />
-        </Box>
-      </Container>
+      <Post router={router} />
     </>
   );
 };

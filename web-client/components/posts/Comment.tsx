@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: 'column',
       padding: '0.5rem',
       margin: '0.5rem',
+      borderBottom: 'solid 1px grey',
     },
     commentUser: {
       fontWeight: 'bold',
@@ -99,7 +100,7 @@ const Comment = ({ postID }): JSX.Element => {
 
   return (
     <div className={classes.commentsComponent}>
-      <Card className={classes.formCard}>
+      <div className={classes.formCard}>
         <form onSubmit={onSubmit} className={classes.commentField}>
           <TextField
             label="Add a comment"
@@ -114,13 +115,13 @@ const Comment = ({ postID }): JSX.Element => {
             </Button>
           </div>
         </form>
-      </Card>
+      </div>
 
       {comments && (
         <div className="comments-container">
           {comments.map((comment) => {
             return (
-              <Card className={classes.commentCard} key={comment.commentID}>
+              <div className={classes.commentCard} key={comment.commentID}>
                 <div className={classes.commentBlock}>
                   <div className={classes.commentHeader}>
                     <span className={classes.commentUser}>
@@ -138,7 +139,7 @@ const Comment = ({ postID }): JSX.Element => {
                   </div>
                   <div className={classes.commentBody}>{comment.content}</div>
                 </div>
-              </Card>
+              </div>
             );
           })}
         </div>

@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box, Container } from '@material-ui/core';
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
@@ -21,6 +21,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     media: {
       width: '100%',
+      objectFit: 'cover',
+    },
+    postContent: {},
+    separator: {
+      width: '50%',
+      border: '2px, solid #939596',
+      borderBottom: 'none',
+      margin: '2rem auto',
     },
   })
 );
@@ -43,41 +51,46 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
 
   return (
     <div>
-      <Box m={2}>
-        <div>
-          <img src={image} className={classes.media} height="250px"></img>
-          <h1>{post?.title}</h1>
-          <p>written by {post?.user?.username}</p>
-          <p className={classes.dateBlock}>
-            <span className={classes.dateUnit}>
-              Created at :
-              <span>
-                {new Date(post?.createdAt).toLocaleString('fr', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                })}{' '}
+      <img src={image} className={classes.media} height="250px"></img>
+      <Container maxWidth="sm">
+        <Box m={2}>
+          <div>
+            <h1>{post?.title}</h1>
+            <p>written by {post?.user?.username}</p>
+            <p className={classes.dateBlock}>
+              <span className={classes.dateUnit}>
+                Created at :
+                <span>
+                  {new Date(post?.createdAt).toLocaleString('fr', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                  })}{' '}
+                </span>
               </span>
-            </span>
-            <span className={classes.dateUnit}>
-              Updated at :
-              <span>
-                {new Date(post?.updatedAt).toLocaleString('fr', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                })}{' '}
+              <span className={classes.dateUnit}>
+                Updated at :
+                <span>
+                  {new Date(post?.updatedAt).toLocaleString('fr', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                  })}{' '}
+                </span>
               </span>
-            </span>
-          </p>
-          <ReactMarkdown>{post?.content}</ReactMarkdown>
-        </div>
-      </Box>
-      <Comment postID={postID} />
+            </p>
+            <ReactMarkdown className={classes.postContent}>
+              {post?.content}
+            </ReactMarkdown>
+          </div>
+        </Box>
+        <hr className={classes.separator} />
+        <Comment postID={postID} />
+      </Container>
     </div>
   );
 };
