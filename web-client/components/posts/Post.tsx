@@ -6,6 +6,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { GET_POST } from '../../src/queries';
 import { getPostById } from '../../src/schemaTypes';
 import Comment from './Comment';
+import ReactMarkdown from 'react-markdown';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -73,7 +74,7 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
               </span>
             </span>
           </p>
-          <p>{post?.content}</p>
+          <ReactMarkdown>{post?.content}</ReactMarkdown>
         </div>
       </Box>
       <Comment postID={postID} />

@@ -11,6 +11,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
+import ReactMarkdown from 'react-markdown';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -122,7 +123,9 @@ const PostCard = ({
             <CardContent>
               <p>by {user?.username}</p>
 
-              <Typography noWrap>{content}</Typography>
+              <Typography noWrap>
+                <ReactMarkdown>{content}</ReactMarkdown>
+              </Typography>
             </CardContent>
           </Grid>
         </Card>
