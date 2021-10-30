@@ -15,13 +15,9 @@ const withAuth = (WrappedComponent) => {
         const checkLoginStatus = setTimeout(() => {
           if (loggedIn !== undefined) {
             if (currentUser) {
-              console.log(currentUser);
               return;
             } else {
               Router.replace('/login');
-              console.log(currentUser);
-
-              console.log('redirect');
               return;
             }
           }

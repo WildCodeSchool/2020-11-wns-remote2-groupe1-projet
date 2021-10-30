@@ -26,6 +26,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   const GRAPHQL_ENDPOINT = '/graphql';
+  const WEBSOCKET_ENDPOINT = '/websockets';
 
   const httpLink = createUploadLink({
     uri: GRAPHQL_ENDPOINT,
@@ -42,7 +43,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       uri: `${webSocketProtocolAndHost}${GRAPHQL_ENDPOINT}`,
       options: {
         reconnect: true,
-        minTimeout: 10000,
+        lazy: true,
+        minTimeout: 20000,
       },
     });
 

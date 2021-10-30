@@ -63,6 +63,7 @@ const Comment = ({ postID }): JSX.Element => {
     variables: {
       postID: postID,
     },
+    fetchPolicy: 'cache-and-network',
   });
   const comments = commentData?.comments;
 

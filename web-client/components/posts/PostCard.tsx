@@ -123,9 +123,9 @@ const PostCard = ({
             <CardContent>
               <p>by {user?.username}</p>
 
-              <Typography noWrap>
+              <div>
                 <ReactMarkdown>{content}</ReactMarkdown>
-              </Typography>
+              </div>
             </CardContent>
           </Grid>
         </Card>

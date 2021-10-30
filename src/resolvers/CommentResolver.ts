@@ -74,9 +74,8 @@ export default class CommentResolver {
     comment.user = user;
     const post = await Post.findOne(postID);
 
-    if (post) {
-      comment.post = post;
-    }
+    post && (comment.post = post);
+
     await comment.save();
     publishNewComment({ comment });
     return comment;
