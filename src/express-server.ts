@@ -4,7 +4,6 @@ import { getApolloServer } from './apollo-server';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 import { GraphQLSchema } from 'graphql';
-import cors from 'cors';
 
 export const getExpressServer = async (): Promise<{
   expressServer: Application;
@@ -17,6 +16,7 @@ export const getExpressServer = async (): Promise<{
     .use(cookieParser())
     .use('/public', express.static(path.join(__dirname, '..', 'public')));
 
+    await apolloServer.start();
   apolloServer.applyMiddleware({ app: expressServer });
   return { expressServer, apolloServer, graphQLSchema };
 };
