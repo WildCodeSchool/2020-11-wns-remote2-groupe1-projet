@@ -10,6 +10,7 @@ import { ObjectType, Field, ID } from 'type-graphql';
 import { Stream } from 'stream';
 import path from 'path';
 import { writeFileToImageDirectory } from '../utils';
+import { ReadStream } from 'fs';
 
 @Entity()
 @ObjectType()
@@ -30,13 +31,13 @@ export class Image extends BaseEntity {
 
 const saveAndWriteImageToFile = async (
   originalFilename: string,
-  stream: Stream
+  createReadStream: ReadStream
 ): Promise<Image> => {
   const extension = path.extname(originalFilename);
   const image = Image.create({ extension });
   await image.save();
   const newFilename = `${image.id}${extension}`;
-  await writeFileToImageDirectory(stream, newFilename);
+  await writeFileToImageDirectory(createReadStream, newFilename);
   return image;
 };
 

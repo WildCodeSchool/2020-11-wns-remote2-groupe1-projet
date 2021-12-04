@@ -26,16 +26,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "resolutions": {
+    "fs-capacitor": "3.0.0"
+  },
   "dependencies": {
     "@types/node": "^16.4.13",
-    "apollo-server-express": "^2.19.0",
+    "apollo-server-express": "^3.5.0",
     "bcrypt": "=5.0.0",
     "class-validator": "^0.13.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql": "^15.5.1",
-    "graphql-upload": "^8.1.0",
+    "graphql-upload": "^13.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "pg": "^8.7.1",

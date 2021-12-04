@@ -4,6 +4,7 @@ import { getApolloServer } from './apollo-server';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
 import { GraphQLSchema } from 'graphql';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 export const getExpressServer = async (): Promise<{
   expressServer: Application;
@@ -14,7 +15,8 @@ export const getExpressServer = async (): Promise<{
 
   const expressServer = express()
     .use(cookieParser())
-    .use('/public', express.static(path.join(__dirname, '..', 'public')));
+    .use('/public', express.static(path.join(__dirname, '..', 'public')))
+    .use(graphqlUploadExpress({maxFileSize: 1000000, maxFiles: 10}));
 
     await apolloServer.start();
   apolloServer.applyMiddleware({ app: expressServer });

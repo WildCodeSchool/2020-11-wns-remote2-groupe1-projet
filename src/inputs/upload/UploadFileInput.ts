@@ -1,10 +1,11 @@
+import { ReadStream } from 'fs';
 import { Stream } from 'stream';
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export class UploadFileInput {
   @Field(() => Function)
-  stream!: Stream;
+  createReadStream!: Function;
 
   @Field() filename!: string;
 

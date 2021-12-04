@@ -15,8 +15,9 @@ export default class ImageResolver {
     @Arg('file', () => GraphQLUpload)
     file: UploadFileInput
   ): Promise<Image> {
-    const { filename, stream } = file;
-    return saveAndWriteImageToFile(filename, stream);
+    const { createReadStream, filename } = await file;
+    const stream = createReadStream();
+        return saveAndWriteImageToFile(filename, stream);
   }
   @Mutation(() => Boolean)
   async deleteImage(@Arg('id') id: string): Promise<boolean> {
