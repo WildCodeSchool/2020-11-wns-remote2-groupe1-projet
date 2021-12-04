@@ -16,7 +16,8 @@ export const getExpressServer = async (): Promise<{
   const expressServer = express()
     .use(cookieParser())
     .use('/public', express.static(path.join(__dirname, '..', 'public')))
-    .use(graphqlUploadExpress({maxFileSize: 1000000, maxFiles: 10}));
+    .use(graphqlUploadExpress({maxFileSize: 1000000, maxFiles: 10}))
+    
 
     await apolloServer.start();
   apolloServer.applyMiddleware({ app: expressServer });
