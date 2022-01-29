@@ -1,0 +1,55 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.drawer {
+    @include sm-screen {
+        width: calc(100% - $DRAWER_WIDTH);
+        flex-shrink: 0;
+    }
+}
+
+.appBar {
+    @include sm-screen {
+        width: calc(100% - $DRAWER_WIDTH);
+        margin-left: $DRAWER_WIDTH;
+    } 
+}
+
+.menuButton {
+    margin-right: 1rem;
+    @include md-screen{
+        display: none;
+    }
+}
+
+.toolbar {
+
+}
+
+.drawerPaper {
+    width: $DRAWER_WIDTH;
+    background-color: $DEFAULT_UI_COLOR;
+}
+
+.navBarContent{
+    display: flex;
+}
+
+.respNavBarContent {
+    display: none;
+    justify-content: space-between;
+    padding-right: 2rem;
+
+    @include md-screen {
+        display: flex;
+    }
+}
+
+.link {
+    color: inherit;
+}
+
+.logo {
+    font-size: 1rem;
+    color: inherit;
+}

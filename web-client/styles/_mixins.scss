@@ -1,0 +1,118 @@
+@import '_variables.scss';
+
+@mixin lg-screen {
+  @media only screen and (max-width: 1170px) {
+    @content;
+  }
+}
+
+@mixin md-screen {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin sm-screen {
+  @media only screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin xs-screen {
+  @media only screen and (max-width: 575px) {
+    @content;
+  }
+}
+
+@mixin title {
+  color: $DEFAULT_TITLE_COLOR;
+  font-weight: bold;
+}
+
+@mixin button {
+  cursor: pointer;
+  background-color: $DEFAULT_UI_COLOR;
+  display: block;
+  margin: 2rem auto 2rem auto;
+  border: none;
+  border-radius: 0.25rem;
+  width: auto;
+  text-align: center;
+  font-size: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  position: relative;
+  align-items: center;
+  &:hover {
+    background-color: $DEFAULT_HOVER_UI_COLOR;
+  }
+}
+
+@mixin send-button {
+  cursor: pointer;
+  color: $DEFAULT_UI_COLOR;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    color: $DEFAULT_HOVER_UI_COLOR;
+  }
+}
+
+@mixin login-button {
+  cursor: pointer;
+  background-color: $DEFAULT_UI_COLOR;
+  color: black;
+  display: block;
+  border: none;
+  border-radius: 0.25rem;
+  width: 5rem;
+  text-align: center;
+  font-size: 12px;
+  padding: 4px 10px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  position: relative;
+  align-items: center;
+  &:hover {
+    background-color: $DEFAULT_HOVER_UI_COLOR;
+    color: white;
+  }
+}
+
+@mixin signup-button {
+  cursor: pointer;
+  color: $DEFAULT_UI_COLOR;
+  background-color: transparent;
+  display: block;
+  border: none;
+  border-radius: 0.25rem;
+  width: 5rem;
+  text-align: center;
+  font-size: 12px;
+  padding: 4px 10px;
+  position: relative;
+  align-items: center;
+  &:hover {
+    background-color: $DEFAULT_UI_COLOR;
+    color: white;
+  }
+}
+
+@mixin submit-button {
+  cursor: pointer;
+  background-color: $DEFAULT_UI_COLOR;
+  display: block;
+  border: none;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-size: 12px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  position: relative;
+  align-items: center;
+  &:hover {
+    background-color: $DEFAULT_HOVER_UI_COLOR;
+  }
+}

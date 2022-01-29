@@ -1,0 +1,21 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.root {
+    padding : 2rem;
+    max-width: 600px;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.loginBtn {
+    @include login-button;
+}
+.signupBtn {
+    @include signup-button;
+}

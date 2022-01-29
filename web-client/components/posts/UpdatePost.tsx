@@ -2,33 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import { useQuery, useMutation } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { GET_POST, UPDATE_POST, DELETE_POST } from '../../src/queries';
-
-const useStyles = makeStyles({
-  root: {
-    padding: 32,
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: 64,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  gridContainer: {
-    padding: '1rem',
-  },
-});
+import styles from '../../styles/UpdatePost.module.scss';
 
 const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
-  const classes = useStyles();
 
   const router = useRouter();
   const postID = router?.query?.postID;
@@ -108,10 +90,8 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
   }
 
   return (
-    <Paper className={classes.gridContainer}>
-      <Typography align={'center'} variant="h2">
-        Post Edit
-      </Typography>
+    <Paper className={styles.gridContainer}>
+      <h2 className={styles.title}>Post Edit</h2>
       <form onSubmit={handleSubmit}>
         <Grid container justify="center" spacing={2}>
           <Grid item xs={12} md={6}>
@@ -159,7 +139,7 @@ const UpdatePostComponent: React.FC<{ router: NextRouter }> = ({}) => {
               label={values.isPublished ? 'Published' : 'Draft'}
             />
           </Grid>
-          <Grid item xs={12} md={12} className={classes.buttons}>
+          <Grid item xs={12} md={12} className={styles.buttons}>
             <Button variant="contained" color="primary" type="submit">
               Save Edits
             </Button>

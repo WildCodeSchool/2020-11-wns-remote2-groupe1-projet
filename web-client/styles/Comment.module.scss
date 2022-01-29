@@ -1,0 +1,51 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+
+.commentsComponent {
+    padding-bottom: 2rem;
+
+    .commentCard {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        border-bottom: solid 1px grey;
+    }
+    
+    .commentUser {
+        font-weight: bold;
+    }
+    
+    .commentHeader{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .commentBody {
+        margin-left: 1rem;
+    }
+    .commentField {
+        display: flex;
+        flex-direction: row;
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+    
+    .buttonContainer {
+        display: flex;
+        height: 3rem;
+    }
+    
+    .formCard {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sendButton {
+        @include send-button;
+
+    }
+}

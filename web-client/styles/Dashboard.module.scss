@@ -1,0 +1,27 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.root {
+    margin-top: 1rem;
+
+    .dashboardTitle {
+        @include title;
+        text-align: center;
+    }
+    .contentContainer {
+        margin: auto;
+        padding-top: 1rem;
+        max-width: 30%;
+        text-align: center;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+    .gridContainer {
+        padding: 1rem;
+    }
+    .saveBtn {
+        @include button;
+    }
+}

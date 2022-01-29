@@ -1,35 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PostCard from './PostCard';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_POSTS, SUBSCRIBE_TO_NEW_POST } from '../../src/queries';
 import { getPosts, SubscribeToNewPost } from '../../src/schemaTypes';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-  feedTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#1b84c1',
-  },
-  feedButton: {
-    display: 'block',
-    margin: '2rem auto 2rem auto',
-  },
-  postList: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: '720px',
-    margin: '0 auto',
-    padding: '0 1.5rem',
-    gap: '1.5rem',
-  },
-}));
+import styles from '../../styles/PostList.module.scss';
 
 const Posts = (): JSX.Element => {
   const { data, fetchMore, subscribeToMore } = useQuery<getPosts>(GET_POSTS, {
@@ -73,13 +47,10 @@ const Posts = (): JSX.Element => {
     }
   }, [data]);
 
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Typography variant="h1" className={classes.feedTitle}>
-        Posts
-      </Typography>
-      <div className={classes.postList}>
+    <div className={styles.root}>
+      <h1 className={styles.feedTitle}>Posts</h1>
+      <div className={styles.postList}>
         {posts?.map((post) => (
           <PostCard
             key={post.postID}
@@ -94,15 +65,9 @@ const Posts = (): JSX.Element => {
       </div>
 
       <div>
-        <Button
-          className={classes.feedButton}
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={fetchMorePosts}
-        >
+        <button className={styles.feedButton} onClick={fetchMorePosts}>
           More
-        </Button>
+        </button>
       </div>
     </div>
   );

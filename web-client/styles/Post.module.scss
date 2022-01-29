@@ -1,0 +1,22 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.dateBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.dateUnit  {
+  display: flex;
+  flex-direction: column;
+}
+.media {
+  width: 100%;
+  object-fit: cover;
+}
+.separator {
+  width: 50%;
+  border: 2px solid #939596;
+  border-bottom: none;
+  margin: 2rem auto;
+}

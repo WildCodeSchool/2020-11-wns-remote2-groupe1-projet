@@ -1,0 +1,24 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.root {
+    margin-top: 1rem;
+}
+
+.feedTitle {
+    @include title;
+    text-align: center;
+}
+
+.feedButton{
+    @include button;
+}
+
+.postList{
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+}

@@ -1,41 +1,13 @@
 import { useMutation, useQuery } from '@apollo/client';
-import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 import router from 'next/router';
 import React, { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../contexts/Contexts';
 import { GET_POSTS, GET_RECENT_USERS, UPDATE_USER } from '../../src/queries';
 import { GetRecentUsers } from '../../src/schemaTypes';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-  dashboardTitle: {
-    textAlign: 'center',
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#1b84c1',
-  },
-  contentContainer: {
-    margin: 'auto',
-    paddingTop: '1rem',
-    maxWidth: '30%',
-    textAlign: 'center',
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  gridContainer: {
-    padding: '1rem',
-  },
-}));
+import styles from '../../styles/Dashboard.module.scss';
 
 function Dashboard() {
-  const classes = useStyles();
-
   const { currentUser } = useContext(UserContext);
 
   const { loading, data } = useQuery<GetRecentUsers>(GET_RECENT_USERS);
@@ -107,11 +79,11 @@ function Dashboard() {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={styles.root}>
       <h1
-        className={classes.dashboardTitle}
+        className={styles.dashboardTitle}
       >{`${currentUser?.username}'s dashboard`}</h1>
-      <div className={classes.contentContainer}>
+      <div className={styles.contentContainer}>
         <h2>Account Information</h2>
         <p>
           Name : <span>{currentUser?.firstName}</span>{' '}
@@ -190,10 +162,8 @@ function Dashboard() {
                 type="date"
               />
             </Grid>
-            <Grid item xs={12} md={12} className={classes.buttons}>
-              <Button variant="contained" color="primary" type="submit">
-                Save Edits
-              </Button>
+            <Grid item xs={12} md={12} className={styles.buttons}>
+              <button className={styles.saveBtn}>Save Edits</button>
             </Grid>
           </Grid>
         </form>

@@ -1,0 +1,14 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.gridContainer {
+  padding: 1rem;
+}
+
+.submitBtn {
+    @include submit-button;
+}

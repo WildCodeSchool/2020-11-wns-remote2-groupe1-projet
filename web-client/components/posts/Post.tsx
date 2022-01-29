@@ -2,36 +2,11 @@ import { Box, Container } from '@material-ui/core';
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { GET_POST } from '../../src/queries';
 import { getPostById } from '../../src/schemaTypes';
 import Comment from './Comment';
 import ReactMarkdown from 'react-markdown';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    dateBlock: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    dateUnit: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    media: {
-      width: '100%',
-      objectFit: 'cover',
-    },
-    postContent: {},
-    separator: {
-      width: '50%',
-      border: '2px, solid #939596',
-      borderBottom: 'none',
-      margin: '2rem auto',
-    },
-  })
-);
+import styles from '../../styles/Post.module.scss';
 
 const Post: React.FC<{ router: NextRouter }> = ({}) => {
   const router = useRouter();
@@ -41,7 +16,6 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
   });
   const post = data?.post;
 
-  const classes = useStyles();
   let image;
   if (post?.image) {
     image = post?.image;
@@ -51,14 +25,14 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
 
   return (
     <div>
-      <img src={image} className={classes.media} height="250px"></img>
+      <img src={image} className={styles.media} height="250px"></img>
       <Container maxWidth="sm">
         <Box m={2}>
           <div>
             <h1>{post?.title}</h1>
             <p>written by {post?.user?.username}</p>
-            <p className={classes.dateBlock}>
-              <span className={classes.dateUnit}>
+            <p className={styles.dateBlock}>
+              <span className={styles.dateUnit}>
                 Created at :
                 <span>
                   {new Date(post?.createdAt).toLocaleString('fr', {
@@ -70,7 +44,7 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
                   })}{' '}
                 </span>
               </span>
-              <span className={classes.dateUnit}>
+              <span className={styles.dateUnit}>
                 Updated at :
                 <span>
                   {new Date(post?.updatedAt).toLocaleString('fr', {
@@ -83,12 +57,12 @@ const Post: React.FC<{ router: NextRouter }> = ({}) => {
                 </span>
               </span>
             </p>
-            <ReactMarkdown className={classes.postContent}>
+            <ReactMarkdown className={styles.postContent}>
               {post?.content}
             </ReactMarkdown>
           </div>
         </Box>
-        <hr className={classes.separator} />
+        <hr className={styles.separator} />
         <Comment postID={postID} />
       </Container>
     </div>

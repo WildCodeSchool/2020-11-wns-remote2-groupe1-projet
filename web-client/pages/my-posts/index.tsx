@@ -1,36 +1,9 @@
 import React from 'react';
 import PostCard from '../../components/posts/PostCard';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Button } from '@material-ui/core';
 import { useQuery } from '@apollo/client';
 import { GET_POSTS } from '../../src/queries';
 import withAuth from '../../components/withAuth';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-  feedTitle: {
-    textAlign: 'center',
-    fontSize: '2rem',
-    fontWeight: 'bold',
-    color: '#1b84c1',
-  },
-  feedButton: {
-    display: 'block',
-    margin: '2rem auto 2rem auto',
-  },
-  postList: {
-    display: 'flex',
-    flexDirection: 'column',
-    maxWidth: '720px',
-    margin: '0 auto',
-    padding: '0 1.5rem',
-    gap: '1.5rem',
-  },
-}));
+import styles from '../../styles/PostList.module.scss';
 
 const EditPosts = (): JSX.Element => {
   const { data, fetchMore } = useQuery(GET_POSTS, {
@@ -65,14 +38,10 @@ const EditPosts = (): JSX.Element => {
     });
   };
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <Typography variant="h1" className={classes.feedTitle}>
-        Post Management
-      </Typography>
-      <div className={classes.postList}>
+    <div className={styles.root}>
+      <h1 className={styles.feedTitle}>Post Management</h1>
+      <div className={styles.postList}>
         {posts?.map((post) => (
           <PostCard
             key={post.postID}
@@ -86,15 +55,9 @@ const EditPosts = (): JSX.Element => {
         ))}
       </div>
       <div>
-        <Button
-          className={classes.feedButton}
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={fetchMorePosts}
-        >
-          More
-        </Button>
+        <button className={styles.feedButton} onClick={fetchMorePosts}>
+          More posts
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,22 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.root {
+    padding: 2rem;
+    max-width: 600;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.title {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gridContainer {
+    padding: 1rem;
+}

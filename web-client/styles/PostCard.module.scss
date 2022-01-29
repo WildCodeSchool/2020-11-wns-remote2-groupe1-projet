@@ -1,0 +1,36 @@
+@import '_variables.scss';
+@import '_mixins.scss';
+
+.root {
+    width: 100%;
+    cursor: pointer;
+}
+
+.media {
+    height: 140px;
+    width: 100%;
+    padding-top: 56.25%
+}
+
+.publishButton {
+    display: inline-block;
+}
+
+.title {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.center {
+    margin: auto;
+}
+
+.headerBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.avatar {
+    background-color: #9e9e9e;
+}

@@ -10,23 +10,10 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { LOGIN_MUTATION, REGISTER } from '../../src/queries';
-
-const useStyles = makeStyles({
-  root: {
-    padding: 32,
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: 64,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
+import styles from '../../styles/Login.module.scss';
 
 const Register = (): JSX.Element => {
   const router = useRouter();
-  const classes = useStyles();
   const [username, setUsername] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
@@ -68,8 +55,8 @@ const Register = (): JSX.Element => {
   }, [password, confirmPassword]);
 
   return (
-    <Paper className={classes.root}>
-      <Typography variant="h2">Create Account</Typography>
+    <Paper className={styles.root}>
+      <h2>Create Account</h2>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
@@ -158,7 +145,7 @@ const Register = (): JSX.Element => {
               type="password"
             />
           </Grid>
-          <Grid item xs={12} md={12} className={classes.buttons}>
+          <Grid item xs={12} md={12} className={styles.buttons}>
             <Link href="/login">
               <Button>Sign In</Button>
             </Link>

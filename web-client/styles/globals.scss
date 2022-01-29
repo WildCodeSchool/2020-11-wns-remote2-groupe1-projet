@@ -1,4 +1,17 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
 body {
   padding: 0;
   margin: 0;
+
+  h1{
+    @include title;
+    font-size: 2rem;
+  }
+  h2{
+    @include title;
+    font-size: 1.5rem;
+  }
 }
+

@@ -11,14 +11,6 @@ const Theme = createTheme({
       main: DEFAULT_UI_COLOR,
     },
   },
-  typography: {
-    h1: {
-      fontSize: '2rem',
-    },
-    h2: {
-      fontSize: '1.5rem',
-    },
-  },
   overrides: {
     MuiCssBaseline: {
       '@global': {

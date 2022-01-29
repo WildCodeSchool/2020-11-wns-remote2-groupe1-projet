@@ -1,62 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Card, CardContent } from '@material-ui/core';
+import { Card, CardContent } from '@material-ui/core';
 import { useMutation, useQuery } from '@apollo/client';
 import { GetImages, UploadImage } from '../../src/schemaTypes';
 import { GET_IMAGES, UPLOAD_IMAGE, DELETE_IMAGE } from '../../src/queries';
 import router from 'next/router';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-  imageCard: {
-    margin: '1rem',
-  },
-  image: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-    [theme.breakpoints.up('md')]: {
-      maxWidth: '23rem',
-      maxHeight: '23rem',
-    },
-  },
-  uploadButton: {
-    cursor: 'pointer',
-    display: 'block',
-    margin: '2rem auto 2rem auto',
-    width: '10rem',
-    textAlign: 'center',
-  },
-  gallery: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    margin: 'auto',
-    width: '90vw',
-  },
-  galleryTitle: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#1b84c1',
-  },
-  cardContent: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  deleteBtn: {
-    backgroundColor: '#ffa4a2',
-    width: '10rem',
-    justifyContent: 'center',
-    margin: 'auto',
-    marginTop: '1rem',
-  },
-}));
+import styles from '../../styles/ImageGallery.module.scss';
 
 const ImageGalleryComponent = (): JSX.Element => {
-  const classes = useStyles();
   const baseUrl =
     process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:4000';
 
@@ -96,25 +46,22 @@ const ImageGalleryComponent = (): JSX.Element => {
   };
   return (
     <>
-      <h1 className={classes.galleryTitle}>Image Gallery</h1>
-      <input
-        type="file"
-        id="file"
-        required
-        accept="image/*"
-        hidden
-        onChange={uploadImage}
-      />
-      <Button
-        className={classes.uploadButton}
-        color="primary"
-        variant="contained"
-        size="small"
-      >
-        <label htmlFor="file">Add a image</label>
-      </Button>
+      <h1 className={styles.galleryTitle}>Image Gallery</h1>
+      <div>
+        <input
+          type="file"
+          id="file"
+          required
+          accept="image/*"
+          hidden
+          onChange={uploadImage}
+        />
+        <label className={styles.uploadButton} htmlFor="file">
+          Add a image
+        </label>
+      </div>
 
-      <div className={classes.gallery}>
+      <div className={styles.gallery}>
         {loading ? (
           <div> Loading...</div>
         ) : error ? (
@@ -122,23 +69,20 @@ const ImageGalleryComponent = (): JSX.Element => {
         ) : (
           data?.images.map(({ id, extension }) => (
             <div key={id}>
-              <Card className={classes.imageCard}>
-                <CardContent className={classes.cardContent}>
+              <Card className={styles.imageCard}>
+                <CardContent className={styles.cardContent}>
                   <img
-                    className={classes.image}
+                    className={styles.image}
                     src={`${baseUrl}/public/media/images/${id}${extension}`}
                   />
-                  <Button
-                    className={classes.deleteBtn}
-                    color="primary"
-                    variant="contained"
-                    size="small"
+                  <button
+                    className={styles.deleteBtn}
                     onClick={(e) => {
                       deleteImage({ variables: { id: id } });
                     }}
                   >
                     Delete
-                  </Button>
+                  </button>
                 </CardContent>
               </Card>
             </div>

@@ -15,7 +15,7 @@ import { MultiContextProvider } from '../contexts/Contexts';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../styles/theme';
-import classes from './style.module.scss';
+import '../styles/globals.scss';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -80,7 +80,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <MultiContextProvider>
-            <main className={classes.container}>
+            <main>
               <Component {...pageProps} />
             </main>
           </MultiContextProvider>

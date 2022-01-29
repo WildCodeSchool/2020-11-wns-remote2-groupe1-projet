@@ -1,7 +1,6 @@
-import { TextField, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import React, { useEffect, useState } from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {
   CREATE_COMMENT,
   GET_COMMENTS,
@@ -9,48 +8,7 @@ import {
 } from '../../src/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import { GetComments, SubscribeToNewComment } from '../../src/schemaTypes';
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    commentField: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginRight: '1rem',
-      marginLeft: '1rem',
-    },
-    buttonContainer: {
-      display: 'flex',
-      height: '3rem',
-    },
-    formCard: {
-      padding: '1.5rem',
-      marginBottom: '1.5rem',
-    },
-    commentsComponent: {
-      paddingBottom: '2rem',
-    },
-    commentCard: {
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '0.5rem',
-      margin: '0.5rem',
-      borderBottom: 'solid 1px grey',
-    },
-    commentUser: {
-      fontWeight: 'bold',
-    },
-    commentDate: {},
-    commentBlock: {},
-    commentHeader: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    commentBody: {
-      marginLeft: '1rem',
-    },
-  })
-);
+import styles from '../../styles/Comment.module.scss';
 
 const Comment = ({ postID }): JSX.Element => {
   const [content, setContent] = useState<string>('');
@@ -97,12 +55,10 @@ const Comment = ({ postID }): JSX.Element => {
     }
   }, [commentData]);
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.commentsComponent}>
-      <div className={classes.formCard}>
-        <form onSubmit={onSubmit} className={classes.commentField}>
+    <div className={styles.commentsComponent}>
+      <div className={styles.formCard}>
+        <form onSubmit={onSubmit} className={styles.commentField}>
           <TextField
             label="Add a comment"
             value={content}
@@ -110,10 +66,10 @@ const Comment = ({ postID }): JSX.Element => {
             fullWidth
             type="string"
           />
-          <div className={classes.buttonContainer}>
-            <Button size="small" variant="text" color="primary" type="submit">
+          <div className={styles.buttonContainer}>
+            <button className={styles.sendButton}>
               <SendRoundedIcon fontSize="small" />
-            </Button>
+            </button>
           </div>
         </form>
       </div>
@@ -122,10 +78,10 @@ const Comment = ({ postID }): JSX.Element => {
         <div className="comments-container">
           {comments.map((comment) => {
             return (
-              <div className={classes.commentCard} key={comment.commentID}>
-                <div className={classes.commentBlock}>
-                  <div className={classes.commentHeader}>
-                    <span className={classes.commentUser}>
+              <div className={styles.commentCard} key={comment.commentID}>
+                <div className={styles.commentBlock}>
+                  <div className={styles.commentHeader}>
+                    <span className={styles.commentUser}>
                       {comment.user.username}
                     </span>{' '}
                     <span>
@@ -138,7 +94,7 @@ const Comment = ({ postID }): JSX.Element => {
                       })}
                     </span>
                   </div>
-                  <div className={classes.commentBody}>{comment.content}</div>
+                  <div className={styles.commentBody}>{comment.content}</div>
                 </div>
               </div>
             );

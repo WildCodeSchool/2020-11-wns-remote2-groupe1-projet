@@ -1,10 +1,7 @@
 import { useMutation } from '@apollo/client';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -12,28 +9,12 @@ import { useRouter } from 'next/router';
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../contexts/Contexts';
 import { CREATE_POST } from '../../src/queries';
-
-const useStyles = makeStyles({
-  root: {
-    padding: 32,
-    maxWidth: 600,
-    margin: 'auto',
-    marginTop: 64,
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  gridContainer: {
-    padding: '1rem',
-  },
-});
+import styles from '../../styles/CreatePost.module.scss';
 
 function CreatePostComponent(): JSX.Element {
   const { currentUser } = useContext(UserContext);
 
   const router = useRouter();
-  const classes = useStyles();
   const [title, setTitle] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [content, setContent] = useState<string>('');
@@ -44,10 +25,8 @@ function CreatePostComponent(): JSX.Element {
     },
   });
   return (
-    <Paper className={classes.gridContainer}>
-      <Typography align={'center'} variant="h2">
-        Post Creation
-      </Typography>
+    <Paper className={styles.gridContainer}>
+      <h2>Post Creation</h2>
       <p>{currentUser?.firstName}</p>
       <form
         onSubmit={async (e) => {
@@ -104,10 +83,10 @@ function CreatePostComponent(): JSX.Element {
               label={isPublished ? 'Published' : 'Draft'}
             />
           </Grid>
-          <Grid item xs={12} md={12} className={classes.buttons}>
-            <Button variant="contained" color="primary" type="submit">
+          <Grid item xs={12} md={12} className={styles.buttons}>
+            <button className={styles.submitBtn} type="submit">
               Submit post
-            </Button>
+            </button>
           </Grid>
         </Grid>
       </form>
