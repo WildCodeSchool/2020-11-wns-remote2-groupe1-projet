@@ -48,7 +48,7 @@ const EditPosts = (): JSX.Element => {
     image: string;
     content: string;
     isPublished: boolean;
-    user: any;
+    user;
   }> = data?.posts || [];
 
   const fetchMorePosts = () => {

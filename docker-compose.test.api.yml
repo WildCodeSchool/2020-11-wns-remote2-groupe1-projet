@@ -15,6 +15,6 @@ services:
       - TYPEORM_CONNECTION=postgres
       - TYPEORM_HOST=mock-db
       - TYPEORM_PORT=5432
-      - TYPEORM_DATABASE=postgres
+      - TYPEORM_DATABASE=chatter_db
       - TYPEORM_USERNAME=postgres
       - TYPEORM_PASSWORD=denver

@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import UpdatePostComponent from '../../components/posts/UpdatePost';
 import { Container, Box } from '@material-ui/core';
 import { NextPage } from 'next';
 import { NextRouter } from 'next/router';
-import { UserContext } from '../../contexts/Contexts';
 import withAuth from '../../components/withAuth';
 
 interface WithRouterProps {
@@ -11,8 +10,6 @@ interface WithRouterProps {
 }
 
 const EditPost: NextPage<WithRouterProps> = ({ router }: WithRouterProps) => {
-  const { currentUser } = useContext(UserContext);
-
   return (
     <>
       <Container maxWidth="sm">

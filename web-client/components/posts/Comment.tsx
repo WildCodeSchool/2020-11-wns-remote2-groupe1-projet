@@ -1,7 +1,7 @@
-import { TextField, Button, Paper, Card } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import SendRoundedIcon from '@material-ui/icons/SendRounded';
 import React, { useEffect, useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {
   CREATE_COMMENT,
   GET_COMMENTS,
@@ -10,7 +10,7 @@ import {
 import { useMutation, useQuery } from '@apollo/client';
 import { GetComments, SubscribeToNewComment } from '../../src/schemaTypes';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     commentField: {
       display: 'flex',

@@ -17,7 +17,7 @@ export default class ImageResolver {
   ): Promise<Image> {
     const { createReadStream, filename } = await file;
     const stream = createReadStream();
-        return saveAndWriteImageToFile(filename, stream);
+    return saveAndWriteImageToFile(filename, stream);
   }
   @Mutation(() => Boolean)
   async deleteImage(@Arg('id') id: string): Promise<boolean> {

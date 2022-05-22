@@ -7,7 +7,6 @@ import {
   Index,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
-import { Stream } from 'stream';
 import path from 'path';
 import { writeFileToImageDirectory } from '../utils';
 import { ReadStream } from 'fs';

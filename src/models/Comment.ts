@@ -8,7 +8,6 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
@@ -39,7 +38,7 @@ export class Comment extends BaseEntity {
   updatedAt?: Date;
 
   @ManyToOne(() => User)
-  @Field((type) => User)
+  @Field(() => User)
   @JoinColumn()
   user!: User;
 

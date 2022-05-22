@@ -18,11 +18,11 @@ export default class UpdateUserInput {
   email?: string;
 
   @Field({ nullable: true })
-  birthDate?: String;
+  birthDate?: string;
 
   @Field({ nullable: true })
-  country?: String;
+  country?: string;
 
   @Field({ nullable: true })
-  phoneNo?: String;
+  phoneNo?: string;
 }

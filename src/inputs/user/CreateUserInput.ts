@@ -1,6 +1,5 @@
 import { MaxLength, MinLength } from 'class-validator';
 import { InputType, Field } from 'type-graphql';
-import { Column } from 'typeorm';
 
 @InputType()
 export default class CreateUserInput {

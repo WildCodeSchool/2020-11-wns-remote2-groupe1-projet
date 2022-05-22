@@ -38,7 +38,7 @@ function CreatePostComponent(): JSX.Element {
   const [image, setImage] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [isPublished, setIsPublished] = useState<boolean>(false);
-  const [createPost, { error }] = useMutation(CREATE_POST, {
+  const [createPost] = useMutation(CREATE_POST, {
     onCompleted: () => {
       router.push('/');
     },
@@ -96,7 +96,7 @@ function CreatePostComponent(): JSX.Element {
             <FormControlLabel
               control={
                 <Switch
-                  onChange={(e) => {
+                  onChange={() => {
                     isPublished ? setIsPublished(false) : setIsPublished(true);
                   }}
                 />

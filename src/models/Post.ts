@@ -7,7 +7,6 @@ import {
   OneToMany,
   ManyToOne,
   UpdateDateColumn,
-  JoinTable,
 } from 'typeorm';
 import { ObjectType, Field, ID } from 'type-graphql';
 import { User } from './User';

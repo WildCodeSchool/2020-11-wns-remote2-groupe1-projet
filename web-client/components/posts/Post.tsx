@@ -2,13 +2,13 @@ import { Box, Container } from '@material-ui/core';
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { NextRouter, useRouter } from 'next/router';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { GET_POST } from '../../src/queries';
 import { getPostById } from '../../src/schemaTypes';
 import Comment from './Comment';
 import ReactMarkdown from 'react-markdown';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     dateBlock: {
       display: 'flex',
